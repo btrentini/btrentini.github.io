@@ -9,3 +9,6 @@ gem "just-the-docs"        # always download the latest release
 
 # gem "jekyll-theme-primer", "~> 0.4"
 
+gem "kramdown"
+
+

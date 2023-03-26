@@ -8,9 +8,13 @@ March 5, 2021
 
 You’re facing three closed doors. Behind one of them a prize you cherish – a seed phrase for one bitcoin – and behind the other two, broken bricks. Monty Hall tells you to choose any door. Regardless of your choice, Mr. Hall will open one of the doors containing broken bricks and will give you the option to switch doors, if you wish.
 Should you? The answer is yes.
-Because chances are now 50-50. Right?
+
+### Because chances are now 50-50. Right?
+
 Wrong. By switching doors, your chances of picking the bitcoin actually increase to 2/3, or approximately 66%. Many statisticians encounter this problem in introductory courses on conditional probability but a lot of people never heard of it and find it a curious and tricky challenge. Most people I know get it wrong and struggle to understand why.
+
 Visualising it
+
 Ok. You may not be convinced. It’s fine. Totally fine. Maybe you won’t even bother seeing the theoretical aspects and proof based on the Bayes’ rule later on this post and will close the tab right after this section. Also fine.
 Through the code snipped below, 10,000 games were simulated using Python (link to the Colab Notebook).
 class MontyHall():
@@ -62,14 +66,26 @@ First round of 5,000 simulations. Here the player always keep its initial choice
 As we can see, you are more likely to lose if you don’t switch.
 Then, in the next 5,000 simulations, the player always switches after Monty Hall’s revelation:
 
-We can empirically see that it’s always better to switch doors. Some may say that this doesn’t apply to a single individual since a single person can’t play 5,000 times… that’s not how this works at all. We need to take into consideration the real probability over a large (infinite) number of trials. If you toss a fair a coin 5 times, it may end up facing heads 4 times. Maybe. But over 100, 1.000, 10.000… over infinite trials the number of heads should be significantly close to 50%, otherwise the coin is biased (purists, go away! Don’t come with the “a coin ﬂip is a deterministic physical process, subject to the physical laws of motion” just yet).
+We can empirically see that it’s always better to switch doors. Some may say that this doesn’t apply to a single individual since a single person can’t play 5,000 times… that’s not how this works at all. We need to take into consideration the real probability over a large (infinite) number of trials. If you toss a fair a coin 5 times, it may end up facing heads 4 times. Maybe. But over $$100$$, $$1.000$$, $$10.000$$… over infinite trials the number of heads should be significantly close to 50%, otherwise the coin is biased (purists, go away! Don’t come with the “a coin ﬂip is a deterministic physical process, subject to the physical laws of motion” just yet).
 Just for the sake of curiosity and ignoring extrapolating disregarding theoretical aspects, let’s re-run the experiment for the 1.395 episodes of Monty Hall between the years of 1963 and 1976 (not that this actually changes anything I’ve written before…this is completely irrelevant!).
 
 Pretty much the same.
 Consider Bayes’ rule.
 I assume you have some basic understanding about probability. Everything here will follow basic rules. There’s a nice and quick refresher here.
 
-B denotes the hypothesis that the bitcoin is behind a specific door. D is for whichever door the host can open. More specifically, P(B=i) is the prior knowledge we have about the prize being behind any these 3 doors: when the game starts, the prize could be behind any door with equal chances. So P(B=1)=P(B=2)=P(B=3). Hence, P(B) = 1/3.
+B denotes the hypothesis that the bitcoin is behind a specific door. D is for whichever door the host can open. More specifically, $P(B=i)$ is the prior knowledge we have about the prize being behind any these 3 doors: when the game starts, the prize could be behind any door with equal chances. 
+
+So...
+
+
+  $$P(B=1)=P(B=2)=P(B=3)$$
+
+
+Hence,
+
+
+  $$P(B) = 1/3$$
+
 During the game there are a few scenarios for the unfortunate doors. What if you choose door 1 and the prize is really behind door 1? Then Monty Hall will not reveal what is behind door 1 and will open doors 2 or 3 arbitrarily and at random, picking one of them with equal chances. That is P(D|B) = 1/2, meaning that the likelihood of the host revealing the content of any other door other than that of the prize is 50%. We will distil this below. Stay with me.
 Let the game begin!
 You are on stage, 3 doors in front of you, you have no idea where the prize is. Monty Hall asks you which door you want to pick. You make your choice: door 1. Monty Hall slowly walks to the door he’s going to open. Three things can happen now:
