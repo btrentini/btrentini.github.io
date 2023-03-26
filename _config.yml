@@ -1,8 +1,10 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: Bruno Trentini
+description: A space for thoughts and experiments
 theme: just-the-docs
 
-url: https://just-the-docs.github.io
+color_scheme: dark
+favicon_ico: "/assets/images/biology.png"
 
-aux_links:
-  Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+
+url: https://github.com/btrentini?tab=repositories
