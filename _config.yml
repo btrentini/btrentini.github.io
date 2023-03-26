@@ -4,7 +4,11 @@ theme: just-the-docs
 
 color_scheme: dark
 favicon_ico: "/assets/images/biology.png"
+logo: "/assets/images/biology.png"
 
-
+callouts:
+  warning:
+    title: Warning
+    color: red
 
 url: https://github.com/btrentini?tab=repositories
