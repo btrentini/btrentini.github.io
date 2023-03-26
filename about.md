@@ -4,12 +4,9 @@ title: About me
 description: Bio and CV
 nav_order: 2
 ---
+
 ## About me
 Hi, I am **Bruno Trentini**, Developer Relations Manager at NVIDIA. 
-
-<div style="text-align: left;">
-<img style="float: left; padding-top: 7px; padding-right: 12px;" src="https://media.licdn.com/dms/image/D4E03AQHIoaWi1wIMiQ/profile-displayphoto-shrink_800_800/0/1677259862659?e=1685577600&v=beta&t=8i5Ju6SIRQxLM2-kGvRmmmIPgm00LU5q3nq_VDq96j4"  width="20%" >
-</div>
 
 I work in the Healthcare Department where I help Startups build machine learning models at large scale with our models and software (like [BioNeMo](https://www.youtube.com/watch?v=GNL1z7hnj4w)) and, of course, Hardware (Enterprise-grade [GPUs](https://www.nvidia.com/en-gb/data-center/)). I have been focusing on Techbio & Life Sciences and my work is all about getting developers onboarded with our technologies through 1:1 meetings, conferences... The best part of my job is that I get to have daily conversations about the latest about protein design, small molecules, transformer-based models, Geometric Deep Learning, Docking methods... Everything alongside awesome colleagues, startup founders, CTOs and researchers. Look the line up of this [Developer Conference](https://www.nvidia.com/en-gb/events/healthcare-dev-ai-summit/) I have organized in 2022.
 
