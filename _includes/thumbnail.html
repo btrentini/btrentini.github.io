@@ -6,12 +6,13 @@
   {%capture thumbnail%}{{post.thumbnail}}{%endcapture%}
   {%capture url%}{{post.url}}{%endcapture%}
   {%capture baseurl%}{{post.baseurl}}{%endcapture%}
+  {%capture category%}{{post.category}}{%endcapture%}
 
-  {% if post.category == "announcement" %}
+  {% if category == "announcement" %}
       {% include components/c_announcement.html title=title date=date short_desc=short_desc%}
-  {% elsif post.category == "image" %}
+  {% elsif category == "image" %}
     {% include components/c_image.html title=title date=date short_desc=short_desc thumbnail=thumbnail url=url baseurl=baseurl%}
-  {% else % }
+  {% else %}
     {% include components/c_post.html title=title date=date short_desc=short_desc thumbnail=thumbnail url=url baseurl=baseurl%}
   {% endif %}
 {% endfor %}     

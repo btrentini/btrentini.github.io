@@ -57,6 +57,7 @@ $border-color: $grey-dk-200;
 .announcement a:link{
     text-decoration: none;
 }
+
 .no-sub{
     text-decoration: none;
     font-size: 13px;
@@ -65,4 +66,27 @@ $border-color: $grey-dk-200;
     min-width: 50%;
     max-width: 80%;
     float: center;
+}
+
+.img-title a:link{
+    text-decoration: none;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-weight: 500;
+    line-height: 1.25;
+}
+.parent {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    padding: 20px;
+    border-bottom: #31343f solid 1px;
+  }
+.div-top {
+    height: 20%;
+}
+.div-bottom {
+    height: 80%;
+
 }
