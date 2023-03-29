@@ -5,6 +5,11 @@ usemathjax: true
 nav_order: 1
 ---
 
+### [Going to Mars]()
+Well....at least my name is. [Send your name to Mars](https://mars.nasa.gov/participate/send-your-name/future) on NASA's next flight to the Red Planet.  
+
+![image](./assets/images/ticket_mars.png)
+
 ### [New website 🎉](#)
 2023-03-27 ⊷ This new version is based on Ruby and Jekyll. Way better than my previous version with WordPress! I've used [Just-the-docs](https://just-the-docs.github.io/just-the-docs/) as the basis for it (under MIT License) and hope to post here more often.
 
@@ -23,3 +28,7 @@ nav_order: 1
 ---
 ### [Statistical Errors (with Aliens)](/stories/20210105-aliens)
 2021-01-25 ⊷ This post is for the ones who are curious about data science but fairly new to stats and hypothesis testing. It is inspired by an answer I gave during an interview question last year. [Read more...](/stories/20210105-aliens) 
+
+---
+### [7 Resources for Those Wanting to Learn Data Science](/stories/7-resourcers)
+2021-01-25 ⊷ This post is for the ones who are curious about data science but fairly new to stats and hypothesis testing. It is inspired by an answer I gave during an interview question last year. [Read more...](/stories/7-resources) 
