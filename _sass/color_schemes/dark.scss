@@ -3,7 +3,7 @@
 $body-background-color: $grey-dk-300;
 $body-heading-color: $grey-lt-000;
 $body-text-color: $grey-lt-300;
-$link-color: #76B900;
+$link-color: #91d315;
 $nav-child-link-color: #708845;
 $sidebar-color: $grey-dk-300;
 $base-button-color: $grey-dk-250;
@@ -51,8 +51,8 @@ $border-color: $grey-dk-200;
     width:100%;
     float: left;
     padding: 20px;
-    border-top: 1px dotted $link-color;
-    border-bottom: 1px dotted $link-color;
+    border-top: 1px dotted #dee2f7;
+    border-bottom: 1px dotted  #dee2f7;
 }
 .announcement a:link{
     text-decoration: none;
