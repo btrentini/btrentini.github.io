@@ -1,10 +1,16 @@
 ---
-title: Statistical Errors (With Aliens)
+title: 7 Resources for Those Wanting to Learn Data Science
 layout: default
 nav_exclude: true
+date: "2018-09-25"
+short_desc: "Sometimes you just need a push to get started. Here’s what worked for me."
+thumbnail: "/assets/images/7-resources/img_1.webp"
+category: "post"
 ---
 September 25, 2018
 # 7 Resources for Those Wanting to Learn Data Science
+
+![img](/assets/images/7-resources/img_1.webp)
 
 Originally published at https://medium.com/towards-data-science/7-resources-for-those-wanting-to-learn-data-science-a89e25d1b55e
 

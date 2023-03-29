@@ -1,3 +1,5 @@
+@import "./vendor/OneDarkJekyll/syntax"; // this is the one-dark-vivid atom syntax theme
+
 $body-background-color: $grey-dk-300;
 $body-heading-color: $grey-lt-000;
 $body-text-color: $grey-lt-300;
@@ -14,4 +16,53 @@ $search-background-color: $grey-dk-250;
 $search-result-preview-color: $grey-dk-000;
 $border-color: $grey-dk-200;
 
-@import "./vendor/OneDarkJekyll/syntax"; // this is the one-dark-vivid atom syntax theme
+
+.float-container {
+    padding: 15px;
+    overflow: hidden;
+    display: flex; /* equal height of the children */
+    border-bottom: #31343f solid 1px;
+}
+.float-child-a {
+    width: 20%;
+    float: left;
+}
+.float-child-b {
+    width: 80%;
+    float: right;
+    padding-left: 10px;
+
+}
+
+.title-thumb{
+    color: $link-color;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+    font-weight: 500;
+    line-height: 1.25;
+}
+.thumb-announce {
+    width: 5%;
+    float: left;
+    border-top: 1px dotted $link-color
+}
+.announcement{
+    width:100%;
+    float: left;
+    padding: 20px;
+    border-top: 1px dotted $link-color;
+    border-bottom: 1px dotted $link-color;
+}
+.announcement a:link{
+    text-decoration: none;
+}
+.no-sub{
+    text-decoration: none;
+    font-size: 13px;
+}
+.thumb-img{
+    min-width: 50%;
+    max-width: 80%;
+    float: center;
+}

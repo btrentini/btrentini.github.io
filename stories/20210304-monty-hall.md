@@ -1,7 +1,11 @@
 ---
-title: Monty Hall Problem
+title: Why should I always switch doors in the Monty Hall problem?
 layout: default
 nav_exclude: true
+date: "2021-03-05"
+short_desc: "Sometimes you just need a push to get started. Here’s what worked for me."
+thumbnail: "/assets/images/7-resources/img_1.webp"
+category: "post"
 ---
 March 5, 2021
 # Why should I always switch doors in the Monty Hall problem?
