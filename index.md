@@ -10,6 +10,7 @@ Well....at least my name is. [Send your name to Mars](https://mars.nasa.gov/part
 
 ![image](./assets/images/ticket_mars.png)
 
+----
 ### [New website 🎉](#)
 2023-03-27 ⊷ This new version is based on Ruby and Jekyll. Way better than my previous version with WordPress! I've used [Just-the-docs](https://just-the-docs.github.io/just-the-docs/) as the basis for it (under MIT License) and hope to post here more often.
 
@@ -30,5 +31,5 @@ Well....at least my name is. [Send your name to Mars](https://mars.nasa.gov/part
 2021-01-25 ⊷ This post is for the ones who are curious about data science but fairly new to stats and hypothesis testing. It is inspired by an answer I gave during an interview question last year. [Read more...](/stories/20210105-aliens) 
 
 ---
-### [7 Resources for Those Wanting to Learn Data Science](/stories/7-resourcers)
-2021-01-25 ⊷ This post is for the ones who are curious about data science but fairly new to stats and hypothesis testing. It is inspired by an answer I gave during an interview question last year. [Read more...](/stories/7-resources) 
+### [7 Resources for Those Wanting to Learn Data Science](/stories/7-resources)
+2021-01-25 ⊷ Sometimes you just need a push to get started. Here’s what worked for me. [Read more...](/stories/7-resources) 
