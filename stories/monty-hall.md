@@ -10,57 +10,68 @@ category: "post"
 March 5, 2021
 # Why should I always switch doors in the Monty Hall problem?
 
-![img](/assets/images/montyhall/mh-1.webp)
+<br>
+<p align="center">
+  <img src="/assets/images/montyhall/mh-1.webp" />
+</p>
 
-You’re facing three closed doors. Behind one of them a prize you cherish – a seed phrase for one bitcoin – and behind the other two, broken bricks. Monty Hall tells you to choose any door. Regardless of your choice, Mr. Hall will open one of the doors containing broken bricks and will give you the option to switch doors, if you wish.
-Should you? The answer is yes.
-Because chances are now 50-50. Right?
-Wrong. By switching doors, your chances of picking the bitcoin actually increase to 2/3, or approximately 66%. Many statisticians encounter this problem in introductory courses on conditional probability but a lot of people never heard of it and find it a curious and tricky challenge. Most people I know get it wrong and struggle to understand why.
-Visualising it
+*Note: This was originally written when bitcoin was worth ~ $65,000*
+
+You’re facing three closed doors. Behind one of them a prize you cherish – a seed phrase for one bitcoin – and behind the other two, broken bricks. Monty Hall tells you to choose any door. Regardless of your choice, Mr. Hall will open one of the doors containing broken bricks and will give you the option to switch doors, if you wish. Should you? *The answer is yes*.
+
+### Because chances are now 50-50. Right?
+Wrong. By switching doors, your chances of picking the bitcoin actually increase to $$2/3$$, or approximately $$66%$$. Many statisticians encounter this problem in introductory courses on conditional probability but a lot of people never heard of it and find it a curious and tricky challenge. Most people I know get it wrong and struggle to understand why.
+
+### Visualising it
 Ok. You may not be convinced. It’s fine. Totally fine. Maybe you won’t even bother seeing the theoretical aspects and proof based on the Bayes’ rule later on this post and will close the tab right after this section. Also fine.
-Through the code snipped below, 10,000 games were simulated using Python (link to the Colab Notebook).
-class MontyHall():
+Through the code snipped below, 10,000 games were simulated using Python (link to the [Colab Notebook](https://colab.research.google.com/drive/1N4dxWQpedZ2p2zGxO7Ql1_gsZzgRwJ0O)).
 
 ```python
-  def __init__(self, change=False):
-    self._max_simulations  = 5e3
-    self._change = change
-    self.iteration = 1
-    self.wins   = []
-    self.losses = []
-    self.win_pct  = []
-    self.loss_pct = []
+import numpy as np
 
-  def win(self):
-    self.wins.append(1)
-    self.losses.append(0)
+class MontyHall:
+    def __init__(self, change=False):
+        self._max_simulations = 5000
+        self._change = change
+        self.iteration = 1
+        self.wins = []
+        self.losses = []
+        self.win_pct = []
+        self.loss_pct = []
 
-  def loss(self):
-    self.losses.append(1)
-    self.wins.append(0)
+    def win(self):
+        self.wins.append(1)
+        self.losses.append(0)
 
-  def simulate(self):
-    while(self.iteration < self._max_simulations):
-      doors = ['bitcoin', 'brick', 'brick']
-      random.shuffle(doors)
-      participant_pick = random.randrange(3) 
-      if self._change:
-        if doors[participant_pick] == 'brick':
-          # Brick door chosen, Monty Hall shows one of the brick doors, 
-          # participant switches and then picks bitcoin
-          self.win()
-        else:
-          #Bitcoin initially chosen, particiant picks something else
-          self.loss()
-      else:
-        # Sticks to the original choice
-        if doors[participant_pick] == 'bitcoin':
-          self.win()
-        else:
-          self.loss()
-      self.win_pct.append(np.sum(self.wins)/self.iteration)
-      self.loss_pct.append(np.sum(self.losses)/self.iteration)
-      self.iteration+=1
+    def loss(self):
+        self.losses.append(1)
+        self.wins.append(0)
+
+    def simulate(self):
+        while self.iteration < self._max_simulations:
+            doors = np.array(["bitcoin", "brick", "brick"])
+            np.random.shuffle(doors)
+            participant_pick = np.random.randint(3)
+
+            if self._change:
+                if doors[participant_pick] == "brick":
+                    # Brick door chosen, Monty Hall shows one of the brick doors,
+                    # participant switches and then picks bitcoin
+                    self.win()
+                else:
+                    # Bitcoin initially chosen, participant picks something else
+                    self.loss()
+            else:
+                # Sticks to the original choice
+                if doors[participant_pick] == "bitcoin":
+                    self.win()
+                else:
+                    self.loss()
+
+            self.win_pct.append(np.sum(self.wins) / self.iteration)
+            self.loss_pct.append(np.sum(self.losses) / self.iteration)
+
+            self.iteration += 1
 ```
 
 First round of 5,000 simulations. Here the player always keep its initial choice, never switching doors after seeing one of the unfortunate doors revealed by Monty Hall:
