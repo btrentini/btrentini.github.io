@@ -32,3 +32,6 @@ Yes, I am a _boomeranger_ and returned to NVIDIA, the company I left for my MSc
 
 ### Conversation starters
 > You'll often see me with a cup of coffee, a smile and a willingness to chat about machine learning for hours. I am also interested in music (I play the piano and guitar), maths and theology. I am not so great with sports, although I am a fairly decent football player... but I prefer going for long hikes and table tennis to keep myself (physically) active.
+
+
+## Future Plans
