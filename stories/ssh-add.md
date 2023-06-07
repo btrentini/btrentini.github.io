@@ -1,5 +1,5 @@
 ---
-title: Adding SSH Key to GitLab (Corporate) and Github (Personal)
+title: Adding SSH Keys to GitLab (Corporate) and Github (Personal)
 layout: default
 nav_exclude: true
 date: "2023-06-07"
