@@ -4,7 +4,7 @@ layout: default
 nav_exclude: true
 date: "2023-06-07"
 short_desc: "Host key verification failed, Permission Denied, Bad Permissions, Error in libcrypto and other annoying issues you can prevent by ssh keys organization"
-thumbnail: "/assets/images/cybersec/cybersec.png"
+thumbnail: "/assets/images/cybersec/cybersec.jpg"
 category: "post"
 ---
 7th June 2023
@@ -22,11 +22,11 @@ This can be done with the `ssh-keygen` command:
 ssh-keygen -t ed25519 -C "<comment>"
 ```
 
-**Important**: now select a directory and a filename such as `~/.ssh/gitlab_key`
+⭐ **Important**: specify a directory and a filename such as `~/.ssh/gitlab_key`
 
 Copy the contents of this file (use vim, xclip, or any other method)
 
-Go to your Gitlab account and under settings, add a new SSH key. This is similar to what is described here: https://docs.gitlab.com/ee/user/ssh.html
+Go to your Gitlab account and under settings, add a new SSH key. This is similar to what is described here: [https://docs.gitlab.com/ee/user/ssh.html](https://docs.gitlab.com/ee/user/ssh.html)
 
 After you've done this, you must add your key to the SSH agent
 
@@ -50,4 +50,4 @@ Host <company gitlab url>
   IdentityFile ~/.ssh/gitlab_key
 ```
 
-This should work fine. Then repeat the process for your Github account :)
+This should work fine. Then repeat the process for your Github account, with the last step for the `~/.ssh/config` being optional :)
