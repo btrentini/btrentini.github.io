@@ -58,4 +58,18 @@ Host <company gitlab url>
 ```
 
 ## Enjoy
-This should work fine. Then repeat the process for your Github account, with the 4th and 5th steps being optional :)
+This should work fine. Then repeat the process for your Github account. On the 4th and 5th steps you need to change the URL and the IdentityFile location.
+
+So the final `~/.ssh/config` will look like this
+
+```shell
+Host <company gitlab url>
+  Hostname <company gitlab url>
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/gitlab_key
+
+Host github.com
+  Hostname github.com
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/github_key
+```
