@@ -24,9 +24,12 @@ ssh-keygen -t ed25519 -C "<comment>"
 
 ⭐ **Important**: specify a directory and a filename such as `~/.ssh/gitlab_key`
 
-Copy the contents of this file (use vim, xclip, or any other method)
 
+Copy the contents of this file (use vim, xclip, or any other method)
+## 2nd step: add keys to GitLab
 Go to your Gitlab account and under settings, add a new SSH key. This is similar to what is described here: [https://docs.gitlab.com/ee/user/ssh.html](https://docs.gitlab.com/ee/user/ssh.html)
+
+## 3rd step: add keys ssh-agent
 
 After you've done this, you must add your key to the SSH agent
 
@@ -34,12 +37,16 @@ After you've done this, you must add your key to the SSH agent
 ssh-add ~/.ssh/gitlab_key
 ```
 
+## 4th step: add URL to known hosts
+
 and add your corporation's URL to known hosts 
 
 
 ```shell
 ssh-keyscan -H <url of your organization> >> ~/.ssh/known_hosts
 ```
+
+## 5th step: change config file
 
 Finally, you must edit the `~/.ssh/config` file (or create one) with the following
 
@@ -50,4 +57,5 @@ Host <company gitlab url>
   IdentityFile ~/.ssh/gitlab_key
 ```
 
-This should work fine. Then repeat the process for your Github account, with the last step for the `~/.ssh/config` being optional :)
+## Enjoy
+This should work fine. Then repeat the process for your Github account, with the 4th and 5th steps being optional :)
