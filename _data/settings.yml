@@ -87,18 +87,19 @@ gallery:
   gallery__title: Gallery
   gallery__columns: "3" # You can change the number of gallery columns
   gallery__images:
-    - alt: "Rest"
-      url: "/images/100.jpg"
-    - alt: "Lifestyle"
-      url: "/images/101.jpg"
-    - alt: "Hobby"
-      url: "/images/102.jpg"
-    - alt: "Notes"
-      url: "/images/103.jpg"
-    - alt: "Rest"
-      url: "/images/104.jpg"
-    - alt: "Hobby"
-      url: "/images/105.jpg"
+    - alt: "AI & Life Sciences"
+      url: "/images/gallery/g1.jpg"
+    - alt: "AI & Life Sciences"
+      url: "/images/gallery/g2a.png"
+    - alt: "AI & Life Sciences"
+      url: "/images/gallery/g3.jpg"
+    - alt: "AI & Life Sciences"
+      url: "/images/gallery/g4.jpg"
+    - alt: "AI & Life Sciences"
+      url: "/images/gallery/g5.jpg"
+    - alt: "AI & Life Sciences"
+      url: "/images/gallery/g6a.png"
+
 
 
 #-------------------------------
