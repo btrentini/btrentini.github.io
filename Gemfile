@@ -1,14 +1,5 @@
 source 'https://rubygems.org'
-
-# gem "jekyll", "~> 4.3" # installed by `gem jekyll`
-# gem "webrick"        # required when using Ruby >= 3 and Jekyll <= 4.2.2
-
-# gem "just-the-docs", "0.4.2" # pinned to the current release
-#gem "just-the-docs", "0.4.2"
-gem "just-the-docs"        # always download the latest release
-
-# gem "jekyll-theme-primer", "~> 0.4"
-
-gem "kramdown"
-
-
+gem "bundler"
+gem "jekyll"
+gem "jekyll-paginate"
+gem "jekyll-sitemap"

@@ -1,41 +1,82 @@
 ---
-layout: table_wrappers
+layout: default
 ---
 
-<!DOCTYPE html>
+<!-- begin hero -->
+<section class="hero{% if page.video_embed %} hero-video{% endif %}">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero__inner{% if page.image or page.video_embed %}{% else %} hero__without__media{% endif %}">
+          <div class="hero__left">
 
-<html lang="{{ site.lang | default: 'en-US' }}">
-{% include head.html %}
-<body>
-  <a class="skip-to-main" href="#main-content">Skip to main content</a>
-  {% include icons/icons.html %}
-  {% include components/sidebar.html %}
-  <div class="main" id="top">
-    {% include components/header.html %}
-    {% include components/breadcrumbs.html %}
+            {% if page.tags.size >= 1 %}
+            <div class="post-tags">
+              {% for tag in page.tags %}
+              <a href="{{ site.baseurl }}/tags/?tag={{ tag | downcase | url_encode }}" class="post-tag">{{ tag }}</a>
+              {% endfor %}
+            </div>
+            {% endif %}
 
-    <div id="main-content-wrap" class="main-content-wrap">
-      {% include components/breadcrumbs.html %}
-      <div id="main-content" class="main-content" role="main">
-        {% if site.heading_anchors != false %}
-          {% include vendor/anchor_headings.html html=content beforeHeading="true" anchorBody="<svg viewBox=\"0 0 16 16\" aria-hidden=\"true\"><use xlink:href=\"#svg-link\"></use></svg>" anchorClass="anchor-heading" anchorAttrs="aria-labelledby=\"%html_id%\"" %}
-        {% else %}
-          {{ content }}
-        {% endif %}
+            <h1 class="hero__title">{{ page.title | escape }}</h1>
 
-        {% if page.has_children == true and page.has_toc != false %}
-          {% include components/children_nav.html toc_list=toc_list %}
-        {% endif %}
+            {% if page.description %}
+            <p class="post-description">{{ page.description }}</p>
+            {% endif %}
 
+            <div class="post-meta">
+              <a href="{{site.baseurl}}/about/" class="post-author-image">
+                <img class="lazy" data-src="{{site.data.settings.author.author__avatar}}" alt="{{site.data.settings.author.author__name}}">
+              </a>
+
+              <div class="post-meta__bottom">
+                <a class="post-author" href="{{site.baseurl}}/about/">{{site.data.settings.author.author__name}}</a>
+                <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{% assign date_format = site.minima.date_format | default: "%-d %B, %Y" %}{{ page.date | date: date_format }}</time>
+              </div>
+            </div>
+          </div>
+
+          {% if page.image or page.video_embed %}
+          <div class="hero__right">
+            {% if page.video_embed %}
+            <div class="post-video">
+              <div class="post-video__wrap">
+                <iframe src="{{ page.video_embed }}" loading="lazy" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
+            </div>
+            {% else %}
+            {% if page.image %}
+            <div class="hero__image">
+              <img class="hero__image__primary lazy" data-src="{{site.baseurl}}{{page.image}}" alt="{{page.title}}">
+            </div>
+            {% endif %}
+            {% endif %}
+          </div>
+          {% endif %}
+
+        </div>
       </div>
     </div>
-    {% if site.search_enabled != false %}
-      {% include components/search_footer.html %}
-    {% endif %}
   </div>
+</section>
+<!-- end hero -->
 
-  {% if site.mermaid %}
-    {% include components/mermaid.html %}
-  {% endif %}
-</body>
-</html>
+<!-- begin post -->
+<div class="container animate">
+  <article class="post">
+
+    <div class="post__content">
+      {{ content }}
+    </div>
+
+    {% include share-buttons.html %}
+    {% include post-navigation.html %}
+    {% if site.data.settings.disqus-identifier %}
+      {% include disqus-comments.html %}
+    {% endif %}
+
+  </article>
+</div>
+<!-- end post -->
+
+{% include related-posts.html %}
