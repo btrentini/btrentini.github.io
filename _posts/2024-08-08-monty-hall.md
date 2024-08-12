@@ -5,7 +5,7 @@ description: You’re facing three closed doors. Behind one of them a prize you 
 date: 2024-08-07 18:05:55 +0300
 image: '/images/mh/mh-1.webp'
 tags: [stats, fun]
-featured: true
+featured: false
 ---
 
 # Why should I always switch doors in the Monty Hall problem?
