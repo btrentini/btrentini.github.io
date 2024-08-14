@@ -2,15 +2,13 @@
 layout: post
 title: Why should I always switch doors in the Monty Hall problem?
 description: You’re facing three closed doors. Behind one of them a prize you cherish – a seed phrase for one bitcoin – and behind the other two, broken bricks
-date: 2024-08-07 18:05:55 +0300
+date: 2021-03-05 18:05:55 +0300
 image: '/images/mh/mh-1.webp'
-tags: [stats, fun]
+tags: [maths, coding, misc]
 featured: false
 ---
 
 # Why should I always switch doors in the Monty Hall problem?
-
-*Note: This was originally written when bitcoin was worth ~ $65,000*
 
 You’re facing three closed doors. Behind one of them a prize you cherish – a seed phrase for one bitcoin – and behind the other two, broken bricks. Monty Hall tells you to choose any door. Regardless of your choice, Mr. Hall will open one of the doors containing broken bricks and will give you the option to switch doors, if you wish. Should you? *The answer is yes*.
 

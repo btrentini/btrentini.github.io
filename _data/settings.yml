@@ -22,6 +22,20 @@ menu__settings:
    #   - url: "/you-must-be-the-change-you-wish-to-see-in-the-world/"
    #     title: "Workflow"
 
+#-------------------------------
+# Topics
+topics:
+  - topic_name: Research
+    topic_image: "/images/topics/research.png"
+
+  - topic_name: Coding
+    topic_image: "/images/topics/coding.png"
+
+  - topic_name: Maths
+    topic_image: "/images/topics/maths.png"
+
+  - topic_name: Misc
+    topic_image: "/images/topics/misc.png"
 
 #-------------------------------
 # Author Settings
