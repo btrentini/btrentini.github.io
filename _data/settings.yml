@@ -41,8 +41,8 @@ topics:
 # Author Settings
 author:
   author__name: Bruno Trentini
-  author__avatar: "/images/01-1.jpg"
-  author__bio: I'm a machine learning researcher and theologian writing about all sorts of things
+  author__avatar: "/images/about_profile.jpg"
+  author__bio: Hi! I'm a machine learning researcher working on Graphs and Geometric Deep Learning
 
 
 #-------------------------------
@@ -52,35 +52,11 @@ links:
   links__title: "Useful links"
 
 links__item:
-  - title: 10 Inspirational Books Every Creative Should Read
-    description: Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    image_url: "/images/110.jpg"
-    image_alt: Inspirational books
-    link: "https://twitter.com"
-
-  - title: Creating stylised images from a photo
-    description: Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    image_url: "/images/111.jpg"
-    image_alt: Illustrator
-    link: "https://google.com"
-
-  - title: Chill Movies for Couples to Watch on Date Night
-    description: Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    image_url: "/images/112.jpg"
-    image_alt: Movies
-    link: "https://www.netflix.com"
-
-  - title: The 8 Best Exercises for Weight Loss
-    description: Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    image_url: "/images/114.jpg"
-    image_alt: Best exercises
-    link: "https://google.com"
-
-  - title: Ask Me A Question On Instagram
-    description: Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    image_url: "/images/115.jpg"
-    image_alt: Ask Me A Question
-    link: "https://instagram.com"
+  - title: ML4LMS Workshop @ ICML'24
+    description: ML4LMS aims to highlight translational machine learning research in biology and chemistry for real-world applications in life and materials science
+    image_url: "/images/icmlp.jpg"
+    image_alt: ML4LMS
+    link: "https://ml4lms.bio/"
 
 
 #-------------------------------
