@@ -1,35 +1,377 @@
----
-layout: default
-image: '/images/01.jpg'
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bruno Trentini — Computer Scientist (AI)</title>
+  <meta name="description" content="Portfolio for Bruno Trentini — Computer Scientist specialized in AI. Publications, bio, and contact." />
+  <meta name="author" content="Bruno Trentini" />
+  <!-- SEO keywords derived from visible tags -->
+  <meta name="keywords" content="Machine Learning, Generative Models, AI for Science, Geometric Deep Learning, High-Performance Computing" />
 
-{% include hero.html %}
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QPMJBXS52"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-4QPMJBXS52');
+  </script>
 
-{% include section-tags.html %}
-<br>
-{% if page.url == "/" %}
-  {% include section-featured-posts.html %}
-{% endif %}
+  <!-- JSON-LD Person profile with multiple affiliations for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Bruno Trentini",
+    "jobTitle": "Computer Scientist",
+    "affiliation": [
+      {"@type": "CollegeOrUniversity", "name": "University of Oxford"},
+      {"@type": "Organization", "name": "NVIDIA"}
+    ],
+    "knowsAbout": [
+      "Machine Learning",
+      "Generative Models",
+      "AI for Science",
+      "Geometric Deep Learning",
+      "High-Performance Computing"
+    ]
+  }
+  </script>
 
-<div class="container animate">
-  {% if page.url == "/" %}
-  <div class="section__head">
-    <h3 class="section__title">Previous posts</h3>
-  </div>
-  {% endif %}
-  <div class="row">
-    {% if site.posts.size > 0 %}
-      {% for post in paginator.posts %}
-        {% include article.html %}
-      {% endfor %}
-    {% endif %}
-  </div>
-</div>
+  <style>
+    :root {
+      /* Palette: brown, orange, navy blue, black */
+      --brown: #6B4F3A;
+      --orange: #F97316;
+      --navy: #0B1F3B;
+      --black: #0B0D0E;
+      --ink: #0F141A; --snow: #F8FAFC;
+      --slate-900: #0f172a; --slate-800: #1e293b; --slate-700: #334155;
+      --slate-600: #475569; --slate-500: #64748b; --slate-400: #94a3b8;
+      --radius: 20px; --shadow-lg: 0 20px 40px rgba(0,0,0,0.35);
+      --shadow-md: 0 12px 24px rgba(0,0,0,0.25); --shadow-sm: 0 6px 12px rgba(0,0,0,0.2);
+    }
 
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--snow);
+      background: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.08); padding: 12px 18px; border-radius: 999px; font-weight: 600; letter-spacing: 0.2px; background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(107,79,58,0.18)); color: var(--snow); box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease, background .3s ease; }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration: none; }
+    .btn.primary { background: linear-gradient(135deg, var(--orange), #ff9b47); color: #0b0d0e; border-color: rgba(0,0,0,0.12); }
+    .btn.ghost { background: rgba(255,255,255,0.04); }
 
-{% include footer.html %} 
+    /* Static background (animation removed) */
+    .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+    .bg-hero {
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(249,115,22,0.12), transparent 40%),
+        radial-gradient(800px 600px at 90% -20%, rgba(107,79,58,0.18), transparent 50%),
+        linear-gradient(180deg, var(--navy), #081525 60%, #050a12 100%);
+    }
 
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-{% include pagination.html %}
+    .container { width: min(1100px, 92%); margin: 0 auto; }
 
+    header { position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(140%) blur(12px); background: linear-gradient(180deg, rgba(5,10,18,0.85), rgba(5,10,18,0.35)); border-bottom: 1px solid rgba(148,163,184,0.12); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; gap: 12px; align-items: center; font-weight: 700; letter-spacing: 0.2px; }
+    .brand-badge { width: 12px; height: 12px; border-radius: 4px; background: linear-gradient(135deg, var(--orange), var(--brown)); box-shadow: var(--shadow-sm); }
+    .nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0; }
+    .nav a { color: var(--snow); opacity: 0.85; font-weight: 500; } .nav a:hover { opacity: 1; }
+
+    .hero { padding: 72px 0 24px; }
+    .hero-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
+    .title { font-size: clamp(28px, 5vw, 56px); line-height: 1.05; margin: 0 0 10px; font-weight: 800; }
+    .subtitle { font-size: clamp(16px, 2.2vw, 20px); color: #cbd5e1; margin: 10px 0 26px; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+    .chip { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 999px; font-size: 14px; color: #e5e7eb; }
+    /* Hero chips with orange borders */
+    .hero .chips .chip { border: 1px solid var(--orange); }
+
+    .photo {
+      width: min(340px, 90%);
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(249,115,22,0.15), rgba(107,79,58,0.2)),
+                  linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)), #0a1524;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    /* hide placeholder label once image is present */
+    .photo::after { content: ""; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    section { padding: 56px 0; }
+    section .head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 18px; }
+    section h2 { margin: 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: .2px; }
+    .subhead { color: var(--slate-400); font-size: 14px; }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .span-6 { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .photo { width: 100%; }
+      .span-6 { grid-column: span 12; }
+    }
+
+    .card { position: relative; border-radius: calc(var(--radius) - 2px); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)); border: 1px solid rgba(255,255,255,0.08); padding: 20px; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(255,255,255,0.16); }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 8px 0 12px; color: #cbd5e1; }
+    .meta { display: flex; gap: 10px; flex-wrap: wrap; font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono"; font-size: 12px; color: #94a3b8; }
+
+    /* Citation list */
+    .citations { counter-reset: cite; list-style: none; padding: 0; margin: 0; }
+    .citations li { counter-increment: cite; position: relative; padding: 16px 20px 16px 44px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.04); border-radius: 16px; margin-bottom: 12px; }
+    .citations li::before { content: counter(cite) "."; position: absolute; left: 16px; top: 16px; color: var(--orange); font-weight: 800; }
+    .cite-title { font-weight: 700; }
+    .cite-venue { color: #cbd5e1; }
+    .cite-actions { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Contact Form Styles */
+    .form { max-width: 700px; }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; margin-bottom: 8px; color: var(--orange); font-weight: 600; font-size: 14px; }
+    .input, .textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      color: var(--snow);
+      font-size: 16px;
+      font-family: inherit;
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .input:focus, .textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+      background: rgba(255,255,255,0.06);
+    }
+    .textarea {
+      resize: vertical;
+      min-height: 150px;
+      line-height: 1.5;
+    }
+    .input::placeholder, .textarea::placeholder { color: var(--slate-500); }
+
+    footer { padding: 28px 0 48px; color: #94a3b8; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; }
+    .divider { height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.12), rgba(255,255,255,0)); margin: 28px 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <!-- Static background layer -->
+  <div class="bg-layer bg-hero" id="bgHero"></div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <span>Bruno Trentini</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <h1 class="title">Bruno Trentini</h1>
+          <p class="subtitle">Applied Research Scientist at NVIDIA & PhD Candidate at the University of Oxford</p>
+
+          <!-- Tags only -->
+          <div class="chips" aria-label="Areas of expertise">
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Generative Models</span>
+            <span class="chip">AI for Science</span>
+            <span class="chip">Geometric Deep Learning</span>
+            <span class="chip">High-Performance Computing</span>
+          </div>
+        </div>
+
+        <!-- Cropped square portrait -->
+        <div class="photo" aria-label="Portrait of Bruno Trentini">
+          <img src="images/bruno.png" alt="Bruno Trentini" />
+        </div>
+      </div>
+    </section>
+
+    <div class="divider container" role="presentation"></div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="head">
+          <h2>About</h2>
+          <span class="subhead">Profile and current research focus</span>
+        </div>
+        <div class="grid">
+          <article class="card span-6">
+            <h3>Profile</h3>
+            <p>PhD Candidate at the University of Oxford under the supervision of Prof. Michael Bronstein; Master's in Data Science & Machine Learning — Distinction — from University College London; publications in machine learning frameworks, protein folding, and inverse folding problems. Community collaboration hosting developer summits and scientific symposiums.</p>
+            <div class="meta">
+              <span>Supervisor: Michael Bronstein</span>
+              <span>Open to collaboration</span>
+            </div>
+          </article>
+
+          <article class="card span-6">
+            <h3>Focus Areas</h3>
+            <p>Open to collaborations and MSc/Graduate supervision in <strong>Geometric Deep Learning</strong>, <strong>AI for Science</strong>, and <strong>Generative Models</strong>. Technical interests include representation learning, large-scale training and inference, evaluation design, and optimization for latency and cost.</p>
+            <div class="chips" aria-label="Supervision topics">
+              <span class="chip">Geometric Deep Learning</span>
+              <span class="chip">AI for Science</span>
+              <span class="chip">Generative Models</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications (citation style) -->
+    <section id="pubs">
+      <div class="container">
+        <div class="head">
+          <h2>Publications</h2>
+          <span class="subhead">Citation-style list with venue and year; links open external sources.</span>
+        </div>
+        <ol id="pubList" class="citations" role="list"></ol>
+      </div>
+    </section>
+
+    <div class="divider container" role="presentation"></div>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="head">
+          <h2>Contact</h2>
+          <span class="subhead">Messages route to <a href="mailto:brunoxtrentini@gmail.com">brunoxtrentini@gmail.com</a></span>
+        </div>
+        <form class="form" id="contactForm" autocomplete="on" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" placeholder="Ada Lovelace" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" placeholder="name@example.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea class="textarea" id="message" name="message" placeholder="Hello Bruno —" required></textarea>
+          </div>
+          <div class="field">
+            <button class="btn primary" type="submit">Send Email</button>
+            <p class="subhead" style="margin-top: 12px;">This button opens your email client with a prefilled message.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <span>© <span id="year"></span> Bruno Trentini</span>
+      <span>Brown · Orange · Navy · Black</span>
+    </div>
+  </footer>
+
+  <script>
+    // =============================
+    // Publications (static seed; can be replaced by parsed BibTeX)
+    // =============================
+    const publications = [
+      {
+        title: "Improving Inverse Folding for Peptide Design with Diversity-Regularized Direct Preference Optimization",
+        authors: ["Ryan Park","Darren J. Hsu","Chen Tessler","Maria Korshunova","C. Brian Roland","Shie Mannor","Olivia Viessmann","Bruno Trentini"],
+        year: 2024,
+        venue: "",
+        link: "https://arxiv.org/abs/2410.19471"
+      },
+      {
+        title: "ML for Life and Material Science: From Theory to Industry Applications (ICML 2024 Workshop)",
+        authors: ["Aviv Regev","Andrea Volkamer","Bruno Trentini","Cecilia Clementi","Charles Harris","Charlotte Deane","Christian Dallago","Ellen D Zhong","Francesca Grisoni","Jinwoo Leem","Kevin K Yang","Marwin Segler","Michael Martin Pieler","Nicholas James Sofroniew","Olivia Viessmann","Peter K Koo","Pranam Chatterjee","Puck Van Gerwen","Rebecca K. Lindsay","Umberto Lupo","Ying Wai Li"],
+        year: 2024,
+        venue: "ICML Workshops",
+        link: "https://icml.cc/virtual/2024/workshop/29955"
+      }
+    ];
+
+    function initials(name) {
+      const parts = name.trim().split(/\s+/).filter(Boolean);
+      if (parts.length === 1) return parts[0];
+      const last = parts.pop();
+      const inits = parts.map(p => p[0].toUpperCase() + '.').join(' ');
+      return `${last}, ${inits}`;
+    }
+    function formatAuthors(list) {
+      if (!list || !list.length) return '';
+      const mapped = list.map(initials);
+      if (mapped.length <= 3) return mapped.join(', ');
+      return mapped.slice(0,3).join(', ') + ', et al.';
+    }
+    function renderCitation(item) {
+      const a = formatAuthors(item.authors);
+      const y = item.year ? ` (${item.year}).` : '';
+      const v = item.venue ? ` <span class="cite-venue">${item.venue}</span>.` : '';
+      const t = `<span class="cite-title">${item.title}</span>.`;
+      return `${a}${y} ${t}${v}`;
+    }
+    function createCitationLi(item) {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <div>${renderCitation(item)}</div>
+        <div class="cite-actions">
+          <a class="btn ghost" href="${item.link}" target="_blank" rel="noopener">Open</a>
+        </div>`;
+      return li;
+    }
+
+    (function init() {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const list = document.getElementById('pubList');
+      publications.forEach(p => list.appendChild(createCitationLi(p)));
+    })();
+
+    // Contact form handler
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = (document.getElementById('name').value || '').trim();
+      const email = (document.getElementById('email').value || '').trim();
+      const message = (document.getElementById('message').value || '').trim();
+      if (!name || !email) { alert('Please provide your name and email to proceed.'); return; }
+      const subject = encodeURIComponent(`Website contact — ${name}`);
+      const body = encodeURIComponent(`From: ${name} <${email}>\n\nMessage:\n${message || '(no message)'}\n`);
+      const mailto = `mailto:brunoxtrentini@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>

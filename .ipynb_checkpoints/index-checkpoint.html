@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bruno Trentini — Computer Scientist (AI)</title>
+  <meta name="description" content="Portfolio for Bruno Trentini — Computer Scientist specialized in Artificial Intelligence. Publications, projects, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Core palette requested: brown, orange, navy blue, black */
+      --brown: #6B4F3A;         /* coffee brown */
+      --orange: #F97316;        /* modern orange */
+      --navy: #0B1F3B;          /* deep navy */
+      --black: #0B0D0E;         /* near-black */
+
+      /* Supporting neutrals */
+      --ink: #0F141A;          /* text on light */
+      --snow: #F8FAFC;         /* text on dark */
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+
+      --radius: 20px;
+      --shadow-lg: 0 20px 40px rgba(0,0,0,0.35);
+      --shadow-md: 0 12px 24px rgba(0,0,0,0.25);
+      --shadow-sm: 0 6px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Base layout */
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--snow);
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(249,115,22,0.12), transparent 40%),
+                  radial-gradient(800px 600px at 90% -20%, rgba(107,79,58,0.18), transparent 50%),
+                  linear-gradient(180deg, var(--navy), #081525 60%, #050a12 100%);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--orange); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { width: min(1100px, 92%); margin: 0 auto; }
+
+    /* Header / Nav */
+    header {
+      position: sticky; top: 0; z-index: 40;
+      backdrop-filter: saturate(140%) blur(12px);
+      background: linear-gradient(180deg, rgba(5,10,18,0.85), rgba(5,10,18,0.35));
+      border-bottom: 1px solid rgba(148,163,184,0.12);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .brand { display: flex; gap: 12px; align-items: center; font-weight: 700; letter-spacing: 0.2px; }
+    .brand-badge { width: 12px; height: 12px; border-radius: 4px; background: linear-gradient(135deg, var(--orange), var(--brown)); box-shadow: var(--shadow-sm); }
+    .nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0; }
+    .nav a { color: var(--snow); opacity: 0.85; font-weight: 500; }
+    .nav a:hover { opacity: 1; }
+
+    /* Hero */
+    .hero { padding: 72px 0 24px; }
+    .hero-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
+    .title { font-size: clamp(28px, 5vw, 56px); line-height: 1.05; margin: 0 0 10px; font-weight: 800; }
+    .subtitle { font-size: clamp(16px, 2.2vw, 20px); color: var(--slate-300, #cbd5e1); margin: 10px 0 26px; }
+
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 18px; border-radius: 999px; font-weight: 600; letter-spacing: 0.2px;
+      background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(107,79,58,0.18));
+      color: var(--snow);
+      box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, background .3s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn.primary { background: linear-gradient(135deg, var(--orange), #ff9b47); color: #0b0d0e; border-color: rgba(0,0,0,0.12); }
+    .btn.ghost { background: rgba(255,255,255,0.04); }
+
+    /* Photo placeholder */
+    .photo {
+      width: min(340px, 90%); aspect-ratio: 1/1; border-radius: var(--radius);
+      background: linear-gradient(160deg, rgba(249,115,22,0.15), rgba(107,79,58,0.2)),
+                  linear-gradient(160deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+                  #0a1524;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-lg);
+      display: grid; place-items: center; overflow: hidden; position: relative;
+    }
+    .photo::after { content: "Photo Placeholder"; color: rgba(255,255,255,0.6); font-weight: 600; letter-spacing: 0.5px; }
+    .photo img { width: 100%; height: 100%; object-fit: cover; display: none; }
+
+    /* Chips */
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+    .chip {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
+      padding: 8px 12px; border-radius: 999px; font-size: 14px; color: #e5e7eb;
+    }
+
+    /* Section base */
+    section { padding: 56px 0; }
+    section .head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 18px; }
+    section h2 { margin: 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: .2px; }
+    .subhead { color: var(--slate-400); font-size: 14px; }
+
+    /* Cards grid */
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .span-4 { grid-column: span 4; }
+    .span-6 { grid-column: span 6; }
+    .span-12 { grid-column: span 12; }
+
+    @media (max-width: 900px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .photo { width: 100%; }
+      .span-4 { grid-column: span 6; }
+      .span-6 { grid-column: span 12; }
+    }
+    @media (max-width: 640px) {
+      .span-4 { grid-column: span 12; }
+    }
+
+    .card {
+      position: relative; border-radius: calc(var(--radius) - 2px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 20px; box-shadow: var(--shadow-sm);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); border-color: rgba(255,255,255,0.16); }
+    .card h3 { margin: 0 0 8px; font-size: 18px; }
+    .card p { margin: 8px 0 12px; color: #cbd5e1; }
+    .meta { display: flex; gap: 10px; flex-wrap: wrap; font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono"; font-size: 12px; color: #94a3b8; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+      color: #0b0d0e; background: linear-gradient(135deg, var(--orange), #ffb169);
+      padding: 6px 10px; border-radius: 999px; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.12);
+    }
+
+    /* Contact form */
+    .form { display: grid; gap: 14px; }
+    .field { display: grid; gap: 8px; }
+    .field label { font-weight: 600; letter-spacing: 0.2px; }
+    .input, .textarea {
+      width: 100%; background: rgba(255,255,255,0.04); color: var(--snow);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 12px 14px;
+      outline: none; transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .input:focus, .textarea:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(249,115,22,0.15); }
+    .textarea { min-height: 120px; resize: vertical; }
+
+    footer { padding: 28px 0 48px; color: #94a3b8; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; }
+
+    /* Utilities */
+    .divider { height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.12), rgba(255,255,255,0)); margin: 28px 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-badge" aria-hidden="true"></span>
+        <span>Bruno Trentini</span>
+      </div>
+      <nav aria-label="Primary Navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Scholar Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <h1 class="title">Computer Scientist specialized in <span style="background: linear-gradient(135deg, #ffb169, var(--orange)); -webkit-background-clip: text; background-clip: text; color: transparent;">Artificial Intelligence</span></h1>
+          <p class="subtitle">Research, systems, and engineering across machine learning, large language models, and optimization. Focus on rigorous methodology and production-grade impact.</p>
+
+          <div class="cta-row">
+            <a class="btn primary" id="scholarBtn" href="#" target="_blank" rel="noopener"><span>View Google Scholar</span></a>
+            <a class="btn ghost" href="#projects">Explore Projects</a>
+            <a class="btn ghost" href="#contact">Get in Touch</a>
+          </div>
+
+          <div class="chips">
+            <span class="chip">Machine Learning Systems</span>
+            <span class="chip">LLMs & Retrieval</span>
+            <span class="chip">Applied Optimization</span>
+            <span class="chip">MLOps</span>
+            <span class="chip">Evaluation & Safety</span>
+          </div>
+        </div>
+
+        <!-- Replace placeholder by putting an <img> inside .photo -->
+        <div class="photo" aria-label="Photo placeholder" title="Replace with a photo by adding an <img> tag inside this element."></div>
+      </div>
+    </section>
+
+    <div class="divider container" role="presentation"></div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="head">
+          <h2>About</h2>
+          <span class="badge" title="Palette: brown • orange • navy • black">Brand Palette</span>
+        </div>
+        <div class="grid">
+          <article class="card span-6">
+            <h3>Profile</h3>
+            <p>Bruno Trentini is a computer scientist specialized in AI. Work spans research-driven development, end-to-end model deployment, and reliability under real-world constraints. Approach emphasizes empirical validation and transparent reporting.</p>
+            <div class="meta">
+              <span>Location: —</span>
+              <span>Open to collaboration</span>
+            </div>
+          </article>
+
+          <article class="card span-6">
+            <h3>Focus Areas</h3>
+            <p>Interests include representation learning, large-scale training and inference, retrieval-augmented generation, evaluation design, and optimization for latency and cost.</p>
+            <div class="chips" aria-label="Areas of focus">
+              <span class="chip">Representation Learning</span>
+              <span class="chip">RAG</span>
+              <span class="chip">Evaluation</span>
+              <span class="chip">Optimization</span>
+              <span class="chip">Systems</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects (Google Scholar) -->
+    <section id="projects">
+      <div class="container">
+        <div class="head">
+          <h2>Google Scholar Projects</h2>
+          <span class="subhead">This section lists projects/publications. Configure your Scholar ID in the script below.</span>
+        </div>
+
+        <div id="projectGrid" class="grid" role="list"></div>
+      </div>
+    </section>
+
+    <div class="divider container" role="presentation"></div>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="head">
+          <h2>Contact</h2>
+          <span class="subhead">Messages are routed to <a href="mailto:brunoxtrentini@gmail.com">brunoxtrentini@gmail.com</a>.</span>
+        </div>
+        <form class="form card" id="contactForm" autocomplete="on" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" placeholder="Ada Lovelace" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" placeholder="name@example.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea class="textarea" id="message" name="message" placeholder="Hello Bruno —"></textarea>
+          </div>
+          <div class="field" style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="btn primary" type="submit">Send Email</button>
+            <span class="subhead">The button opens your email client with a prefilled message.</span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <span>© <span id="year"></span> Bruno Trentini</span>
+      <span>Crafted with a brown·orange·navy·black palette</span>
+    </div>
+  </footer>
+
+  <script>
+    // =============================
+    // Configuration
+    // =============================
+    // Set your Google Scholar profile ID (the 'user' param in the URL):
+    // Example profile URL: https://scholar.google.com/citations?user=AbCdEfGhIjK
+    const SCHOLAR_PROFILE_ID = "YOUR_SCHOLAR_ID"; // ← replace with your ID
+
+    // Optional: seed projects until automated fetch is added (static placeholders)
+    /**
+     * Each item: { title, venue, year, summary, tags[], link }
+     * Replace the placeholder entries with your real publications/projects.
+     */
+    const projects = [
+      {
+        title: "Scalable Retrieval-Augmented Generation under Strict Latency",
+        venue: "Preprint",
+        year: "2025",
+        summary: "RAG pipeline optimized for tail-latency constraints using adaptive routing and vector compression.",
+        tags: ["LLM", "RAG", "Systems"],
+        link: "#"
+      },
+      {
+        title: "Evaluation Beyond Exact Match: Robust Metrics for LLM Assistants",
+        venue: "Workshop",
+        year: "2024",
+        summary: "Metric suite integrating semantic similarity, multi-step consistency, and safety flags.",
+        tags: ["Evaluation", "NLP"],
+        link: "#"
+      },
+      {
+        title: "Learning-to-Optimize for Inference Efficiency",
+        venue: "Conference",
+        year: "2023",
+        summary: "Policy-gradient controller that tunes caching and quantization strategies online.",
+        tags: ["Optimization", "Systems"],
+        link: "#"
+      }
+    ];
+
+    // =============================
+    // UI helpers
+    // =============================
+
+    /** format tags as HTML chips */
+    function renderTags(tags) {
+      return (tags || []).map(t => `<span class="chip">${t}</span>`).join("");
+    }
+
+    /** create a project card element */
+    function createProjectCard(item) {
+      const div = document.createElement('article');
+      div.className = 'card span-4';
+      div.setAttribute('role', 'listitem');
+      div.innerHTML = `
+        <h3>${item.title}</h3>
+        <div class="meta"><span>${item.venue}</span><span>${item.year}</span></div>
+        <p>${item.summary}</p>
+        <div class="chips">${renderTags(item.tags)}</div>
+        <div style="margin-top:12px; display:flex; gap:10px; align-items:center; flex-wrap: wrap;">
+          <a class="btn ghost" href="${item.link || '#'}" target="_blank" rel="noopener">View</a>
+        </div>
+      `;
+      return div;
+    }
+
+    // =============================
+    // Initialize content
+    // =============================
+    (function init() {
+      // Footer year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Scholar button link
+      const scholarBtn = document.getElementById('scholarBtn');
+      if (SCHOLAR_PROFILE_ID && SCHOLAR_PROFILE_ID !== 'YOUR_SCHOLAR_ID') {
+        scholarBtn.href = `https://scholar.google.com/citations?user=${encodeURIComponent(SCHOLAR_PROFILE_ID)}`;
+      } else {
+        scholarBtn.href = '#';
+        scholarBtn.setAttribute('aria-disabled', 'true');
+        scholarBtn.title = 'Add your Google Scholar ID in the script to enable this link';
+      }
+
+      // Render project cards (static placeholders)
+      const grid = document.getElementById('projectGrid');
+      projects.forEach(p => grid.appendChild(createProjectCard(p)));
+    })();
+
+    // =============================
+    // Contact form handler: opens mail client via mailto
+    // =============================
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = (document.getElementById('name').value || '').trim();
+      const email = (document.getElementById('email').value || '').trim();
+      const message = (document.getElementById('message').value || '').trim();
+
+      // Basic input validation
+      if (!name || !email) {
+        alert('Provide name and email to proceed.');
+        return;
+      }
+
+      const subject = encodeURIComponent(`Website contact — ${name}`);
+      const body = encodeURIComponent(`From: ${name} <${email}>
+\nMessage:\n${message || '(no message)'}\n`);
+      const mailto = `mailto:brunoxtrentini@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailto;
+    });
+  </script>
+</body>
+</html>
