@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bruno Trentini — Machine Learning Scientist (AI)</title>
   <meta name="description" content="Bruno Trentini — Computer Scientist working in AI for Science. Publications, bio, blogs, and contact." />
-  <meta name="keywords" content="Bruno Trentini, Machine Learning, Deep Learning, Generative Models, AI for Science, Geometric Deep Learning, Graph Representation Learning, Graph Neural Networks, Equivariance, Symmetry in AI, High-Performance Computing, HPC, GPUs, CUDA, Distributed Training, Mixed Precision, PyTorch, Python, SLURM, Docker, Digital Biology, Computational Biology,Protein Design, Peptide Design, Inverse Folding, Drug Discovery, Computational Chemistry, Chemistry, Biology, Physics, Differential Geometry, Bayesian Machine Learning, Probabilistic Modeling, Data Engineering, MLOps, Product Management, Team Leadership, Scientific Machine Learning, Life Sciences AI, Geometric AI, University of Oxford, UCL, NVIDIA, Developer Relations, Applied Research Scientist, Graph Learning" />
+  <meta name="keywords" content="Bruno Trentini, Machine Learning, Deep Learning, Generative Models, AI for Science, Geometric Deep Learning, Graph Representation Learning, Graph Neural Networks, Equivariance, Symmetry in AI, High-Performance Computing, HPC, GPUs, CUDA, Distributed Training, Mixed Precision, PyTorch, Python, SLURM, Docker, Digital Biology, Computational Biology, Bioinformatics, Protein Design, Peptide Design, Inverse Folding, Drug Discovery, Computational Chemistry, Chemistry, Biology, Physics, Differential Geometry, Bayesian Machine Learning, Probabilistic Modeling, Data Engineering, MLOps, Product Management, Team Leadership, Scientific Machine Learning, Life Sciences AI, Geometric AI, University of Oxford, UCL, NVIDIA, Developer Relations, Applied Research Scientist, Graph Learning" />
   <meta name="author" content="Bruno Trentini" />
+
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
   <!-- SEO keywords derived from visible tags -->
 
   <!-- Google Fonts -->
@@ -101,7 +103,7 @@
     a { color: var(--orange); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    .container { width: min(1100px, 92%); margin: 0 auto; }
+    .container { width: min(1100px, 90%); margin: 0 auto; }
 
     header { position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(140%) blur(12px); background: linear-gradient(180deg, rgba(5,10,18,0.85), rgba(5,10,18,0.35)); border-bottom: 1px solid rgba(148,163,184,0.12); }
     .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
@@ -111,9 +113,9 @@
     .nav a { color: var(--snow); opacity: 0.85; font-weight: 500; } .nav a:hover { opacity: 1; }
 
     .hero { padding: 72px 0 24px; }
-    .hero-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 32px; align-items: center; }
+    .hero-wrap { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 5px; align-items: center; }
     .title { font-size: clamp(28px, 5vw, 56px); line-height: 1.05; margin: 0 0 10px; font-weight: 800; }
-    .subtitle { font-size: clamp(16px, 2.2vw, 20px); color: #cbd5e1; margin: 10px 0 26px; }
+    .subtitle { font-size: clamp(16px, 2.2vw, 20px); color: #cbd5e1; margin: 10px 0 10px; }
 
     .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
     .chip { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 999px; font-size: 14px; color: #e5e7eb; }
@@ -121,7 +123,7 @@
     .hero .chips .chip { border: 1px solid var(--orange); }
 
     .photo {
-      width: min(340px, 90%);
+      width: min(340px, 60%);
       aspect-ratio: 1 / 1;
       border-radius: var(--radius);
       background: linear-gradient(160deg, rgba(249,115,22,0.15), rgba(107,79,58,0.2)),
@@ -206,6 +208,39 @@
     z-index: -1;          /* behind content, above bg-hero since it appears later in DOM */
     pointer-events: none; /* ignore mouse */
     }
+
+    /* --- Hero photo placement & sizing -------------------------------------- */
+    /* --- Center the hero and the portrait ---------------------------------- */
+
+    /* Base: center headings, subtext, and chips */
+    .hero { text-align: center; }
+    .hero .chips { justify-content: center; }
+
+    /* Center grid items in the hero */
+    .hero-wrap { justify-items: center; align-items: center; }
+
+    /* Mobile: photo first, centered, with spacing */
+    @media (max-width: 900px) {
+    .hero-wrap { grid-template-columns: 1fr; }
+    .hero-wrap > .photo {
+        grid-row: 1;
+        width: clamp(120px, 44vw, 200px);
+        margin: 0 0 16px 0;
+        justify-self: center;
+    }
+    .hero-wrap > :first-child { grid-row: 2; }
+    }
+
+    /* Tablet / small desktop: keep centered, cap growth */
+    @media (min-width: 901px) and (max-width: 1399px) {
+    .hero .photo { width: clamp(200px, 24vw, 260px); justify-self: center; }
+    }
+
+    /* Wide desktop: fixed, compact size; centered */
+    @media (min-width: 1400px) {
+    .hero .photo { width: 260px; justify-self: center; }
+    }
+
 
  </style>
 </head>
@@ -489,15 +524,14 @@
       <div class="container hero-wrap">
         <div>
           <h1 class="title">Bruno Trentini</h1>
-          <p class="subtitle">Applied Research Scientist at NVIDIA & PhD Candidate at the University of Oxford</p>
+          <p class="subtitle">Applied Research Scientist at NVIDIA</p>
+          <p class="subtitle"> PhD Candidate at the University of Oxford</p>
 
           <!-- Tags only -->
           <div class="chips" aria-label="Areas of expertise">
             <span class="chip">Machine Learning</span>
             <span class="chip">Generative Models</span>
             <span class="chip">AI for Science</span>
-            <span class="chip">Geometric Deep Learning</span>
-            <span class="chip">High-Performance Computing</span>
           </div>
         </div>
 
@@ -521,8 +555,7 @@
             <h3>Profile</h3>
             <p>PhD Candidate at the University of Oxford under the supervision of Prof. Michael Bronstein; Master's in Data Science & Machine Learning — Distinction — from University College London; publications in machine learning frameworks, protein folding, and inverse folding problems. Community collaboration hosting developer summits and scientific symposiums.</p>
             <div class="meta">
-              <span>Supervisor: Michael Bronstein</span>
-              <span>Open to collaboration</span>
+              <span>Supervisor: Prof. Michael Bronstein.</span>
             </div>
           </article>
 
