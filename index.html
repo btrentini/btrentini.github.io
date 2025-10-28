@@ -182,11 +182,163 @@
     footer { padding: 28px 0 48px; color: #94a3b8; font-size: 14px; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 40px; }
     .divider { height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.12), rgba(255,255,255,0)); margin: 28px 0; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  </style>
+ 
+    /* Background wave/mesh canvas */
+    #waveMeshCanvas{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;          /* behind content, above bg-hero since it appears later in DOM */
+    pointer-events: none; /* ignore mouse */
+    }
+
+ </style>
 </head>
+<script>
+    /* ===============================================================
+       WaveMesh Background (DOM-safe init)
+       Tuning: WaveMesh.set({ opacity, speed, points, ... })
+       =============================================================== */
+    (function(){
+      const CONFIG = {
+        opacity: 0.35,   // transparency of white lines (0..1)
+        speed: 0.6,      // animation speed
+        points: 1200,    // number of agents
+        lineWidth: 1,
+        fieldScale: 0.0016,
+        step: 0.9,
+        fade: 0.08,
+        color: '255,255,255',
+        maxDpr: 1.5
+      };
+    
+      // Will be set in init()
+      let canvas, ctx;
+      let width = 0, height = 0, dpr = 1;
+      let positions = null;
+      let running = true;
+      let time = 0;
+    
+      function resize(){
+        if (!canvas) return;
+        dpr = Math.min(window.devicePixelRatio || 1, CONFIG.maxDpr);
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        canvas.width = Math.max(1, Math.floor(width * dpr));
+        canvas.height = Math.max(1, Math.floor(height * dpr));
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+    
+      function seed(){
+        const n = Math.max(1, CONFIG.points|0);
+        positions = new Float32Array(n * 2);
+        for (let i = 0; i < n; i++){
+          positions[2*i]     = Math.random() * width;
+          positions[2*i + 1] = Math.random() * height;
+        }
+      }
+    
+      // -------- minimal smooth value-noise (3D) for a flow field --------
+      function hash(i,j,k){
+        let n = (i|0)*15731 ^ (j|0)*789221 ^ (k|0)*1376312589;
+        n = (n<<13) ^ n;
+        return 1 - ((n*(n*n*15731 + 789221) + 1376312589) & 0x7fffffff) / 1073741824;
+      }
+      const smoothstep = t => t*t*(3-2*t);
+      function noise3(x,y,z){
+        const i0 = Math.floor(x), j0 = Math.floor(y), k0 = Math.floor(z);
+        const fx = x - i0, fy = y - j0, fz = z - k0;
+        const u = smoothstep(fx), v = smoothstep(fy), w = smoothstep(fz);
+        const lerp = (a,b,t) => a + (b-a)*t;
+    
+        const v000 = hash(i0,   j0,   k0  ), v100 = hash(i0+1, j0,   k0  );
+        const v010 = hash(i0,   j0+1, k0  ), v110 = hash(i0+1, j0+1, k0  );
+        const v001 = hash(i0,   j0,   k0+1), v101 = hash(i0+1, j0,   k0+1);
+        const v011 = hash(i0,   j0+1, k0+1), v111 = hash(i0+1, j0+1, k0+1);
+    
+        const x00 = lerp(v000, v100, u), x10 = lerp(v010, v110, u);
+        const x01 = lerp(v001, v101, u), x11 = lerp(v011, v111, u);
+        const y0  = lerp(x00,  x10,  v), y1  = lerp(x01,  x11,  v);
+        return lerp(y0, y1, w);
+      }
+      function angleAt(x,y,t){
+        const s = CONFIG.fieldScale;
+        return noise3(x*s, y*s, t*s*0.3) * Math.PI * 2;
+      }
+      // ------------------------------------------------------------------
+    
+      function frame(){
+        if (!running || !ctx) return;
+    
+        time += CONFIG.speed;
+    
+        // fade trails
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.fillStyle = 'rgba(0,0,0,' + (1 - Math.exp(-CONFIG.fade)) + ')';
+        ctx.fillRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+        ctx.globalCompositeOperation = 'source-over';
+    
+        ctx.lineWidth = CONFIG.lineWidth;
+        ctx.strokeStyle = 'rgba(' + CONFIG.color + ',' + CONFIG.opacity + ')';
+    
+        ctx.beginPath();
+        const n = positions.length >> 1;
+        for (let i = 0; i < n; i++){
+          const ix = 2*i;
+          const x  = positions[ix];
+          const y  = positions[ix+1];
+    
+          const a  = angleAt(x, y, time*0.002);
+          const nx = x + Math.cos(a) * CONFIG.step;
+          const ny = y + Math.sin(a) * CONFIG.step;
+    
+          ctx.moveTo(x, y);
+          ctx.lineTo(nx, ny);
+    
+          positions[ix]   = (nx + width)  % width;
+          positions[ix+1] = (ny + height) % height;
+        }
+        ctx.stroke();
+    
+        requestAnimationFrame(frame);
+      }
+    
+      function start(){
+        resize();
+        seed();
+        requestAnimationFrame(frame);
+      }
+    
+      // public API for live tuning
+      window.WaveMesh = {
+        set(opts = {}){
+          const beforePoints = CONFIG.points;
+          Object.assign(CONFIG, opts);
+          if (opts.points !== undefined && (CONFIG.points|0) !== (beforePoints|0)) seed();
+        },
+        start(){ running = true; requestAnimationFrame(frame); },
+        stop(){ running = false; },
+        config: CONFIG
+      };
+    
+      // DOM-safe initialization
+      function init(){
+        canvas = document.getElementById('waveMeshCanvas');
+        if (!canvas){ console.warn('WaveMesh: #waveMeshCanvas not found'); return; }
+        ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+        window.addEventListener('resize', resize, { passive: true });
+        start(); // start right after DOM is ready
+      }
+      document.addEventListener('DOMContentLoaded', init);
+    })();
+    </script>
+    
+    
 <body>
   <!-- Static background layer -->
   <div class="bg-layer bg-hero" id="bgHero"></div>
+  <canvas id="waveMeshCanvas" aria-hidden="true"></canvas>
 
   <header>
     <div class="container nav">
@@ -229,7 +381,6 @@
       <div class="container">
         <div class="head">
           <h2>About</h2>
-          <span class="subhead">Profile and current research focus</span>
         </div>
         <div class="grid">
           <article class="card span-6">
@@ -259,7 +410,6 @@
       <div class="container">
         <div class="head">
           <h2>Publications</h2>
-          <span class="subhead">Citation-style list with venue and year; links open external sources.</span>
         </div>
         <ol id="pubList" class="citations" role="list"></ol>
       </div>
@@ -272,7 +422,6 @@
       <div class="container">
         <div class="head">
           <h2>Contact</h2>
-          <span class="subhead">Messages route to <a href="mailto:brunoxtrentini@gmail.com">brunoxtrentini@gmail.com</a></span>
         </div>
         <form class="form" id="contactForm" autocomplete="on" novalidate>
           <div class="field">
@@ -369,7 +518,7 @@
       if (!name || !email) { alert('Please provide your name and email to proceed.'); return; }
       const subject = encodeURIComponent(`Website contact — ${name}`);
       const body = encodeURIComponent(`From: ${name} <${email}>\n\nMessage:\n${message || '(no message)'}\n`);
-      const mailto = `mailto:brunoxtrentini@gmail.com?subject=${subject}&body=${body}`;
+      const mailto = `mailto:brunoxtrentini+websitecontact@gmail.com?subject=${subject}&body=${body}`;
       window.location.href = mailto;
     });
   </script>
