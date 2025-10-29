@@ -203,10 +203,20 @@
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
   
   /* Canvas layer */
-  #waveMeshCanvas{
-    position: fixed; inset: 0; width: 100%; height: 100%;
-    z-index: -1; pointer-events: none;
+/* Background canvas behaves like a non-squeezing tapestry */
+  #waveMeshCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100dvw;
+    height: 100dvh;
+    z-index: -1;
+    pointer-events: none;
+    /* Keep it behind everything, but above body background if needed */
+    /* If .bg-hero also uses z-index:-1 and should sit below canvas, give it -2 */
   }
+
+  .bg-layer.bg-hero { z-index: -2; } /* optional: ensure canvas is the top-most background */
+
   
   /* Responsive placement & sizing for portrait */
   @media (max-width: 900px) {
