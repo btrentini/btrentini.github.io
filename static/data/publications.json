@@ -1,25 +1,85 @@
 [
     {
-      "title": "Improving Inverse Folding for Peptide Design with Diversity-Regularized Direct Preference Optimization",
-      "authors": ["Ryan Park","Darren J. Hsu","Chen Tessler","Maria Korshunova","C. Brian Roland","Shie Mannor","Olivia Viessmann","Bruno Trentini"],
-      "venue": "",
+        "title": "Improving Inverse Folding for Peptide Design with Diversity-Regularized Direct Preference Optimization",
+        "authors": ["Ryan Park","Darren J Hsu","C Brian Roland","Maria Korshunova","Chen Tessler","Shie Mannor","Olivia Viessmann","Bruno Trentini"],
+        "venue": " (Spotlight) ICML 2025 — 2nd Workshop on Generative AI and Biology ",
+        "year": 2025,
+        "links": {
+          "paper": "https://openreview.net/forum?id=Gh6Zoi3F",
+          "poster": "/static/images/invfold-poster.jpg",
+          "code": null,
+          "blog": null
+        }
+      },
+      {
+        "title": "Advancing Protein Ensemble Predictions Across the Order-Disorder Continuum",
+        "authors": ["Michele Invernizzi","Sandro Bottaro","Julian O Streit","Bruno Trentini","Niccolo AE Venanzi","Danny Reidenbach","Youhan Lee","Christian Dallago","Hassan Sirelkhatim","Bowen Jing","Fabio Airoldi","Kresten Lindorff-Larsen","Carlo Fisicaro","Kamil Tamiola"],
+        "venue": "bioRxiv",
+        "year": 2025,
+        "links": {
+          "paper": "https://www.biorxiv.org/content/10.1101/2025.10.18.680935v1",
+          "presentation": null,
+          "code": "github.com/peptoneltd/peptron",
+          "blog": "https://peptone.io/press-release/peptone-and-nvidia-introduce-peptron-o-the-ensemble-first-structure-prediction-for-the-disordered-proteome/"
+        }
+      },
+    {
+      "title": "BioNeMo Framework: a modular, high-performance library for AI model development in drug discovery",
+      "authors": ["Peter St John","Dejun Lin","Polina Binder","Malcolm Greaves","Vega Shah","John St John","Adrian Lange","Patrick Hsu","Rajesh Illango","Arvind Ramanathan","Anima Anandkumar","David H Brookes","Akosua Busia","Abhishaike Mahajan","Stephen Malina","Neha Prasad","Sam Sinai","Lindsay Edwards","Thomas Gaudelet","Cristian Regep","Martin Steinegger","Burkhard Rost","Alexander Brace","Kyle Hippe","Luca Naef","Keisuke Kamata","George Armstrong","Kevin Boyd","Zhonglin Cao","Han-Yi Chou","Simon Chu","Allan dos Santos Costa","Sajad Darabi","Eric Dawson","Kieran Didi","Cong Fu","Mario Geiger","Michelle Gill","Darren J Hsu","Gagan Kaushik","Maria Korshunova","Steven Kothen-Hill","Youhan Lee","Meng Liu","Micha Livne","Zachary McClure","Jonathan Mitchell","Alireza Moradzadeh","Ohad Mosafi","Youssef Nashed","Saee Paliwal","Yuxing Peng","Sara Rabhi","Farhad Ramezanghorbani","Danny Reidenbach","Camir Ricketts","Brian C Roland","Kushal Shah","Tyler Shimko","Hassan Sirelkhatim","Savitha Srinivasan","Abraham C Stern","Dorota Toczydlowska","Srimukh Prasad Veccham","Niccolò Alberto Elia Venanzi","Anton Vorontsov","Jared Wilber","Isabel Wilkinson","Wei Jing Wong","Eva Xue","Cory Ye","Xin Yu","Yang Zhang","Guoqing Zhou","Becca Zandstein","Alejandro Chacon","Prashant Sohani","Maximilian Stadler","Christian Hundt","Feiwen Zhu","Christian Dallago","Bruno Trentini","Emine Kucukbenli","Timur Rvachov","Eddie Calleja","Johnny Israeli","Harry Clifford","Risto Haukioja","Nicholas Haemel","Kyle Tretina","Neha Tadimeti","Anthony B Costa"],
+      "venue": "arXiv",
       "year": 2024,
       "links": {
-        "manuscript": "https://arxiv.org/abs/2410.19471",
-        "presentation": null,
-        "video": null,
+        "paper": "https://arxiv.org/abs/2411.10548",
+        "youtube": "https://www.youtube.com/watch?v=GNL1z7hnj4w",
+        "code": "https://github.com/NVIDIA/bionemo-framework",
+        "blog": "https://developer.nvidia.com/blog/train-generative-ai-models-for-drug-discovery-with-bionemo-framework/"
+      }
+    },
+    {
+        "title": "ML for Life and Material Science: From Theory to Industry Applications (ICML 2024 Workshop)",
+        "authors": ["Aviv Regev","Andrea Volkamer","Bruno Trentini","Cecilia Clementi","Charles Harris","Charlotte Deane","Christian Dallago","Ellen D Zhong","Francesca Grisoni","Jinwoo Leem","Kevin K Yang","Marwin Segler","Michael Martin Pieler","Nicholas James Sofroniew","Olivia Viessmann","Peter K Koo","Pranam Chatterjee","Puck Van Gerwen","Rebecca K. Lindsay","Umberto Lupo","Ying Wai Li"],
+        "venue": "ICML Workshops",
+        "year": 2024,
+        "links": {
+          "ICML": "https://icml.cc/virtual/2024/workshop/29955",
+          "website": "https://ml4lms.bio/",
+          "summary": "https://www.linkedin.com/feed/update/urn:li:activity:7224074607622864896/",
+          "blog": null
+        }
+      },
+    {
+      "title": "AI for Nucleic Acids Workshop",
+      "authors": ["Ivona Martinović","Lovro Vrček","Chaitanya K Joshi","Tin Vlašić","Agata M Kilar","Bruno Trentini","Max Ward","Maria Brbic","Bryan Hooi","Fran Supek","Pietro Lio","Elena Rivas","Mile Sikic"],
+      "venue": "ICLR 2025 Workshop Proposals",
+      "year": 2025,
+      "links": {
+        "manuscript": null,
+        "website": "https://ai4na-workshop.github.io/",
+        "code": null,
         "blog": null
       }
     },
     {
-      "title": "ML for Life and Material Science: From Theory to Industry Applications (ICML 2024 Workshop)",
-      "authors": ["Aviv Regev","Andrea Volkamer","Bruno Trentini","Cecilia Clementi","Charles Harris","Charlotte Deane","Christian Dallago","Ellen D Zhong","Francesca Grisoni","Jinwoo Leem","Kevin K Yang","Marwin Segler","Michael Martin Pieler","Nicholas James Sofroniew","Olivia Viessmann","Peter K Koo","Pranam Chatterjee","Puck Van Gerwen","Rebecca K. Lindsay","Umberto Lupo","Ying Wai Li"],
-      "venue": "ICML Workshops",
-      "year": 2024,
+      "title": "Machine Learning for Simulations in Biology and Chemistry",
+      "authors": ["Bruno Trentini","Constance Ferragu","Hassan Sirelkhatim","Kristine Deibler","Marwin Segler","Michael M. Bronstein","Piero Altoe","Pranam Chatterjee","Tejs Vegge","Runzhong Wang"],
+      "venue": "EurIPS Workshops",
+      "year": 2025,
       "links": {
-        "manuscript": "https://icml.cc/virtual/2024/workshop/29955",
+        "manuscript": null,
+        "website": "http://simbiochem.com/",
+        "code": null,
+        "blog": null
+      }
+    },
+    {
+      "title": "Sistemas Inteligentes de Transporte Aplicados ao Controle de Tráfego",
+      "authors": ["Bruno Trentini","Walter Godoy Jr."],
+      "venue": "Universidade Tecnologica Federal do Parana",
+      "year": 2013,
+      "links": {
+        "paper": "https://repositorio.utfpr.edu.br/jspui/handle/1/20033",
         "presentation": null,
-        "video": null,
+        "code": null,
         "blog": null
       }
     }

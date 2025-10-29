@@ -25,27 +25,28 @@ function esc(s) {
     return mapped.length <= 10 ? mapped.join(", ") : mapped.slice(0, 10).join(", ") + ", et al.";
   }
   
-  /** Build a single, stateful action button for a link type. */
-  function linkBtn(type, href) {
-    const labels = { manuscript: "Manuscript", presentation: "Presentation", video: "Video", blog: "Blog" };
-    const label = labels[type] || type;
+  /** Capitalize only the first character; leave the remainder unchanged. */
+  function capFirst(s) {
+    s = String(s ?? "");
+    return s.length ? s[0].toUpperCase() + s.slice(1) : s;
+  }
+  
+  /**
+   * Build a single action button for a provided label and href.
+   * Label is the JSON key with only the first character uppercased.
+   * Buttons render only when href is a non-empty string.
+   */
+  function linkBtn(label, href) {
     const a = document.createElement("a");
     a.className = "btn ghost";
-    a.textContent = label;
-  
-    if (href) {
-      a.href = href;
-      a.target = "_blank";
-      a.rel = "noopener";
-    } else {
-      a.classList.add("disabled");
-      a.setAttribute("aria-disabled", "true");
-      a.tabIndex = -1;
-    }
+    a.textContent = capFirst(label);       // first letter capitalized
+    a.href = String(href);                 // value dictated by JSON
+    a.target = "_blank";
+    a.rel = "noopener";
     return a;
   }
   
-  /** Build the citation block in the requested order: Title → Authors → Venue → Year. */
+  /** Build the citation block in the order: Title → Authors → Venue → Year. */
   function renderCitation(item) {
     const wrap = document.createElement("div");
     wrap.className = "cite-row";
@@ -71,7 +72,11 @@ function esc(s) {
     return wrap;
   }
   
-  /** Create the <li> node with citation + action buttons. */
+  /**
+   * Create the <li> node with citation + action buttons.
+   * Only render buttons for keys present in item.links with non-empty string values.
+   * Button labels are derived from the exact JSON keys, with only the first letter uppercased.
+   */
   function createCitationLi(item) {
     const li = document.createElement("li");
   
@@ -79,14 +84,21 @@ function esc(s) {
     li.appendChild(renderCitation(item));
   
     // Action buttons
-    const actions = document.createElement("div");
-    actions.className = "cite-actions";
-    const links = item.links || {};
-    actions.appendChild(linkBtn("manuscript", links.manuscript));
-    actions.appendChild(linkBtn("presentation", links.presentation));
-    actions.appendChild(linkBtn("video", links.video));
-    actions.appendChild(linkBtn("blog", links.blog));
-    li.appendChild(actions);
+    const links = (item && item.links && typeof item.links === "object") ? item.links : null;
+    if (links) {
+      const actions = document.createElement("div");
+      actions.className = "cite-actions";
+  
+      for (const [label, href] of Object.entries(links)) {
+        if (typeof href === "string" && href.trim().length > 0) {
+          actions.appendChild(linkBtn(label, href));
+        }
+      }
+  
+      if (actions.childElementCount > 0) {
+        li.appendChild(actions);
+      }
+    }
   
     return li;
   }
@@ -97,15 +109,15 @@ function esc(s) {
     if (!list) return;
   
     try {
-        const url = new URL("/static/data/publications.json", document.baseURI).toString();
-        const res = await fetch(url, { cache: "no-cache" });
-
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const url = new URL("/static/data/publications.json", document.baseURI).toString();
+      const res = await fetch(url, { cache: "no-cache" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  
       /** @type {Array} */
       const pubs = await res.json();
   
       // Optional: stable order in file is respected. To show newest first, uncomment:
-      // pubs.sort((a, b) => (b.year ?? 0) - (a.year ?? 0) || String(a.title).localeCompare(String(b.title)));
+      pubs.sort((a, b) => (b.year ?? 0) - (a.year ?? 0) || String(a.title).localeCompare(String(b.title)));
   
       list.innerHTML = "";
       pubs.forEach(p => list.appendChild(createCitationLi(p)));
