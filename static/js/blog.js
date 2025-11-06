@@ -5,7 +5,8 @@ class BlogManager {
     this.posts = [];
     this.filteredPosts = [];
     this.currentPage = 1;
-    this.postsPerPage = 5;
+    // Set posts per page based on screen size (mobile: 2, desktop: 5)
+    this.postsPerPage = this.isMobile() ? 2 : 5;
     this.currentFilter = 'all'; // 'all', or specific topic
     this.searchQuery = '';
     this.blogList = document.getElementById('blogList');
@@ -25,6 +26,11 @@ class BlogManager {
       'docs.google.com': 'https://logo.clearbit.com/google.com',
       'drive.google.com': 'https://logo.clearbit.com/google.com'
     };
+  }
+
+  isMobile() {
+    // Check if screen width is less than 768px (typical mobile breakpoint)
+    return window.innerWidth < 768;
   }
 
   async init() {
@@ -353,6 +359,16 @@ class BlogManager {
   setupEventListeners() {
     this.prevBtn.addEventListener('click', () => this.changePage(-1));
     this.nextBtn.addEventListener('click', () => this.changePage(1));
+
+    // Handle screen resize to adjust posts per page
+    window.addEventListener('resize', () => {
+      const newPostsPerPage = this.isMobile() ? 2 : 5;
+      if (newPostsPerPage !== this.postsPerPage) {
+        this.postsPerPage = newPostsPerPage;
+        this.currentPage = 1; // Reset to first page
+        this.render();
+      }
+    });
   }
 
   setupSearchListener() {
