@@ -198,7 +198,7 @@ class BlogManager {
           ...metadata,
           content: content.toLowerCase(), // Store content for search
           thumbnail: metadata.hero || '/static/images/bruno.png',
-          url: `/posts/layout.html?post=${slug}`, // Use explicit path to layout.html for static server
+          url: `${window.location.protocol}//${window.location.host}/posts/layout.html?post=${slug}`, // Use absolute URL
           isInternal: true
         };
       }));

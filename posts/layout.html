@@ -48,6 +48,9 @@
 
   <link rel="stylesheet" href="../static/css/main.css">
 
+  <!-- Posts data -->
+  <script src="../static/js/posts-data.js"></script>
+
   <style>
     /* Blog Post Styles */
     .post-hero {
@@ -532,14 +535,10 @@
             const slug = post.slug;
             let metadata = {};
 
-            try {
-              const mdResponse = await fetch(`./content/${slug}.md`);
-              if (mdResponse.ok) {
-                const mdContent = await mdResponse.text();
-                const frontmatter = this.extractFrontmatter(mdContent);
-                metadata = frontmatter;
-              }
-            } catch (error) {
+            // Use embedded post data for metadata
+            if (POSTS_DATA && POSTS_DATA[slug]) {
+              metadata = POSTS_DATA[slug].frontmatter;
+            } else {
               // Use fallback metadata
               metadata = {
                 title: slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
@@ -667,13 +666,19 @@
       }
 
       async loadPost(slug) {
-        const response = await fetch(`./content/${slug}.md`);
-        if (!response.ok) {
+        // Use embedded post data instead of fetching
+        if (!POSTS_DATA || !POSTS_DATA[slug]) {
           throw new Error(`Post not found: ${slug}`);
         }
 
-        const markdown = await response.text();
-        this.postData = this.parseMarkdownWithFrontmatter(markdown);
+        const postData = POSTS_DATA[slug];
+        const frontmatter = postData.frontmatter;
+        const content = postData.content;
+
+        // Combine frontmatter and content
+        const fullMarkdown = `---\n${Object.entries(frontmatter).map(([k, v]) => `${k}: ${v}`).join('\n')}\n---\n${content}`;
+
+        this.postData = this.parseMarkdownWithFrontmatter(fullMarkdown);
       }
 
       setupNavigation(currentSlug) {
