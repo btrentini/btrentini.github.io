@@ -1,0 +1,102 @@
+[
+  {
+    "title": "7 Resources for Those Wanting to Learn Data Science",
+    "url": "https://medium.com/data-science/7-resources-for-those-wanting-to-learn-data-science-a89e25d1b55e",
+    "description": "Sometimes you just need a push to get started. Here's what worked for me in my journey towards data science.",
+    "date": "2018-09-25",
+    "topic": "data science"
+  },
+  {
+    "title": "SIMBIOCHEM Workshop",
+    "url": "https://www.simbiochem.com/",
+    "description": "Got an idea at the intersection of ML × Simulation for Biology or Chemistry?",
+    "date": "2025-11-01",
+    "topic": "community",
+    "thumbnail": "/posts/images/simbiochem/simbiochem.png"
+  },
+  {
+    "title": "Breakthrough in Functional Annotation with HiFi-NN",
+    "url": "https://developer.nvidia.com/blog/breakthrough-in-functional-annotation-with-hifi-nn/",
+    "description": "Discover how HiFi-NN advances protein function prediction through innovative neural network architectures.",
+    "date": "2024-01-15",
+    "topic": "machine learning"
+  },
+  {
+    "title": "Accelerating Neurosymbolic AI with RAPIDS and Vadalog",
+    "url": "https://developer.nvidia.com/blog/accelerating-neurosymbolic-ai-with-rapids-and-vadalog-parallel/",
+    "description": "Learn how RAPIDS and Vadalog combine to accelerate neurosymbolic AI applications.",
+    "date": "2024-02-01",
+    "topic": "machine learning"
+  },
+  {
+    "title": "Latest Discoveries at the Healthcare & Life Sciences Developer Summit",
+    "url": "https://developer.nvidia.com/blog/latest-discoveries-at-the-healthcare-life-sciences-developer-summit/",
+    "description": "Highlights from the Healthcare & Life Sciences Developer Summit featuring cutting-edge AI applications.",
+    "date": "2024-03-01",
+    "topic": "community"
+  },
+  {
+    "title": "Data Science Festival Presentation - ML/RL",
+    "url": "https://youtu.be/Li4dVkuF_0A?si=kQE7SIbVlFktkYN4&t=1",
+    "description": "Advanced Techniques for Online Advertisement Spend Optimisation - Data Science Festival.",
+    "date": "2024-04-01",
+    "topic": "tutorial"
+  },
+  {
+    "title": "Yesterday I returned to UCL",
+    "url": "https://www.linkedin.com/posts/btrentini_yesterday-i-returned-to-ucl-thank-you-cs-activity-7285341712904798209-0Ds4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "Reflecting on my return to University College London and gratitude for the Computer Science community.",
+    "date": "2024-10-15",
+    "topic": "linkedin"
+  },
+  {
+    "title": "10 Years Between These Two Photos",
+    "url": "https://www.linkedin.com/posts/btrentini_10-years-between-these-two-photos-i-waved-activity-7254827655986921472-kfc1?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "A personal reflection on 10 years of growth and change in my journey.",
+    "date": "2024-10-20",
+    "topic": "linkedin"
+  },
+  {
+    "title": "Had a Great Time Talking About Generative AI",
+    "url": "https://www.linkedin.com/posts/btrentini_had-a-great-time-talking-about-generative-activity-7267662862448312322-E3HT?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "Sharing experiences from discussing generative AI and its applications.",
+    "date": "2024-10-01",
+    "topic": "linkedin"
+  },
+  {
+    "title": "The ML4LMS Workshop at ICML'24 Was a Success",
+    "url": "https://www.linkedin.com/posts/btrentini_the-ml4lms-workshop-at-icml24-was-a-success-activity-7224074607622864896-cU_8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "Highlights from the successful ML4LMS workshop at ICML 2024.",
+    "date": "2024-07-28",
+    "topic": "linkedin"
+  },
+  {
+    "title": "Bayesian Data Science Presentation",
+    "url": "https://docs.google.com/presentation/d/1MNUYKr2Wk3czH89nEFMezCJ1NKm8WGNz/edit",
+    "description": "A comprehensive presentation on Bayesian data science methodologies and applications.",
+    "date": "2022-11-01",
+    "topic": "tutorial"
+  },
+  {
+    "title": "Dois DADOS de Prosa | Two Data Questions - Bruno Trentini - #04",
+    "url": "https://www.linkedin.com/pulse/dois-dados-de-prosa-two-data-questions-bruno-04-felipe-gollnick/",
+    "description": "Two Data Questions! is a series of posts in which I send two questions [duh] to Data professionals. #TwoDataQuestions",
+    "date": "2023-12-09",
+    "topic": "data science"
+
+  },
+  {
+    "title": "Data Science Festival OneID Presentation",
+    "url": "https://docs.google.com/presentation/d/18pJ51gPGXXVMgD8u9_9uk9aZpUrhLyBW/edit?slide=id.p1#slide=id.p1",
+    "description": "Public presentation from Data Science Festival covering OneID and related topics.",
+    "date": "2023-11-05",
+    "topic": "tutorial"
+  },
+  {
+    "title": "SHAP for Explainable Machine Learning",
+    "url": "https://drive.google.com/file/d/1nVNZBdjupGRFYZaAycFvWDHLsd_QEbAe/view?usp=sharing",
+    "description": "We’re often interested in understanding how machine learning models make predictions, but this is not always easy with complex models. The goal of SHAP (SHapley Additive exPlanations) is to explain the prediction of an instance x by computing the contribution of each feature to the prediction. In this talk, we will discuss the topic of transparency in Machine Learning through the lenses of SHAP, the benefits and limitations of this method and practical applications in a business context.",
+    "date": "2024-11-10",
+    "topic": "tutorial"
+  }
+]

@@ -25,6 +25,9 @@
     gtag('config', 'G-4QPMJBXS52');
   </script>
 
+  <!-- MathJax for equation rendering in blog posts -->
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <!-- JSON-LD Person profile with multiple affiliations for SEO -->
   <script type="application/ld+json">
     {
@@ -443,34 +446,50 @@
           <article class="card span-6">
             <h3 class="orange-h3">Collaborations</h3>
             <p>Available for invited talks at universities and events, academic collaborations, and MSc/PhD co-supervision.</p>
-            <p><br><strong>Current interests</strong></p>
-            <div class="chips" aria-label="Supervision topics">
-              <span class="chip">Generative AI</span>
-              <span class="chip">Dynamical Systems</span>
-              <span class="chip">Multimodality</span>
-              <!-- <span class="chip">Media Generation</span> -->
-              <!-- <span class="chip">Reinforcement Learning</span> -->
-              <!-- <span class="chip">Model Evaluation</span> -->
-              <!-- <span class="chip">ML Infrastructure</span> -->
-              <span class="chip">Inference Optimization</span>
-              <!-- <span class="chip">0→1 Product Architecture</span> -->
-              <!-- <span class="chip">Cloud (GCP/AWS/Azure)</span> -->
-              <span class="chip">Geometric Deep Learning</span>
-              <span class="chip">Differential Geometry</span>
-              <span class="chip">AI for Science</span>
-              <!-- <span class="chip">Open Source</span> -->
-            </div>
+            <p><br><strong>Current interests:</strong><br><span class="interest-list">Generative AI • Dynamical Systems • Multimodality • Inference Optimization • Geometric Deep Learning • Differential Geometry • AI for Science</span></p>
           </article>
           
         </div>
       </div>
     </section>
 
+    <!-- Blog -->
+    <section id="blog">
+      <div class="container">
+        <div class="head">
+          <h2 class="centered-heading">Blog</h2>
+        </div>
+
+        <!-- Blog Filters -->
+        <div class="blog-filters-wrapper">
+          <div id="blogFilters" class="blog-filters"></div>
+        </div>
+
+        <!-- Blog Search -->
+        <div class="blog-search-wrapper">
+          <div class="search-container">
+            <input type="text" id="blogSearch" placeholder="search..." class="search-input">
+            <button id="clearSearch" class="clear-search-btn" style="display: none;">×</button>
+          </div>
+        </div>
+        <div id="blogContainer">
+          <div id="blogList" class="blog-posts"></div>
+          <div id="blogPagination" class="pagination">
+            <button id="prevBtn" class="btn secondary" disabled>&larr; Previous</button>
+            <span id="pageInfo">Page 1</span>
+            <button id="nextBtn" class="btn secondary">Next &rarr;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider container" role="presentation"></div>
+
     <!-- Publications (citation style) -->
     <section id="pubs">
       <div class="container">
         <div class="head">
-          <h2> Publications</h2>
+          <h2 class="centered-heading">Publications</h2>
         </div>
         <ol id="pubList" class="citations" role="list"></ol>
       </div>
@@ -482,7 +501,7 @@
     <section id="contact">
       <div class="container">
         <div class="head">
-          <h2>Contact</h2>
+          <h2 class="centered-heading">Contact</h2>
         </div>
         <form class="form" id="contactForm" novalidate>
             <input type="hidden" name="access_key" value="824a9a99-228d-480a-9402-b7bb30bf5bb2" />
@@ -527,5 +546,6 @@
   <script src="static/js/sendemail.js"></script>
   <script src="static/js/wavemesh.js"></script>
   <script src="static/js/publications.js" defer></script>
+  <script src="static/js/blog.js" defer></script>
 </body>
 </html>

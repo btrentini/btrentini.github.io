@@ -116,6 +116,13 @@
   .chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
   .chip { border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 999px; font-size: 14px; color: #e5e7eb; }
   .hero .chips .chip { border: 1px solid var(--orange); }
+
+  .interest-list {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
   
   /* Portrait */
   .photo {
@@ -140,6 +147,7 @@
   section { padding: 56px 0; }
   section .head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 18px; }
   section h2 { margin: 0; font-size: clamp(22px, 3vw, 28px); letter-spacing: .2px; }
+  .centered-heading { text-align: center; }
   .subhead { color: var(--slate-400); font-size: 14px; }
   
   /* Grid */
@@ -166,6 +174,332 @@
   .cite-title { font-weight: 700; }
   .cite-venue { color: #cbd5e1; }
   .cite-actions { margin-top: 8px; display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* Blog Filters */
+  .blog-filters-wrapper {
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .filter-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.7);
+    padding: 0.375rem 0.875rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+  }
+
+  .filter-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.12);
+    color: var(--snow);
+    transform: translateY(-1px);
+  }
+
+  .filter-btn.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #0b0d0e;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+  }
+
+  .filter-btn.active:hover {
+    background: #ff9b47;
+    border-color: #ff9b47;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+  }
+
+  /* Blog Search */
+  .blog-search-wrapper {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 32px;
+    color: var(--snow);
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .search-input:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .search-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--orange);
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2), 0 8px 32px rgba(249, 115, 22, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+  }
+
+  .clear-search-btn {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.1rem;
+    font-weight: 200;
+    cursor: pointer;
+    padding: 0.375rem;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .clear-search-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--orange);
+    transform: scale(1.1);
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.16);
+    color: var(--snow);
+  }
+
+  .filter-btn.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #0b0d0e;
+    font-weight: 600;
+  }
+
+  .filter-btn.active:hover {
+    background: #ff9b47;
+    border-color: #ff9b47;
+  }
+
+  @media (max-width: 768px) {
+    .blog-filters-wrapper {
+      margin-bottom: 1rem;
+    }
+
+    .blog-search-wrapper {
+      margin-bottom: 1.5rem;
+    }
+
+    .search-container {
+      max-width: 280px;
+    }
+
+    .search-input {
+      padding: 0.7rem 2.25rem 0.7rem 1rem;
+      font-size: 0.85rem;
+      border-radius: 28px;
+    }
+
+    .clear-search-btn {
+      right: 0.6rem;
+      width: 20px;
+      height: 20px;
+      font-size: 1rem;
+    }
+  }
+
+  /* Blog */
+  .blog-posts { display: flex; flex-direction: column; gap: 16px; }
+
+  .search-results-count {
+    text-align: center;
+    color: var(--orange);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(249, 115, 22, 0.1);
+    border-radius: 6px;
+  }
+  .blog-post {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    border-radius: 16px;
+    padding: 20px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .blog-post:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(255,255,255,0.16);
+  }
+  .blog-post-content {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .blog-thumbnail {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .blog-post-text {
+    flex: 1;
+    min-width: 0;
+  }
+  .blog-title {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .blog-title a {
+    color: var(--snow);
+    text-decoration: none;
+  }
+  .blog-title a:hover {
+    color: var(--orange);
+    text-decoration: underline;
+  }
+  .blog-description {
+    margin: 0 0 12px 0;
+    color: #cbd5e1;
+    line-height: 1.5;
+  }
+  .blog-meta {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono";
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .blog-date, .blog-source, .external-domain {
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 6px;
+  }
+
+  .external-domain {
+    color: var(--orange);
+    font-weight: 500;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+    padding: 16px 0;
+  }
+  .pagination #pageInfo {
+    color: #cbd5e1;
+    font-size: 14px;
+    min-width: 120px;
+    text-align: center;
+  }
+
+  /* Blog Filters */
+  .blog-filters {
+    margin-bottom: 24px;
+  }
+
+  .filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .filter-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.16);
+  }
+
+  .filter-btn.active {
+    background: var(--orange);
+    border-color: var(--orange);
+    color: #0b0d0e;
+  }
+
+  .filter-btn.active:hover {
+    background: #ff9b47;
+    border-color: #ff9b47;
+  }
   
   /* Form */
   /* status text: a bit larger */

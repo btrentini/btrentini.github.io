@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="page-title">Blog — Bruno Trentini</title>
+  <meta name="description" id="page-description" content="Bruno Trentini's blog posts on AI, machine learning, and scientific computing." />
+  <meta name="author" content="Bruno Trentini" />
+
+  <!-- Open Graph meta tags -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" id="og-title" content="Blog — Bruno Trentini">
+  <meta property="og:description" id="og-description" content="Bruno Trentini's blog posts on AI, machine learning, and scientific computing.">
+  <meta property="og:image" id="og-image" content="/static/images/bruno.png">
+  <meta property="og:url" id="og-url" content="">
+
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitter-title" content="Blog — Bruno Trentini">
+  <meta name="twitter:description" id="twitter-description" content="Bruno Trentini's blog posts on AI, machine learning, and scientific computing.">
+  <meta name="twitter:image" id="twitter-image" content="/static/images/bruno.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- MathJax for equation rendering -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <!-- Prism.js for syntax highlighting -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+  <link rel="stylesheet" href="../static/css/main.css">
+
+  <style>
+    /* Blog Post Styles */
+    .post-hero {
+      position: relative;
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .post-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(11,31,59,0.8), rgba(249,115,22,0.1));
+    }
+
+    .post-hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+
+    .post-hero-title {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .post-hero-description {
+      font-size: clamp(16px, 2vw, 20px);
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    .post-meta {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .post-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      line-height: 1.7;
+    }
+
+    .post-content {
+      color: var(--snow);
+    }
+
+    .post-content h1,
+    .post-content h2,
+    .post-content h3,
+    .post-content h4,
+    .post-content h5,
+    .post-content h6 {
+      color: var(--snow);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .post-content h1 {
+      font-size: 2.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 0.5rem;
+    }
+
+    .post-content h2 {
+      font-size: 1.875rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 0.25rem;
+    }
+
+    .post-content h3 {
+      font-size: 1.5rem;
+    }
+
+    .post-content h4 {
+      font-size: 1.25rem;
+    }
+
+    .post-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1.125rem;
+    }
+
+    .post-content blockquote {
+      border-left: 4px solid var(--orange);
+      padding-left: 1rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: #cbd5e1;
+    }
+
+    .post-content ul,
+    .post-content ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li {
+      margin-bottom: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .post-content code {
+      background: rgba(255,255,255,0.05);
+      padding: 0.125rem 0.25rem;
+      border-radius: 4px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.9em;
+      color: #e5e7eb;
+    }
+
+    .post-content pre {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 2rem 0;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .post-content pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.875rem;
+    }
+
+    .post-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .post-content a {
+      color: var(--orange);
+      text-decoration: none;
+    }
+
+    .post-content a:hover {
+      text-decoration: underline;
+    }
+
+    /* Post Navigation */
+    .post-navigation {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      min-width: 180px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      color: var(--snow);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .nav-button:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.16);
+      transform: translateY(-1px);
+    }
+
+    .all-posts-button {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #0b0d0e;
+      font-weight: 600;
+    }
+
+    .all-posts-button:hover {
+      background: #ff9b47;
+      border-color: #ff9b47;
+    }
+
+    @media (max-width: 768px) {
+      .nav-buttons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-button {
+        justify-content: center;
+        width: 100%;
+        min-width: 200px;
+      }
+    }
+
+    /* Hypothesis box styling */
+    .hypothesis-box {
+      background: linear-gradient(135deg, rgba(249,115,22,0.1), rgba(249,115,22,0.05));
+      border: 2px solid var(--orange);
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .hypothesis-box::before {
+      content: "🔬 Hypothesis";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: var(--navy);
+      color: var(--orange);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border: 2px solid var(--orange);
+    }
+
+    .hypothesis-content {
+      margin-top: 1rem;
+    }
+
+    .hypothesis-content strong {
+      color: var(--orange);
+      font-size: 1.1em;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.125rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .post-tags {
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .post-tags .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .post-tags .tag {
+      background: rgba(249,115,22,0.1);
+      color: var(--orange);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #94a3b8;
+    }
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top: 3px solid var(--orange);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Error state */
+    .error {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: white;
+    }
+
+    .error h2 {
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .error-image {
+      width: 150px;
+      height: 150px;
+      margin: 2rem auto;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--orange);
+    }
+
+    .error p {
+      color: #cbd5e1;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .post-hero {
+        height: 300px;
+      }
+
+      .post-hero-title {
+        font-size: clamp(24px, 8vw, 36px);
+      }
+
+      .post-hero-description {
+        font-size: clamp(14px, 4vw, 18px);
+      }
+
+      .post-meta {
+        gap: 1rem;
+      }
+
+      .post-container {
+        padding: 0 1rem 3rem;
+      }
+
+      .post-content {
+        font-size: 1rem;
+      }
+
+      .post-content h1 {
+        font-size: 1.75rem;
+      }
+
+      .post-content h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <a href="../" style="color: inherit; text-decoration: none;">Bruno Trentini</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="post-hero" id="post-hero">
+    <div class="post-hero-content">
+      <h1 class="post-hero-title" id="post-title">Loading...</h1>
+      <p class="post-hero-description" id="post-description"></p>
+      <div class="post-meta">
+        <span id="post-author"></span>
+        <span id="post-date"></span>
+        <span id="post-reading-time"></span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <article class="post-container">
+      <a href="../" class="back-link">&larr; Back to Home</a>
+
+      <!-- Post Content -->
+      <div class="post-content" id="post-content">
+        <div class="loading">
+          <div class="loading-spinner"></div>
+          <p>Loading post...</p>
+        </div>
+      </div>
+
+      <!-- Post Navigation -->
+      <div class="post-navigation" id="post-navigation" style="display: none;">
+        <div class="nav-buttons">
+          <a href="#" class="nav-button prev-button" id="prev-post" style="display: none;">
+            ← Previous Post
+          </a>
+          <a href="../" class="nav-button all-posts-button">
+            Back to home page
+          </a>
+          <a href="#" class="nav-button next-button" id="next-post" style="display: none;">
+            Next Post →
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <span>© <span id="year"></span> Bruno Trentini</span>
+      <span>☕️ Buy me a coffee </span>
+    </div>
+  </footer>
+
+  <script>
+  class BlogPostRenderer {
+    constructor() {
+      this.postData = null;
+      this.allPosts = [];
+    }
+
+    async init() {
+      const postSlug = this.getPostSlugFromURL();
+      if (!postSlug) {
+        this.showError('Post not found', 'No post slug specified in URL.');
+        return;
+      }
+
+      try {
+        // Load all posts to enable navigation
+        await this.loadAllPosts();
+
+        await this.loadPost(postSlug);
+        this.renderPost();
+        this.updateMetaTags();
+        this.setupNavigation(postSlug);
+      } catch (error) {
+        console.error('Error loading post:', error);
+        this.showError('Post not found', 'The requested post could not be loaded.');
+      }
+    }
+
+      getPostSlugFromURL() {
+        // Get slug from query parameter, e.g., /posts/?post=geometric-deep-learning-primer -> geometric-deep-learning-primer
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('post');
+      }
+
+      async loadAllPosts() {
+        try {
+          // Load external posts
+          const externalResponse = await fetch('./external-posts.json');
+          const externalPosts = externalResponse.ok ? await externalResponse.json() : [];
+
+          // Load internal posts
+          const internalResponse = await fetch('./internal-posts.json');
+          const internalPostSlugs = internalResponse.ok ? await internalResponse.json() : [];
+
+          // Process internal posts with metadata
+          const internalPosts = await Promise.all(internalPostSlugs.map(async (post) => {
+            const slug = post.slug;
+            let metadata = {};
+
+            try {
+              const mdResponse = await fetch(`./content/${slug}.md`);
+              if (mdResponse.ok) {
+                const mdContent = await mdResponse.text();
+                const frontmatter = this.extractFrontmatter(mdContent);
+                metadata = frontmatter;
+              }
+            } catch (error) {
+              // Use fallback metadata
+              metadata = {
+                title: slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+                description: `Blog post about ${slug.replace(/-/g, ' ')}`,
+                date: new Date().toISOString().split('T')[0],
+                author: "Bruno Trentini"
+              };
+            }
+
+            return {
+              ...post,
+              ...metadata,
+              thumbnail: metadata.hero || metadata.thumbnail || metadata.image || '/static/images/bruno.png',
+              url: `?post=${slug}`,
+              isInternal: true
+            };
+          }));
+
+          // Add thumbnails to external posts
+          externalPosts.forEach(post => {
+            post.thumbnail = this.getEnhancedThumbnail(post);
+          });
+
+          this.allPosts = [...internalPosts, ...externalPosts];
+
+          // Sort by date (newest first)
+          this.allPosts.sort((a, b) => new Date(b.date || '2020-01-01') - new Date(a.date || '2020-01-01'));
+
+        } catch (error) {
+          console.warn('Could not load all posts:', error);
+          this.allPosts = [];
+        }
+      }
+
+      getEnhancedThumbnail(post) {
+        const url = post.url;
+
+        // YouTube: Get actual video thumbnail
+        if (url.includes('youtube.com') || url.includes('youtu.be')) {
+          const videoId = this.extractYouTubeVideoId(url);
+          if (videoId) {
+            return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+          }
+        }
+
+        // LinkedIn: Use LinkedIn logo
+        if (url.includes('linkedin.com')) {
+          return 'https://logo.clearbit.com/linkedin.com';
+        }
+
+        // NVIDIA: Use NVIDIA logo
+        if (url.includes('nvidia.com')) {
+          return 'https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d.png';
+        }
+
+        // Google Drive: Try to get preview image
+        if (url.includes('drive.google.com')) {
+          const fileId = this.extractGoogleDriveFileId(url);
+          if (fileId) {
+            return `https://drive.google.com/thumbnail?id=${fileId}&sz=w400`;
+          }
+        }
+
+        // Default fallback
+        const urlObj = new URL(url);
+        return `https://logo.clearbit.com/${urlObj.hostname}`;
+      }
+
+      extractYouTubeVideoId(url) {
+        const patterns = [
+          /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/,
+          /youtube\.com\/embed\/([^&\n?#]+)/,
+          /youtube\.com\/v\/([^&\n?#]+)/
+        ];
+
+        for (const pattern of patterns) {
+          const match = url.match(pattern);
+          if (match) return match[1];
+        }
+        return null;
+      }
+
+      extractGoogleDriveFileId(url) {
+        const match = url.match(/\/file\/d\/([a-zA-Z0-9-_]+)/);
+        return match ? match[1] : null;
+      }
+
+      extractFrontmatter(markdownContent) {
+        // Look for frontmatter header at the top of the markdown file
+        const lines = markdownContent.split('\n');
+        let inFrontmatter = false;
+        const frontmatter = {};
+
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (trimmed === '---' && !inFrontmatter) {
+            inFrontmatter = true;
+            continue;
+          }
+          if (trimmed === '---' && inFrontmatter) {
+            break;
+          }
+          if (inFrontmatter && trimmed.includes(':')) {
+            const [key, ...valueParts] = trimmed.split(':');
+            let value = valueParts.join(':').trim();
+
+            // Handle arrays (tags: [item1, item2])
+            if (value.startsWith('[') && value.endsWith(']')) {
+              try {
+                value = JSON.parse(value);
+              } catch (e) {
+                // If JSON parsing fails, treat as comma-separated string
+                value = value.slice(1, -1).split(',').map(item => item.trim().replace(/['"]/g, ''));
+              }
+            } else {
+              // Remove quotes if present
+              value = value.replace(/^['"]|['"]$/g, '');
+            }
+
+            frontmatter[key.trim()] = value;
+          }
+        }
+
+        return frontmatter;
+      }
+
+      async loadPost(slug) {
+        const response = await fetch(`./content/${slug}.md`);
+        if (!response.ok) {
+          throw new Error(`Post not found: ${slug}`);
+        }
+
+        const markdown = await response.text();
+        this.postData = this.parseMarkdownWithFrontmatter(markdown);
+      }
+
+      setupNavigation(currentSlug) {
+        // Find current post index
+        const currentIndex = this.allPosts.findIndex(post =>
+          (post.slug === currentSlug) ||
+          (post.isInternal && post.slug === currentSlug)
+        );
+
+        if (currentIndex === -1) return;
+
+        const navigationDiv = document.getElementById('post-navigation');
+        const prevButton = document.getElementById('prev-post');
+        const nextButton = document.getElementById('next-post');
+
+        // Helper function to truncate title
+        const truncateTitle = (title, maxLength = 20) => {
+          if (!title) return 'Post';
+          return title.length > maxLength ? title.substring(0, maxLength) + '...' : title;
+        };
+
+        // Set up previous post
+        if (currentIndex > 0) {
+          const prevPost = this.allPosts[currentIndex - 1];
+          if (prevPost.isInternal) {
+            prevButton.href = `?post=${prevPost.slug}`;
+          } else {
+            prevButton.href = prevPost.url;
+            prevButton.target = '_blank';
+            prevButton.rel = 'noopener noreferrer';
+          }
+          prevButton.innerHTML = `← ${truncateTitle(prevPost.title, 15)}`;
+          prevButton.style.display = 'inline-flex';
+        }
+
+        // Set up next post
+        if (currentIndex < this.allPosts.length - 1) {
+          const nextPost = this.allPosts[currentIndex + 1];
+          if (nextPost.isInternal) {
+            nextButton.href = `?post=${nextPost.slug}`;
+          } else {
+            nextButton.href = nextPost.url;
+            nextButton.target = '_blank';
+            nextButton.rel = 'noopener noreferrer';
+          }
+          nextButton.innerHTML = `${truncateTitle(nextPost.title, 15)} →`;
+          nextButton.style.display = 'inline-flex';
+        }
+
+        // Show navigation
+        navigationDiv.style.display = 'block';
+      }
+
+      parseMarkdownWithFrontmatter(markdown) {
+        const lines = markdown.split('\n');
+        let inFrontmatter = false;
+        let frontmatter = '';
+        let content = '';
+        let frontmatterEndIndex = -1;
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i].trim();
+
+          if (line === '---' && !inFrontmatter) {
+            inFrontmatter = true;
+            continue;
+          }
+
+          if (line === '---' && inFrontmatter) {
+            frontmatterEndIndex = i;
+            inFrontmatter = false;
+            continue;
+          }
+
+          if (inFrontmatter) {
+            frontmatter += line + '\n';
+          } else {
+            content = lines.slice(i).join('\n');
+            break;
+          }
+        }
+
+        // Parse frontmatter
+        const metadata = this.parseFrontmatter(frontmatter);
+        const htmlContent = this.markdownToHTML(content);
+
+        return {
+          ...metadata,
+          content: htmlContent,
+          slug: this.getPostSlugFromURL()
+        };
+      }
+
+      parseFrontmatter(frontmatter) {
+        const metadata = {};
+        const lines = frontmatter.trim().split('\n');
+
+        for (const line of lines) {
+          const colonIndex = line.indexOf(':');
+          if (colonIndex > 0) {
+            const key = line.substring(0, colonIndex).trim();
+            const value = line.substring(colonIndex + 1).trim();
+            metadata[key] = value;
+          }
+        }
+
+        return metadata;
+      }
+
+      markdownToHTML(markdown) {
+        return markdown
+          // Headers
+          .replace(/^###### (.*$)/gim, '<h6>$1</h6>')
+          .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
+          .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+          .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+          .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+          .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+          // Bold and italic
+          .replace(/\*\*\*(.*)\*\*\*/gim, '<strong><em>$1</em></strong>')
+          .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+          .replace(/\*(.*)\*/gim, '<em>$1</em>')
+          // Strikethrough
+          .replace(/~~(.*)~~/gim, '<del>$1</del>')
+          // Links
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+          // Images
+          .replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1">')
+          // Code blocks (must come before inline code)
+          .replace(/```([\s\S]*?)```/g, (match, code) => {
+            const language = code.split('\n')[0].trim();
+            const codeContent = code.substring(code.indexOf('\n') + 1);
+            return `<pre><code class="language-${language}">${this.escapeHtml(codeContent)}</code></pre>`;
+          })
+          // Inline code
+          .replace(/`([^`]+)`/g, '<code>$1</code>')
+          // Blockquotes
+          .replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>')
+          // Hypothesis boxes
+          .replace(/:::hypothesis:::(.*?)(?=:::|[\r\n][\r\n]|$)/gs, '<div class="hypothesis-box"><div class="hypothesis-content">$1</div></div>')
+          .replace(/:::hypothesis([\s\S]*?):::/g, '<div class="hypothesis-box"><div class="hypothesis-content">$1</div></div>')
+          // Lists
+          .replace(/^\* (.*$)/gim, '<li>$1</li>')
+          .replace(/^- (.*$)/gim, '<li>$1</li>')
+          .replace(/^\d+\. (.*$)/gim, '<li>$1</li>')
+          .replace(/<\/li>\n<li>/g, '</li><li>')
+          .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+          // Line breaks (only double line breaks create paragraphs)
+          .replace(/\n\n/g, '</p><p>')
+          // Single line breaks within paragraphs are ignored (markdown standard)
+          // Wrap in paragraphs
+          .replace(/^/, '<p>')
+          .replace(/$/, '</p>')
+          // Clean up empty paragraphs
+          .replace(/<p><\/p>/g, '')
+          .replace(/<p><br><\/p>/g, '')
+          // Fix nested lists
+          .replace(/<\/ul>\n<ul>/g, '');
+      }
+
+      escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      renderPost() {
+        // Update hero section
+        if (this.postData.hero || this.postData.image) {
+          const heroElement = document.getElementById('post-hero');
+          heroElement.style.backgroundImage = `url('${this.postData.hero || this.postData.image}')`;
+        }
+
+        // Update title and description
+        document.getElementById('post-title').textContent = this.postData.title || 'Untitled';
+        if (this.postData.description) {
+          document.getElementById('post-description').textContent = this.postData.description;
+        } else {
+          document.getElementById('post-description').style.display = 'none';
+        }
+
+        // Update meta information
+        if (this.postData.author) {
+          document.getElementById('post-author').textContent = `By ${this.postData.author}`;
+        } else {
+          document.getElementById('post-author').style.display = 'none';
+        }
+
+        if (this.postData.date) {
+          const date = new Date(this.postData.date);
+          document.getElementById('post-date').textContent = date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+        } else {
+          document.getElementById('post-date').style.display = 'none';
+        }
+
+        // Calculate reading time
+        if (this.postData.content) {
+          const wordsPerMinute = 200;
+          const words = this.postData.content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+          const readingTime = Math.ceil(words / wordsPerMinute);
+          document.getElementById('post-reading-time').textContent = `${readingTime} min read`;
+        }
+
+        // Update content
+        document.getElementById('post-content').innerHTML = this.postData.content;
+
+        // Re-run MathJax after content is loaded
+        if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+          MathJax.typesetPromise();
+        }
+
+        // Re-run Prism.js syntax highlighting after content is loaded
+        if (typeof Prism !== 'undefined') {
+          Prism.highlightAll();
+        }
+      }
+
+      updateMetaTags() {
+        const baseUrl = window.location.origin;
+        const postUrl = `${baseUrl}/posts/${this.postData.slug}`;
+
+        // Update page title
+        document.title = `${this.postData.title || 'Untitled'} — Bruno Trentini`;
+
+        // Update meta description
+        const description = this.postData.description || 'Bruno Trentini\'s blog post';
+        document.querySelector('meta[name="description"]').setAttribute('content', description);
+
+        // Update Open Graph tags
+        document.getElementById('og-title').setAttribute('content', `${this.postData.title || 'Untitled'} — Bruno Trentini`);
+        document.getElementById('og-description').setAttribute('content', description);
+        document.getElementById('og-url').setAttribute('content', postUrl);
+
+        if (this.postData.hero || this.postData.image) {
+          const imageUrl = this.postData.hero || this.postData.image;
+          const absoluteImageUrl = imageUrl.startsWith('http') ? imageUrl : `${baseUrl}${imageUrl}`;
+          document.getElementById('og-image').setAttribute('content', absoluteImageUrl);
+          document.getElementById('twitter-image').setAttribute('content', absoluteImageUrl);
+        }
+
+        // Update Twitter tags
+        document.getElementById('twitter-title').setAttribute('content', `${this.postData.title || 'Untitled'} — Bruno Trentini`);
+        document.getElementById('twitter-description').setAttribute('content', description);
+      }
+
+      showError(title, message) {
+        document.getElementById('post-content').innerHTML = `
+          <div class="error">
+            <h2>${title}</h2>
+            <img src="/static/images/ufo-alien.jpg" alt="UFO Alien" class="error-image">
+            <p>${message}</p>
+            <a href="../" class="back-link">← Back to Home</a>
+          </div>
+        `;
+
+        document.getElementById('post-hero').style.display = 'none';
+      }
+    }
+
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      const renderer = new BlogPostRenderer();
+      renderer.init();
+
+      // Set current year in footer
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
