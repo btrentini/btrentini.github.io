@@ -1,11 +1,29 @@
 [
   {
-    "slug": "aliens"
+    "slug": "aliens",
+    "title": "Statistical Errors (With Aliens)",
+    "description": "Sometimes you just need a push to get started. Here's what worked for me.",
+    "date": "2021-01-05",
+    "author": "Bruno Trentini",
+    "hero": "/posts/images/aliens/ufo-alien.jpg",
+    "tags": ["data science"]
   },
   {
-    "slug": "monty-hall"
+    "slug": "monty-hall",
+    "title": "Why should I always switch doors in the Monty Hall problem?",
+    "description": "Sometimes you just need a push to get started. Here's what worked for me.",
+    "date": "2021-03-05",
+    "author": "Bruno Trentini",
+    "hero": "/posts/images/montyhall/mh-1.webp",
+    "tags": ["data science"]
   },
   {
-    "slug": "ssh-add"
+    "slug": "ssh-add",
+    "title": "Adding SSH Keys to GitLab (Corporate) and Github (Personal)",
+    "description": "Host key verification failed, Permission Denied, Bad Permissions, Error in libcrypto and other annoying issues you can prevent by organizing your ssh keys",
+    "date": "2023-06-07",
+    "author": "Bruno Trentini",
+    "hero": "/posts/images/ssh/ssh.jpg",
+    "tags": ["tutorial"]
   }
 ]

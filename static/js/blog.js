@@ -164,40 +164,56 @@ class BlogManager {
       // Process internal posts to add full URL paths and load config headers
       const processedPosts = await Promise.all(postsData.map(async (post) => {
         const slug = post.slug;
-        let metadata = {};
 
-        // Try to load config header from markdown file
+        // Check if post already has metadata in JSON
+        let metadata = {};
         let content = '';
-        try {
-          const mdResponse = await fetch(`/posts/content/${slug}.md`);
-          if (mdResponse.ok) {
-            const mdContent = await mdResponse.text();
-            const frontmatter = this.extractFrontmatter(mdContent);
-            metadata = frontmatter;
-            // Extract content (everything after frontmatter)
-            const contentMatch = mdContent.match(/^---[\s\S]*?---\s*\n([\s\S]*)$/);
-            content = contentMatch ? contentMatch[1] : mdContent;
-          } else {
-            console.warn(`Failed to load markdown for ${slug}: ${mdResponse.status}`);
-            // Provide fallback metadata for posts that can't load
-            metadata = {
-              title: slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-              description: `Blog post about ${slug.replace(/-/g, ' ')}`,
-              date: new Date().toISOString().split('T')[0],
-              author: "Bruno Trentini",
-              tags: ["blog"]
-            };
+
+        // If post doesn't have title, try to load from markdown file
+        if (!post.title) {
+          try {
+            const mdResponse = await fetch(`/posts/content/${slug}.md`);
+            if (mdResponse.ok) {
+              const mdContent = await mdResponse.text();
+              const frontmatter = this.extractFrontmatter(mdContent);
+              metadata = frontmatter;
+              // Extract content (everything after frontmatter)
+              const contentMatch = mdContent.match(/^---[\s\S]*?---\s*\n([\s\S]*)$/);
+              content = contentMatch ? contentMatch[1] : mdContent;
+            } else {
+              console.warn(`Failed to load markdown for ${slug}: ${mdResponse.status}`);
+            }
+          } catch (error) {
+            console.warn(`Could not load markdown for ${slug}:`, error);
           }
-        } catch (error) {
-          console.warn(`Could not load markdown for ${slug}:`, error);
-          // Provide fallback metadata for posts that can't load
+        } else {
+          // Use metadata from JSON
           metadata = {
-            title: slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-            description: `Blog post about ${slug.replace(/-/g, ' ')}`,
-            date: new Date().toISOString().split('T')[0],
-            author: "Bruno Trentini",
-            tags: ["blog"]
+            title: post.title,
+            description: post.description,
+            date: post.date,
+            author: post.author,
+            tags: post.tags,
+            hero: post.hero
           };
+          content = post.content || ''; // Use content from JSON if available
+        }
+
+        // Fallback for missing metadata
+        if (!metadata.title) {
+          metadata.title = slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+        if (!metadata.description) {
+          metadata.description = `Blog post about ${slug.replace(/-/g, ' ')}`;
+        }
+        if (!metadata.date) {
+          metadata.date = new Date().toISOString().split('T')[0];
+        }
+        if (!metadata.author) {
+          metadata.author = "Bruno Trentini";
+        }
+        if (!metadata.tags) {
+          metadata.tags = ["blog"];
         }
 
         return {
