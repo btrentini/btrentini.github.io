@@ -154,6 +154,20 @@
   .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
   .span-6 { grid-column: span 6; }
   .span-12 { grid-column: span 12; }
+
+  /* Mobile/Short Screen: Reorder About section cards */
+  @media (max-width: 767px) or (max-height: 600px) {
+    #about .grid {
+      display: flex;
+      flex-direction: column;
+    }
+    #about .card:first-child {
+      order: 1; /* Profile first */
+    }
+    #about .card:nth-child(2) {
+      order: 2; /* Collaborations second */
+    }
+  }
   
   /* Cards */
   .card {

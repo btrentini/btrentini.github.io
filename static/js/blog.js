@@ -29,8 +29,8 @@ class BlogManager {
   }
 
   isMobile() {
-    // Check if screen width is less than 768px (typical mobile breakpoint)
-    return window.innerWidth < 768;
+    // Check if screen width is less than 768px OR height is less than 600px
+    return window.innerWidth < 768 || window.innerHeight < 600;
   }
 
   async init() {
