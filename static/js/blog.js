@@ -165,39 +165,16 @@ class BlogManager {
       const processedPosts = await Promise.all(postsData.map(async (post) => {
         const slug = post.slug;
 
-        // Check if post already has metadata in JSON
-        let metadata = {};
-        let content = '';
-
-        // If post doesn't have title, try to load from markdown file
-        if (!post.title) {
-          try {
-            const mdResponse = await fetch(`/posts/content/${slug}.md`);
-            if (mdResponse.ok) {
-              const mdContent = await mdResponse.text();
-              const frontmatter = this.extractFrontmatter(mdContent);
-              metadata = frontmatter;
-              // Extract content (everything after frontmatter)
-              const contentMatch = mdContent.match(/^---[\s\S]*?---\s*\n([\s\S]*)$/);
-              content = contentMatch ? contentMatch[1] : mdContent;
-            } else {
-              console.warn(`Failed to load markdown for ${slug}: ${mdResponse.status}`);
-            }
-          } catch (error) {
-            console.warn(`Could not load markdown for ${slug}:`, error);
-          }
-        } else {
-          // Use metadata from JSON
-          metadata = {
-            title: post.title,
-            description: post.description,
-            date: post.date,
-            author: post.author,
-            tags: post.tags,
-            hero: post.hero
-          };
-          content = post.content || ''; // Use content from JSON if available
-        }
+        // Use metadata from JSON (always available now)
+        let metadata = {
+          title: post.title,
+          description: post.description,
+          date: post.date,
+          author: post.author,
+          tags: post.tags,
+          hero: post.hero
+        };
+        let content = post.content || ''; // Use content from JSON if available
 
         // Fallback for missing metadata
         if (!metadata.title) {
