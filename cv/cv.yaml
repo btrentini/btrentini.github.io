@@ -38,7 +38,6 @@ education:
     summary: "Postgraduate Diploma with exceptional performance"
     details:
       - "Monograph awarded 10/10 — a rare distinction"
-      - "Exceptional faculty feedback"
       - "Coursework: Distributed Systems, Networking, C & Matlab"
 
   - institution: "Pontificia Universidade Catolica do Parana"
@@ -57,7 +56,7 @@ experience:
     logo: "https://logo.clearbit.com/nvidia.com"
     roles:
       - role: "Applied Research Scientist"
-        start_date: "2024-09"
+        start_date: "2022-05"
         end_date: null
         current: true
         summary: "Leading ML research in life sciences and developer relations"
@@ -67,15 +66,22 @@ experience:
           - "Implemented features in BioNeMo open-source PyTorch-based framework and co-authored documentation, demos, and technical report"
           - "Led organization teams of scientific workshops and symposia at ICML, ICLR, and NeurIPS, raising over 40,000 EUR in sponsorship"
           - "Oversaw startup projects on Cambridge-1 supercomputer, coordinating technical engagement and model optimization"
-      - role: "DevRel"
+      - role: "Global Life Sciences Research Alliances Lead"
         start_date: "2022-05"
         end_date: "2023-12"
         current: false
-        summary: "Technical evangelism and startup ecosystem development in EMEA"
+        summary: ""
         achievements:
-          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs"
-          - "Organised events with Venture Capital firms and startups in EMEA, facilitating funding rounds"
-
+          - "..."
+          - "..."
+      - role: "Developer Relations Manager - Healthcare & Life Sciences Startups Lead EMEA"
+        start_date: "2022-05"
+        end_date: "2023-12"
+        current: false
+        summary: ""
+        achievements:
+          - "..."
+          - "..."
   - company: "NVIDIA"
     logo: "https://logo.clearbit.com/nvidia.com"
     roles:
@@ -92,7 +98,7 @@ experience:
     logo: "https://logo.clearbit.com/gsk.com"
     roles:
       - role: "Senior Data Scientist"
-        start_date: "2020-10"
+        start_date: "2021-02"
         end_date: "2022-05"
         current: false
         summary: "Developed reinforcement learning systems for marketing optimization"
@@ -102,6 +108,13 @@ experience:
           - "Led full-stack implementation using Apache Spark (ETL), PyTorch (MLP), Django APIs (serving), Azure (hosting)"
           - "Built front-end in HTML and JavaScript (Node.js)"
           - "Mentored 5 apprentices as cohort lead, directly managing 2; one received global award for impact"
+      - role: "Product Manager - AI & Analytics"
+        start_date: "2020-10"
+        end_date: "2021-02"
+        current: false
+        summary: "..."
+        achievements:
+          - "...."
 
   - company: "KIT-AR, UCL"
     logo: "/cv/images/kitar.jpeg"
@@ -160,14 +173,6 @@ experience:
   - company: "Ernst & Young"
     logo: "https://logo.clearbit.com/ey.com"
     roles:
-      - role: "Trainee (Full-time)"
-        start_date: "2011-06"
-        end_date: "2012-06"
-        current: false
-        summary: "IT auditing and risk detection automation"
-        achievements:
-          - "Conducted IT general controls and finance auditing"
-          - "Automated risk detection using ACL, Shell, and SQL scripting"
       - role: "Trainee (Full-time)"
         start_date: "2011-06"
         end_date: "2012-06"
