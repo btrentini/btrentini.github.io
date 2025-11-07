@@ -442,6 +442,14 @@
             <div class="meta">
               <span>PhD Supervisor: Prof. Michael Bronstein.</span>
             </div>
+
+            <!-- Resume Button inside Profile -->
+            <div class="profile-cta">
+              <button id="cvButton" class="btn primary">
+                <span class="cv-icon">🔎</span>
+                 Resume | Floating Window
+              </button>
+            </div>
           </article>
 
           <article class="card span-6">
@@ -453,6 +461,9 @@
         </div>
       </div>
     </section>
+
+
+    <div class="divider container" role="presentation"></div>
 
     <!-- Blog -->
     <section id="blog">
@@ -537,6 +548,20 @@
     </section>
   </main>
 
+  <!-- CV Modal -->
+  <div id="cvModal" class="cv-modal" style="display: none;">
+    <div class="cv-modal-content">
+      <div class="cv-modal-header">
+        <h2>Bruno Trentini</h2>
+        <p class="cv-email">bruno.trentini@cs.ox.ac.uk</p>
+        <button id="cvCloseBtn" class="cv-close-btn">&times;</button>
+      </div>
+      <div class="cv-timeline" id="cvTimeline">
+        <!-- Timeline will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="container" style="display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;">
       <span>© <span id="year"></span> Bruno Trentini</span>
@@ -548,5 +573,7 @@
   <script src="static/js/wavemesh.js"></script>
   <script src="static/js/publications.js" defer></script>
   <script src="static/js/blog.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="static/js/cv.js"></script>
 </body>
 </html>

@@ -1,0 +1,213 @@
+education:
+  - institution: "University of Oxford"
+    degree: "Ph.D. in Computer Science, Machine Learning"
+    start_date: "2024-10"
+    end_date: "2028-10"
+    current: true
+    logo: "https://logo.clearbit.com/universityofoxford.com"
+    summary: "Research in Generative Models and Geometric Deep Learning"
+    details:
+      - "Supervisor: Prof. Michael Bronstein"
+      - "Topics: Generative Models, Geometric Deep Learning"
+
+  - institution: "University College London"
+    degree: "M.Sc. in Data Science & Machine Learning"
+    start_date: "2019-09"
+    end_date: "2020-12"
+    logo: "https://logo.clearbit.com/ucl.ac.uk"
+    summary: "Distinction (First Class) in Data Science & Machine Learning"
+    details:
+      - "Grade: Distinction (First Class)"
+      - "Coursework: Deep Learning, Reinforcement Learning, Graphical Models"
+      - "Supervisor: Prof. Simon Julier"
+
+  - institution: "University College London"
+    degree: "M.Sc. in Robotics & Computation"
+    start_date: "2018-09"
+    end_date: "2018-11"
+    current: false
+    logo: "https://logo.clearbit.com/ucl.ac.uk"
+    summary: "Incomplete program in Robotics & Computation"
+    details: []
+
+  - institution: "Univ. Tecnologica Federal do Parana"
+    degree: "Pg.Dip. in Telematics & Computer Networks"
+    start_date: "2012-03"
+    end_date: "2013-09"
+    logo: "https://logo.clearbit.com/utfpr.edu.br"
+    summary: "Postgraduate Diploma with exceptional performance"
+    details:
+      - "Monograph awarded 10/10 — a rare distinction"
+      - "Exceptional faculty feedback"
+      - "Coursework: Distributed Systems, Networking, C & Matlab"
+
+  - institution: "Pontificia Universidade Catolica do Parana"
+    degree: "B.Sc. in Information Systems"
+    start_date: "2008-01"
+    end_date: "2011-12"
+    logo: "https://logo.clearbit.com/pucpr.br"
+    summary: "Bachelor's degree with international exchanges"
+    details:
+      - "Awarded BCI/CREPUQ Scholarship"
+      - "Semester abroad at Bishop's University, Sherbrooke, Canada (Jan-May 2011)"
+      - "Summer Exchange Program at Université de Technologie de Compiègne, France (Jul 2009)"
+
+experience:
+  - company: "NVIDIA"
+    logo: "https://logo.clearbit.com/nvidia.com"
+    roles:
+      - role: "Applied Research Scientist"
+        start_date: "2024-09"
+        end_date: null
+        current: true
+        summary: "Leading ML research in life sciences and developer relations"
+        achievements:
+          - "Led a team of eight ML scientists and engineers achieving 20% improvement in diversity scores for protein inverse folding using DPO fine-tuning of ProteinMPNN"
+          - "Optimized inference of generative models, reducing wall-clock time by up to 21% with entropy-based schedulers in flow-based models"
+          - "Implemented features in BioNeMo open-source PyTorch-based framework and co-authored documentation, demos, and technical report"
+          - "Led organization teams of scientific workshops and symposia at ICML, ICLR, and NeurIPS, raising over 40,000 EUR in sponsorship"
+          - "Oversaw startup projects on Cambridge-1 supercomputer, coordinating technical engagement and model optimization"
+      - role: "DevRel"
+        start_date: "2022-05"
+        end_date: "2023-12"
+        current: false
+        summary: "Technical evangelism and startup ecosystem development in EMEA"
+        achievements:
+          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs"
+          - "Organised events with Venture Capital firms and startups in EMEA, facilitating funding rounds"
+
+  - company: "NVIDIA"
+    logo: "https://logo.clearbit.com/nvidia.com"
+    roles:
+      - role: "AI Startups Ecosystem Manager"
+        start_date: "2018-12"
+        end_date: "2019-12"
+        current: false
+        summary: "Technical evangelism and startup ecosystem development in EMEA"
+        achievements:
+          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs"
+          - "Organised events with Venture Capital firms and startups in EMEA, facilitating funding rounds"
+
+  - company: "GSK"
+    logo: "https://logo.clearbit.com/gsk.com"
+    roles:
+      - role: "Senior Data Scientist"
+        start_date: "2020-10"
+        end_date: "2022-05"
+        current: false
+        summary: "Developed reinforcement learning systems for marketing optimization"
+        achievements:
+          - "Developed reinforcement learning system for multi-objective optimisation; reduced ad spend by 55% versus baseline models"
+          - "Project shortlisted (top 3) for DataIQ industry awards"
+          - "Led full-stack implementation using Apache Spark (ETL), PyTorch (MLP), Django APIs (serving), Azure (hosting)"
+          - "Built front-end in HTML and JavaScript (Node.js)"
+          - "Mentored 5 apprentices as cohort lead, directly managing 2; one received global award for impact"
+
+  - company: "KIT-AR, UCL"
+    logo: "/cv/images/kitar.jpeg"
+    roles:
+      - role: "Machine Learning Research Placement"
+        start_date: "2020-06"
+        end_date: "2020-10"
+        current: false
+        summary: "Developed novel Human Activity Recognition system using Microsoft HoloLens"
+        achievements:
+          - "Proposed novel system for Human Activity Recognition, curating new dataset with Microsoft HoloLens"
+          - "Invented method for predicting activity transitions using Mel-Frequency Cepstrum of sonified spatial signals and Fourier Transforms"
+          - "Developed end-to-end system from training to inference using DBSCAN, Dynamic Time Warping, Symbolic Aggregate Approximation, Deep Learning"
+
+  - company: "HotelBeds"
+    logo: "/cv/images/hotelbeds.jpeg"
+    roles:
+      - role: "Commercial Analytics Manager"
+        start_date: "2017-10"
+        end_date: "2018-10"
+        current: false
+        summary: "Built predictive analytics and deep learning systems for travel industry"
+        achievements:
+          - "Implemented anomaly and churn detection models using TensorFlow with 75% accuracy"
+          - "Built globally adopted predictive analytics and forecasting tools with over 1,000 views yearly"
+          - "Contributed to 2% YoY revenue uplift"
+          - "Led development of company's first Deep Learning application with team of data scientists and engineers"
+
+  - company: "Alliants"
+    logo: "/cv/images/alliants.jpeg"
+    roles:
+      - role: "Data & Analytics Consultant"
+        start_date: "2014-10"
+        end_date: "2017-10"
+        current: false
+        summary: "Built predictive analytics pipelines and led technical strategy"
+        achievements:
+          - "Built and deployed predictive analytics & forecasting data pipelines for client deployments"
+          - "Drove cross-project technical strategy, influencing architecture and roadmaps"
+          - "Mentored engineering teams"
+          - "QA lead for Four Seasons Mobile App global launch with zero production bugs"
+
+  - company: "GVT (acquired by Telefónica)"
+    logo: "/cv/images/gvt.jpeg"
+    roles:
+      - role: "Product Manager II"
+        start_date: "2012-06"
+        end_date: "2014-09"
+        current: false
+        summary: "Led innovation projects and digital business development"
+        achievements:
+          - "Led innovation lab projects on gesture-recognition for set-top boxes"
+          - "Developed prototypes using Microsoft Kinect SDK in C#"
+          - "Led creation of new digital business; secured 2M budget, managed cross-functional team of 30"
+
+  - company: "Ernst & Young"
+    logo: "https://logo.clearbit.com/ey.com"
+    roles:
+      - role: "Trainee (Full-time)"
+        start_date: "2011-06"
+        end_date: "2012-06"
+        current: false
+        summary: "IT auditing and risk detection automation"
+        achievements:
+          - "Conducted IT general controls and finance auditing"
+          - "Automated risk detection using ACL, Shell, and SQL scripting"
+      - role: "Trainee (Full-time)"
+        start_date: "2011-06"
+        end_date: "2012-06"
+        current: false
+        summary: "IT auditing and risk detection automation"
+        achievements:
+          - "Conducted IT general controls and finance auditing"
+          - "Automated risk detection using ACL, Shell, and SQL scripting"
+
+  - company: "HSBC"
+    logo: "https://logo.clearbit.com/hsbc.com"
+    roles:
+      - role: "Trainee Software Analyst (Full-time)"
+        start_date: "2008-06"
+        end_date: "2010-12"
+        current: false
+        summary: "Mainframe development and customer data infrastructure"
+        achievements:
+          - "Developed COBOL, DB2, and REXX applications on IBM z/OS mainframe systems"
+          - "Maintained global customer data infrastructure"
+
+  - company: "Biosystems Importadora"
+    logo: "/cv/images/biosystems.png"
+    roles:
+      - role: "High School Intern (Part-time)"
+        start_date: "2006-10"
+        end_date: "2007-03"
+        current: false
+        summary: "Created nationwide database of Brazilian Life Sciences researchers"
+        achievements:
+          - "Created nationwide database of Brazilian Life Sciences researchers"
+
+  - company: "Ideal Tecnologia"
+    logo: "💡"
+    roles:
+      - role: "Apprentice (Part-time, Occasional)"
+        start_date: "2004-10"
+        end_date: "2006-10"
+        current: false
+        summary: "Administrative support and first work experience"
+        achievements:
+          - "Provided administrative support and operated ID card sealing machinery"
+          - "First work experience at age 14"

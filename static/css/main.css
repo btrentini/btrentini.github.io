@@ -81,7 +81,20 @@
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,0.08); padding: 12px 18px; border-radius: 999px; font-weight: 600; letter-spacing: 0.2px; background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(107,79,58,0.18)); color: var(--snow); box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease, background .3s ease; }
   .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); text-decoration: none; }
-  .btn.primary { background: linear-gradient(135deg, var(--orange), #ff9b47); color: #0b0d0e; border-color: rgba(0,0,0,0.12); }
+  .btn.primary { 
+    background: linear-gradient(135deg, var(--orange), #ff9b47);
+     color: #0b0d0e; 
+     border-color: rgba(0,0,0,0.12); 
+     min-width: 100%; 
+     display: flex !important;           /* override base .btn inline-flex */
+     width: 100% !important;             /* span container */
+     justify-content: center !important; /* center icon + text */
+     gap: 18px !important;
+     padding: 10px 10 px 16px 20px !important;      /* larger, consistent */
+     border-radius: 10px !important;        /* align with card edges */
+     margin-top: 25px;
+
+    }  
   .btn.ghost { background: rgba(255,255,255,0.04); }
   .btn.disabled,
   .btn[aria-disabled="true"] {
@@ -168,6 +181,550 @@
       order: 2; /* Collaborations second */
     }
   }
+
+
+.cv-btn {
+  justify-content: flex-start; /* Override the center from base .btn */
+  gap: 0; /* Remove gap to control spacing manually */
+  position: relative;
+  padding-left: 52px; /* Make room for icon + text centering */
+  text-align: center; /* Center the text */
+}
+
+.cv-btn .cv-icon {
+  position: absolute;
+  left: 20px; /* Position icon on the left */
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1); /* Light transparent circle */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
+/* CV Modal */
+.cv-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none; /* Controlled by JavaScript */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cv-modal[style*="display: flex"] {
+  opacity: 1;
+}
+
+.cv-modal-content {
+  background: var(--bg-primary);
+  border-radius: calc(var(--radius) + 4px);
+  width: 90%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: var(--shadow-xl);
+}
+
+.cv-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.cv-modal-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.cv-email {
+  margin: 0;
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.cv-close-btn {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.cv-close-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--text-primary);
+}
+
+/* CV Timeline */
+.cv-timeline {
+  position: relative;
+  padding: 24px;
+}
+
+
+.cv-section-header {
+  position: relative;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--accent-orange);
+  margin: 50px 0 30px 0;
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 2px solid rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.cv-section-icon {
+  font-size: 32px;
+}
+
+.cv-section-header:first-of-type {
+  margin-top: 0;
+}
+
+.cv-section-content {
+  margin-bottom: 40px;
+}
+
+
+
+.cv-experience-section {
+  position: relative;
+}
+
+.cv-expand-btn {
+  display: block;
+  background: rgba(255,165,0,0.1);
+  color: var(--accent-orange);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255,165,0,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 12px;
+  text-align: center;
+  width: fit-content;
+}
+
+.cv-expand-btn:hover {
+  background: rgba(255,165,0,0.2);
+  border-color: rgba(255,165,0,0.4);
+}
+
+.cv-timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.cv-item-container {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255,255,255,0.03);
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cv-item-container:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+
+.cv-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cv-timeline-item:nth-child(1) { animation-delay: 0.1s; }
+.cv-timeline-item:nth-child(2) { animation-delay: 0.2s; }
+.cv-timeline-item:nth-child(3) { animation-delay: 0.3s; }
+.cv-timeline-item:nth-child(4) { animation-delay: 0.4s; }
+.cv-timeline-item:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cv-timeline-item.expanded .cv-item-container {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.cv-timeline-item.expanded .cv-arrow {
+  transform: rotate(180deg);
+}
+
+.cv-item-header {
+  cursor: pointer;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.cv-institution {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cv-latest-role {
+  display: block;
+  font-size: 14px;
+  color: var(--accent-orange);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.cv-date-range {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  margin-bottom: 8px;
+}
+
+.cv-arrow {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  color: var(--accent-orange);
+  opacity: 0.7;
+}
+
+.cv-company-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.08);
+  padding: 8px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+/* Handle emoji logos */
+.cv-emoji-logo {
+  font-size: 48px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cv-header-content {
+  flex: 1;
+}
+
+.cv-title {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-arrow {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  color: var(--accent-orange);
+}
+
+.cv-timeline-item.expanded .cv-arrow {
+  transform: rotate(180deg);
+}
+
+.cv-role {
+  display: block;
+  font-size: 14px;
+  color: var(--accent-orange);
+  margin-bottom: 2px;
+}
+
+.cv-date {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+
+.cv-summary {
+  margin-bottom: 16px;
+}
+
+.cv-summary p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.cv-details {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 16px;
+}
+
+.cv-achievements h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.cv-achievements ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.cv-achievements li {
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* Mobile CV Modal */
+@media (max-width: 767px) {
+  .cv-modal-content {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .cv-modal-header {
+    padding: 16px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+
+  .cv-modal-header h2 {
+    font-size: 20px;
+  }
+
+  .cv-email {
+    font-size: 14px;
+  }
+
+  .cv-close-btn {
+    top: 16px;
+    right: 20px;
+  }
+
+
+  .cv-role-detail-section {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .cv-role-detail-section h5 {
+    margin: 0 0 8px 0;
+    color: var(--accent-orange);
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .cv-role-summary {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+
+  .cv-role-achievements {
+    margin: 0;
+    padding-left: 16px;
+  }
+
+  .cv-role-achievements li {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+
+  .cv-timeline {
+    padding: 16px;
+  }
+
+/* Profile CTA Button */
+.profile-cta {
+  margin-top: 30px; /* More space from meta */
+  margin-left: 20px;  /* Break out of card's padding */
+  margin-right: 20px; /* Break out of card's padding */
+}
+
+.profile-cta .btn {
+  display: flex !important;           /* override base .btn inline-flex */
+  width: 100% !important;             /* span container */
+  justify-content: center !important; /* center icon + text */
+  gap: 18px !important;
+  padding: 10px 10 px 16px 20px !important;      /* larger, consistent */
+  border-radius: 10px !important;        /* align with card edges */
+  margin-top: 25px;
+}
+
+.profile-cta .btn .cv-icon {
+  position: static !important;
+  width: 24px !important;
+  height: 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  background: rgba(255,255,255,0.1) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Make the Resume button span the card and center its contents on all sizes */
+.profile-cta .btn {
+  display: flex !important; /* Override inline-flex from base .btn */
+  width: 100%;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius);
+  padding: 12px 16px;       /* same padding as mobile */
+  font-size: 14px;
+}
+
+/* Neutralize cv-btn's left-align and extra left padding on ALL screen sizes */
+.profile-cta .btn.cv-btn {
+  position: static !important;
+  padding-left: 16px !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+/* Keep the icon inline (not absolutely positioned) with the same aura */
+.profile-cta .btn .cv-icon {
+  position: static;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+/* Ensure desktop styling matches mobile - apply to ALL screens */
+.profile-cta .btn {
+  width: 100% !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border-radius: var(--radius) !important;
+  padding: 12px 16px !important;
+  font-size: 14px !important;
+}
+
+.profile-cta .btn .cv-icon {
+  position: static !important;
+  width: 24px !important;
+  height: 24px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+}
+
+
+  .cv-section-header {
+    font-size: 24px;
+    gap: 8px;
+  }
+
+  .cv-section-icon {
+    font-size: 28px;
+  }
+
+  .cv-expand-btn {
+    font-size: 11px;
+    padding: 3px 6px;
+  }
+
+
+  .cv-item-container {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .cv-company-logo {
+    width: 54px;
+    height: 54px;
+  }
+
+  .cv-institution {
+    font-size: 16px;
+  }
+
+  .cv-latest-role {
+    font-size: 13px;
+  }
+
+  .cv-date-range {
+    font-size: 11px;
+  }
+
+}
   
   /* Cards */
   .card {
@@ -583,8 +1140,9 @@
     .hero .photo { width: clamp(200px, 24vw, 260px); justify-self: center; }
   }
   
-  /* Wide desktop */
-  @media (min-width: 1400px) {
-    .hero .photo { width: 260px; justify-self: center; }
-  }
+/* Wide desktop */
+@media (min-width: 1400px) {
+  .hero .photo { width: 260px; justify-self: center; }
+}
+
   
