@@ -78,12 +78,19 @@ class CVTimeline {
             const sortedRoles = company.roles.sort((a, b) => new Date(b.start_date) - new Date(a.start_date));
             const latestRole = sortedRoles[0];
             const otherRoles = sortedRoles.slice(1);
+            
+            // Find the earliest start date across all roles
+            const earliestStartDate = company.roles.reduce((earliest, role) => {
+              const roleDate = new Date(role.start_date);
+              const earliestDate = new Date(earliest);
+              return roleDate < earliestDate ? role.start_date : earliest;
+            }, company.roles[0].start_date);
 
             this.timelineItems.push({
               type: 'experience',
               company: company.company,
               role: latestRole.role,
-              start_date: latestRole.start_date,
+              start_date: earliestStartDate,
               end_date: latestRole.end_date,
               current: latestRole.current,
               logo: company.logo,
@@ -183,14 +190,18 @@ class CVTimeline {
     // Format dates with months
     const formatDate = (dateStr) => {
       if (!dateStr) return 'Present';
-      const date = new Date(dateStr);
-      const month = date.toLocaleString('default', { month: 'short' });
-      const year = date.getFullYear();
+      // Parse YYYY-MM format directly to avoid timezone issues
+      const parts = dateStr.split('-');
+      const year = parts[0];
+      const monthIndex = parseInt(parts[1], 10) - 1; // Convert to 0-indexed
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const month = monthNames[monthIndex];
       return `${month} ${year}`;
     };
 
     const startDate = formatDate(item.start_date);
-    const endDate = item.current ? 'Present' : formatDate(item.end_date);
+    const endDate = formatDate(item.end_date);
+    const endDateDisplay = (item.end_date && item.current) ? `${endDate} (expected)` : endDate;
 
     return `
       <div class="cv-timeline-item ${color}" data-index="${index}">
@@ -200,7 +211,7 @@ class CVTimeline {
             <div class="cv-item-header">
               <h3 class="cv-institution">${role}${item.hasMultipleRoles ? ` (+${item.allRoles.length - 1} more role${item.allRoles.length - 1 > 1 ? 's' : ''})` : ''}</h3>
               <span class="cv-latest-role">${institution}</span>
-              <span class="cv-date-range">${startDate} - ${endDate}</span>
+              <span class="cv-date-range">${startDate} - ${endDateDisplay}</span>
             </div>
             <div class="cv-summary">
               <p>${item.summary || 'No summary available'}</p>
@@ -209,16 +220,19 @@ class CVTimeline {
               <div class="cv-achievements">
                 <h4>Details</h4>
                 ${item.hasMultipleRoles ? `
-                  ${item.allRoles.map((role, idx) => `
+                  ${item.allRoles.map((role, idx) => {
+                    const roleEndDate = formatDate(role.end_date);
+                    const roleEndDateDisplay = (role.end_date && role.current) ? `${roleEndDate} (expected)` : roleEndDate;
+                    return `
                     <div class="cv-role-detail-section">
-                      <h5>${role.role} (${formatDate(role.start_date)} - ${role.current ? 'Present' : formatDate(role.end_date)})</h5>
+                      <h5>${role.role} (${formatDate(role.start_date)} - ${roleEndDateDisplay})</h5>
                       ${role.achievements && role.achievements.length > 0 ? `
                         <ul class="cv-role-achievements">
                           ${role.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
                         </ul>
                       ` : ''}
                     </div>
-                  `).join('')}
+                  `}).join('')}
                 ` : `
                   <ul>
                     ${(item.achievements || item.details || []).map(achievement =>
