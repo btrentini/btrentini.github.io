@@ -74,19 +74,18 @@ experience:
         current: false
         summary: "Strategic research partnerships and technical evangelism for life sciences AI"
         achievements:
-          - "Established partnerships with 5+ leading research institutions and pharmaceutical companies across EMEA"
-          - "Delivered 10+ technical talks at universities and industry conferences, reaching 5,000+ researchers"
           - "Coordinated cross-functional teams of 20+ engineers and scientists on collaborative research projects"
-      
+          - "Established research partnerships with 5+ leading research institutions and pharmaceutical companies across EMEA"
+
       - role: "Developer Relations Manager - Healthcare & Life Sciences Startups Lead EMEA"
         start_date: "2022-05"
         end_date: "2022-12"
         current: false
         summary: "Technical evangelism and ecosystem development for AI startups"
         achievements:
-          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs, improving training efficiency by average 3x"
           - "Built technical content library with 10+ tutorials and demos, generating 50,000+ views"
           - "Managed developer community of 2,000+ members across healthcare and life sciences sectors"
+          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs, improving training efficiency by average 3x"
 
   - company: "NVIDIA"
     logo: "https://logo.clearbit.com/nvidia.com"
