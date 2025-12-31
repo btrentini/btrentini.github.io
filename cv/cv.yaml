@@ -4,7 +4,7 @@ education:
     start_date: "2024-10"
     end_date: "2028-10"
     current: true
-    logo: "https://logo.clearbit.com/ox.ac.uk"
+    logo: "/cv/images/oxford.png"
     summary: "Research in Generative Models and Geometric Deep Learning"
     details:
       - "Supervisor: Prof. Michael Bronstein"
@@ -14,7 +14,7 @@ education:
     degree: "M.Sc. in Data Science & Machine Learning"
     start_date: "2019-09"
     end_date: "2020-12"
-    logo: "https://logo.clearbit.com/ucl.ac.uk"
+    logo: "/cv/images/ucl.png"
     summary: "Distinction (First Class) with focus on Deep Learning and Probabilistic Models"
     details:
       - "Grade: Distinction (First Class Honours)"
@@ -26,7 +26,7 @@ education:
     start_date: "2018-09"
     end_date: "2018-11"
     current: false
-    logo: "https://logo.clearbit.com/ucl.ac.uk"
+    logo: "/cv/images/ucl.png"
     summary: "Incomplete. Transferred to Data Science & Machine Learning program"
     details:
       - "Transitioned to MSc Data Science & Machine Learning after initial enrollment"
@@ -35,7 +35,7 @@ education:
     degree: "Pg.Dip. in Telematics & Computer Networks"
     start_date: "2012-03"
     end_date: "2013-09"
-    logo: "https://logo.clearbit.com/utfpr.edu.br"
+    logo: "/cv/images/utfpr.jpeg"
     summary: "Postgraduate Diploma with exceptional academic performance"
     details:
       - "Monograph awarded 10/10 — a rare distinction"
@@ -45,7 +45,7 @@ education:
     degree: "B.Sc. in Information Systems"
     start_date: "2008-01"
     end_date: "2011-12"
-    logo: "https://logo.clearbit.com/pucpr.br"
+    logo: "/cv/images/pucpr.png"
     summary: "Bachelor's degree with international exchange programs"
     details:
       - "Awarded BCI/CREPUQ Scholarship for academic excellence"
@@ -54,7 +54,7 @@ education:
 
 experience:
   - company: "NVIDIA"
-    logo: "https://logo.clearbit.com/nvidia.com"
+    logo: "/cv/images/nvidia.png"
     roles:
       - role: "Applied Research Scientist"
         start_date: "2024-09"
@@ -85,10 +85,9 @@ experience:
         achievements:
           - "Built technical content library with 10+ tutorials and demos, generating 50,000+ views"
           - "Managed developer community of 2,000+ members across healthcare and life sciences sectors"
-          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs, improving training efficiency by average 3x"
 
   - company: "NVIDIA"
-    logo: "https://logo.clearbit.com/nvidia.com"
+    logo: "/cv/images/nvidia.png"
     roles:
       - role: "AI Startups Ecosystem Manager"
         start_date: "2018-12"
@@ -97,12 +96,11 @@ experience:
         summary: "Technical evangelism and startup ecosystem development in EMEA"
         achievements:
           - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs, achieving average 4x speedup in training pipelines"
-          - "Organized 20+ events with Venture Capital firms and startups in EMEA, facilitating funding rounds totaling $50M+"
-          - "Delivered technical workshops to 500+ developers on GPU optimization and deep learning frameworks"
+          - "Organized events with Venture Capital firms and startups in EMEA, facilitating funding rounds totaling $50M+"
           - "Built partnerships with 10+ accelerators and incubators across Europe"
 
   - company: "GSK"
-    logo: "https://logo.clearbit.com/gsk.com"
+    logo: "/cv/images/gsk.png"
     roles:
       - role: "Senior Data Scientist"
         start_date: "2021-02"
@@ -112,7 +110,7 @@ experience:
         achievements:
           - "Developed multi-objective reinforcement learning system, reducing ad spend by 55% versus baseline models while maintaining conversion rates"
           - "Project shortlisted (top 3) for DataIQ industry awards among 200+ submissions"
-          - "Led full-stack implementation: Apache Spark (ETL processing 10M+ records/day), PyTorch (MLP models), Django APIs (serving 100+ requests/day), Azure (cloud hosting)"
+          - "Led full-stack implementation: Apache Spark (ETL processing 10M+ records/day), PyTorch (MLP models), Django APIs), Azure (cloud hosting)"
           - "Built interactive front-end dashboard in HTML/JavaScript (Node.js), adopted by 5+ marketing teams globally"
           - "Mentored cohort of 5 apprentices as lead; 2 directly managed, 1 received global award for business impact"
       
@@ -122,7 +120,7 @@ experience:
         current: false
         summary: "Product strategy and roadmap for AI/ML and Data Analytics platforms"
         achievements:
-          - "Defined product roadmap for AI/ML platform serving 200+ analysts across 10 markets"
+          - "Defined product roadmap for AI/ML analytics platform serving 200+ analysts across 10 markets"
           - "Led 5 roll-oputs, increasing platform adoption by 40% in 6 months in 5 markets"
           - "Coordinated cross-functional team of 12 engineers, designers, and analysts"
           - "Established OKRs and success metrics, improving delivery velocity by 30%"
@@ -137,9 +135,9 @@ experience:
         current: false
         summary: "Developed novel Human Activity Recognition system using Microsoft HoloLens"
         achievements:
-          - "Proposed novel system for Human Activity Recognition, achieving 92% accuracy on custom dataset with samples collected with Microsoft HoloLens"
           - "Invented method for predicting activity transitions using Mel-Frequency Cepstrum of sonified spatial signals and Fourier Transforms"
           - "Developed end-to-end ML pipeline: DBSCAN clustering, Dynamic Time Warping, Symbolic Aggregate Approximation, Deep Learning (CNN+LSTM)"
+          - "Proposed novel system for Human Activity Recognition, achieving 92% accuracy on custom dataset with samples collected with Microsoft HoloLens"
 
   - company: "HotelBeds"
     logo: "/cv/images/hotelbeds.jpeg"
@@ -184,7 +182,7 @@ experience:
           - "Coordinated with executive leadership on strategic initiatives and quarterly business reviews"
 
   - company: "Ernst & Young"
-    logo: "https://logo.clearbit.com/ey.com"
+    logo: "/cv/images/ey.jpeg"
     roles:
       - role: "IT Consultant - Trainee (full-time)"
         start_date: "2011-06"
@@ -197,7 +195,7 @@ experience:
           - "Identified and documented 100+ control deficiencies, preventing potential financial misstatements"
 
   - company: "HSBC"
-    logo: "https://logo.clearbit.com/hsbc.com"
+    logo: "/cv/images/hsbc.png"
     roles:
       - role: "Software Analyst -- Trainee (Full-time)"
         start_date: "2008-06"
@@ -232,5 +230,5 @@ experience:
         summary: "Administrative support and first work experience"
         achievements:
           - "Provided administrative support for small technology company (10 employees)"
-          - "Operated ID card sealing machinery, processing 500+ cards monthly"
+          - "Operated ID card sealing machinery, processing 1500+ cards monthly"
           - "First work experience at age 14, developing professional skills and work ethic"
