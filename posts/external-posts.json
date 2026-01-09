@@ -1,5 +1,33 @@
 [
   {
+    "title": "Data Science Festival Speaker Profile",
+    "url": "https://datasciencefestival.com/speaker/bruno-trentini/",
+    "description": "Speaker profile and history of talks at the Data Science Festival.",
+    "date": "2024-01-01",
+    "topic": "talks"
+  },
+  {
+    "title": "AIBIO Annual General Meeting 2025",
+    "url": "https://aibio.ac.uk/events/aibio-annual-general-meeting-2025/",
+    "description": "Featured participation at the AIBIO Annual General Meeting.",
+    "date": "2025-01-01",
+    "topic": "talks"
+  },
+  {
+    "title": "NVIDIA Technical Blog Author Page",
+    "url": "https://developer.nvidia.com/blog/author/brunod/",
+    "description": "Collection of technical articles and research publications on NVIDIA Developer Blog.",
+    "date": "2024-01-01",
+    "topic": "blog"
+  },
+  {
+    "title": "Mesh-AI: Successful Startups & Data Contracts",
+    "url": "https://www.mesh-ai.com/blog-posts/successful-startups-and-the-value-of-data-contracts-highlights-from-our-latest-data-ai-london-meetup",
+    "description": "Highlights from the Data & AI London Meetup discussing startups and data contracts.",
+    "date": "2024-06-01",
+    "topic": "talks"
+  },
+  {
     "title": "7 Resources for Those Wanting to Learn Data Science",
     "url": "https://medium.com/data-science/7-resources-for-those-wanting-to-learn-data-science-a89e25d1b55e",
     "description": "Sometimes you just need a push to get started. Here's what worked for me in my journey towards data science.",
@@ -83,7 +111,6 @@
     "description": "Two Data Questions! is a series of posts in which I send two questions [duh] to Data professionals. #TwoDataQuestions",
     "date": "2023-12-09",
     "topic": "data science"
-
   },
   {
     "title": "Data Science Festival OneID Presentation",

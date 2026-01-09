@@ -22,9 +22,9 @@ class BlogManager {
       'medium.com': 'https://logo.clearbit.com/medium.com',
       'developer.nvidia.com': 'https://www.nvidia.com/content/dam/en-zz/Solutions/about-nvidia/logo-and-brand/01-nvidia-logo-vert-500x200-2c50-d.png',
       'www.youtube.com': 'https://logo.clearbit.com/youtube.com',
-      'www.linkedin.com': 'https://logo.clearbit.com/linkedin.com',
-      'docs.google.com': 'https://logo.clearbit.com/google.com',
-      'drive.google.com': 'https://logo.clearbit.com/google.com'
+      'www.linkedin.com': 'static/images/linkedin.png',
+      'docs.google.com': 'static/images/drive.png',
+      'drive.google.com': 'static/images/drive.png'
     };
   }
 
@@ -73,6 +73,11 @@ class BlogManager {
 
   async getEnhancedThumbnail(post) {
     const url = post.url;
+
+    // Use specific icon for talks
+    if (post.topic === 'talks') {
+      return 'static/images/icon-talk.png';
+    }
 
     // Check if post has a custom thumbnail specified
     if (post.thumbnail) {
@@ -346,8 +351,8 @@ class BlogManager {
         const content = (post.content || '').toLowerCase();
 
         return title.includes(this.searchQuery) ||
-               description.includes(this.searchQuery) ||
-               content.includes(this.searchQuery);
+          description.includes(this.searchQuery) ||
+          content.includes(this.searchQuery);
       });
     }
 
