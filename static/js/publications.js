@@ -77,6 +77,18 @@ function linkBtn(label, href) {
   return a;
 }
 
+/**
+ * Highlight "(Spotlight)" or "Spotlight" in venue text with a yellow background.
+ */
+function highlightSpotlight(venueText) {
+  const escaped = esc(venueText);
+  // Wrap "Spotlight" (with or without parentheses) in a highlighted span
+  return escaped.replace(
+    /\(Spotlight\)|Spotlight/gi,
+    '<span class="spotlight-highlight">$&</span>'
+  );
+}
+
 /** Build the citation block in the order: Title → Authors → Venue → Year. */
 function renderCitation(item) {
   const wrap = document.createElement("div");
@@ -94,7 +106,7 @@ function renderCitation(item) {
 
   const meta = document.createElement("div");
   meta.className = "cite-meta";
-  const venue = item.venue ? `<span class="cite-venue">${esc(item.venue)}</span>` : "";
+  const venue = item.venue ? `<span class="cite-venue">${highlightSpotlight(item.venue)}</span>` : "";
   const year = item.year != null ? `<span class="cite-year">${item.year}</span>` : "";
   const sep = item.venue && (item.year != null) ? " · " : "";
   meta.innerHTML = `${venue}${sep}${year}`;
