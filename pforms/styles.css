@@ -528,6 +528,16 @@ main {
   font-size: 13px;
 }
 
+.task-fit {
+  margin-top: 6px;
+  padding-left: 9px;
+  border-left: 3px solid var(--teal);
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 720;
+  line-height: 1.35;
+}
+
 .task-title-row {
   display: flex;
   align-items: flex-start;

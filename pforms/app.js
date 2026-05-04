@@ -184,6 +184,33 @@
       || `Sampled point-cloud benchmark for ${task}.`;
   }
 
+  function taskFitSubtitle(task) {
+    const fit = {
+      "E10": "Limited fit: low-signal degenerate geometry sanity check, not headline evidence.",
+      "TS2.5 circles": "Limited fit: intentionally similar circle-family labels make this a low-signal control.",
+      "TS2.5 colocated": "Good fit: co-located line-vs-circle supports test topology without location shortcuts.",
+      "TS2.5 lines": "Good fit: near-overlapping lines probe tangent/support sensitivity.",
+      "TS2.5 mixed": "Good fit: multi-component geometry tests within-cloud aggregation.",
+      "TS25 density": "Strong fit: directly tests density and sampling effects central to point-cloud operators.",
+      "TS8 RNA velocity": "Good fit: known trajectory geometry tests dynamics-style structure, not real RNA-velocity inference.",
+      "TS4 single-cell": "Useful but limited: exercises single-cell population geometry; cache provenance is flagged.",
+      "PDO A cell type": "Moderate fit: compartment geometry is biological, but marker differences can make it easy.",
+      "PDO A no-caspase": "Moderate fit: checks robustness after withholding caspase; still a broad compartment control.",
+      "PDO B culture": "Good fit: culture can reshape cell-state distributions, though composition shortcuts may remain.",
+      "PDO C treatment": "Limited fit: perturbation signal is useful, but labels can confound dose, plate, and patient availability.",
+      "PDO F patient": "Audit task: measures provenance or batch structure, not biological response performance.",
+      "PDO response CAF": "Good fit: targets microenvironment-driven epithelial geometry; silver label, not clinical endpoint.",
+      "PDO response EFP": "Good fit: tests whether held-out functional response is recoverable from remaining cell-state geometry.",
+      "PDO response tumor-selective": "Strong fit: matched tumor-versus-fibroblast contrast with death markers withheld.",
+      "Prepared bundles": "Evidence only: documents prepared cloud inputs, not model performance.",
+      "Counts by modality": "Evidence only: reports JUMP perturbation-cloud balance, not VolRep performance.",
+      "Counts by plate type": "Technical evidence: useful stress test, weak support for biological claims.",
+      "K-form feasibility": "Implementation fit: checks graph/k-form feasibility, not predictive evidence.",
+      "Launch recipe": "Reproducibility only: records launch commands, not a scientific task.",
+    };
+    return fit[task] || "Fit depends on whether the label reflects within-cloud geometry rather than metadata.";
+  }
+
   function seededValue(seed, index, salt) {
     const raw = Math.sin(seed * 97.13 + index * 41.91 + salt * 13.37) * 10000;
     return raw - Math.floor(raw);
@@ -664,6 +691,7 @@
               ${pdoDiagnosticButton(task, taskRows)}
             </div>
             <p class="task-description">${esc(taskDescription(task, state.pane))}</p>
+            <p class="task-fit">${esc(taskFitSubtitle(task))}</p>
             ${renderSampleSketch(task, state.pane)}
             <dl class="task-stats">
               ${stats.map(([label, value]) => `<div><dt>${esc(label)}</dt><dd>${esc(value)}</dd></div>`).join("")}
@@ -687,6 +715,7 @@
           <p class="eyebrow">JUMP table</p>
           <h3>${esc(title)}</h3>
           <p class="task-description">${esc(taskDescription(title, "jump"))}</p>
+          <p class="task-fit">${esc(taskFitSubtitle(title))}</p>
           ${renderSampleSketch(title, "jump")}
           <dl class="task-stats">
             <div><dt>Rows</dt><dd>${rows.length}${limit && rows.length > limit ? ` shown as ${limit}` : ""}</dd></div>
