@@ -522,6 +522,55 @@
     return `${train}${matched ? matched[1] : "model size not reported in the local aggregate; see source run metadata"}`;
   }
 
+  function compactModelSize(row) {
+    const method = String(row.method || "");
+    const family = String(row.family || "");
+
+    if (row.group === "volrep" || family.toLowerCase().includes("volrep")) {
+      const k = method.match(/\bk(\d+)/i)?.[1] || "?";
+      const layout = method.match(/\b(diag|flat|pool|tri)\b/i)?.[1] || "readout";
+      if (k === "1") return layout === "pool" ? "10k-21k params" : "9k-20k params";
+      if (k === "2") return "10k-66k params";
+      if (k === "3") return "12k params";
+      return "params vary";
+    }
+
+    const sizes = [
+      [/GraphTransformer/i, "156k-173k params"],
+      [/PointTransformer/i, "2.15M-2.17M params"],
+      [/PointNet\+\+|^Point$/i, "1.47M-1.48M params"],
+      [/GraphSAGE/i, "36k-45k params"],
+      [/\bGCN\b/i, "18k-23k params"],
+      [/\bGIN\b/i, "18k-23k params"],
+      [/\bTDL\b/i, "19k-24k params"],
+      [/\bMLP\b/i, "27k-31k params"],
+      [/Logistic regression|Random forest|SVM/i, "no trainable params"],
+    ];
+    return sizes.find(([pattern]) => pattern.test(method))?.[1] || "params n/r";
+  }
+
+  function compactTrainingParams(row) {
+    const method = String(row.method || "");
+    const family = String(row.family || "");
+    const bits = [];
+    if (row.epochs) bits.push(`${Math.round(Number(row.epochs)) || row.epochs} ep`);
+    if (row.hp && row.hp !== "-") bits.push(row.hp);
+    if (row.folds || row.seeds) bits.push(`${row.folds || "?"}f/${row.seeds || "?"}s`);
+    if (row.group === "volrep" || family.toLowerCase().includes("volrep")) {
+      bits.push("lr 1e-3/3e-4");
+    } else if (/Logistic regression|Random forest|SVM/i.test(method)) {
+      bits.push("sklearn HP");
+    } else {
+      bits.push("lr 1e-3 wd 1e-4");
+    }
+    return bits.join("; ");
+  }
+
+  function compactChartModelNote(row) {
+    const note = `${compactModelSize(row)}; ${compactTrainingParams(row)}`;
+    return note.length > 58 ? `${note.slice(0, 55)}...` : note;
+  }
+
   function renderModelCell(row) {
     return `
       <span class="model-name">${esc(row.method)}</span>
@@ -715,11 +764,11 @@
     }
 
     const width = 960;
-    const left = 250;
+    const left = 315;
     const right = 130;
     const top = 34;
-    const rowGap = 34;
-    const barStep = 28;
+    const rowGap = 38;
+    const barStep = 32;
     const barH = 13;
     const plotW = width - left - right;
     const height = top + groups.reduce((sum, item) => sum + rowGap + item.bars.length * barStep, 0) + 26;
@@ -750,6 +799,7 @@
         const label = row.chartGroup === "volrep" ? `Best VolRep: ${row.method}` : row.method;
         return `
           <text class="chart-label" x="14" y="${y + 4}">${esc(label)}</text>
+          <text class="chart-model-note" x="14" y="${y + 17}">${esc(compactChartModelNote(row))}</text>
           <rect class="${className}" x="${left}" y="${y - barH / 2}" width="${x(row.score) - left}" height="${barH}" rx="3"></rect>
           ${error(row, y)}
           <text class="chart-value" x="${Math.min(x(row.score) + 8, width - 104)}" y="${y + 4}">${esc(fmtMetric(row))}</text>
