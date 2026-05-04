@@ -514,15 +514,14 @@
   function pdoDiagnosticButton(task, taskRows) {
     const diagnostic = pdoDiagnostic(task, taskRows);
     if (!diagnostic) return "";
-    const label = diagnostic.flagged ? "Why invalid?" : "Why weak?";
-    return `<button class="explain-button" data-pdo-task="${esc(task)}" type="button">${esc(label)}</button>`;
+    return `<button class="explain-button" data-pdo-task="${esc(task)}" type="button">Caveats</button>`;
   }
 
   function showPdoDiagnostic(task) {
     const rows = paneRows(DATA.panes.pdo).filter((row) => row.task === task);
     const diagnostic = pdoDiagnostic(task, rows);
     if (!diagnostic) return;
-    els.pdoModalTitle.textContent = diagnostic.flagged ? `${task}: invalid comparison` : `${task}: weak VolRep margin`;
+    els.pdoModalTitle.textContent = `${task}: caveats`;
     els.pdoModalBody.innerHTML = `
       <div class="diagnostic-grid">
         <div>
