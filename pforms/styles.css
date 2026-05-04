@@ -226,6 +226,23 @@ main {
   min-height: 218px;
 }
 
+.kforms-viz-hero .inspection-heading {
+  min-height: 338px;
+}
+
+.kforms-viz-grid {
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  min-height: 338px;
+}
+
+.kforms-viz-grid .inspection-tile {
+  min-height: 338px;
+}
+
+.kforms-viz-grid .inspection-tile img {
+  height: 306px;
+}
+
 .inspection-tile {
   display: flex;
   flex-direction: column;
@@ -938,6 +955,16 @@ tbody tr:hover td {
 
   .inspection-tile img {
     height: 220px;
+  }
+
+  .kforms-viz-hero .inspection-heading,
+  .kforms-viz-grid,
+  .kforms-viz-grid .inspection-tile {
+    min-height: 0;
+  }
+
+  .kforms-viz-grid .inspection-tile img {
+    height: 260px;
   }
 
   .metric-contract,
