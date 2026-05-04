@@ -621,10 +621,15 @@
   }
 
   function applyTheme(theme) {
-    const nextTheme = theme || "system";
+    const nextTheme = theme || "light";
     document.documentElement.dataset.theme = nextTheme;
     localStorage.setItem("pointFormsTheme", nextTheme);
     els.themeButtons.forEach((button) => button.classList.toggle("active", button.dataset.theme === nextTheme));
+  }
+
+  function initialTheme() {
+    const storedTheme = localStorage.getItem("pointFormsTheme");
+    return storedTheme && storedTheme !== "system" ? storedTheme : "light";
   }
 
   function renderTaskFilter() {
@@ -987,6 +992,6 @@
     throw new Error("documents/web/data.js is missing required pane data.");
   }
 
-  applyTheme(localStorage.getItem("pointFormsTheme") || "system");
+  applyTheme(initialTheme());
   render();
 }());

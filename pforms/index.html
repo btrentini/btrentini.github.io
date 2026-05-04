@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,8 +14,8 @@
       </div>
       <div class="top-actions">
         <div class="theme-toggle" role="group" aria-label="Theme">
-          <button class="theme-button active" data-theme="system" type="button">Auto</button>
-          <button class="theme-button" data-theme="light" type="button">Light</button>
+          <button class="theme-button" data-theme="system" type="button">Auto</button>
+          <button class="theme-button active" data-theme="light" type="button">Light</button>
           <button class="theme-button" data-theme="dark" type="button">Dark</button>
         </div>
         <div class="metric-contract">baselines -> VolRep variants, CI on every metric</div>
@@ -34,30 +34,35 @@
             <figcaption>TS3 learned pullback coframe</figcaption>
           </figure>
           <figure class="inspection-tile kforms-code-tile">
-            <pre aria-label="TS3 learned pullback coframe source code"><code>model.eval()
+            <pre aria-label="TS3 learned pullback coframe source code"><code>G1 = pc.G1
+
+model.eval()
 with torch.no_grad():
     omega = model.forms(pc.points)[:, :2, :]
     Vpull = torch.matmul(omega, G1)
     Gp = pointwise_gram_learned(pc, omega)
     det_vals = torch.linalg.det(Gp).clamp_min(0).cpu().numpy()
+    Pnp = pc.points.cpu().numpy()
+    V1np = Vpull[:, 0, :].cpu().numpy()
+    V2np = Vpull[:, 1, :].cpu().numpy()
 
-print("omega shape:", tuple(omega.shape))
-print("Pointwise Gram shape:", tuple(Gp.shape))
-print("Determinant stats:", float(det_vals.min()), float(det_vals.mean()), float(det_vals.max()))
+    print("omega shape:", tuple(omega.shape))
+    print("Pointwise Gram shape:", tuple(Gp.shape))
+    print("Determinant stats:", float(det_vals.min()), float(det_vals.mean()), float(det_vals.max()))
 
-viz.cones3d_two(
-    pc.points.cpu().numpy(),
-    Vpull[:, 0, :].cpu().numpy(),
-    Vpull[:, 1, :].cpu().numpy(),
-    title="TS3: learned pullback coframe",
-    max_cones=1200,
-    arrow_scale=0.3,
-    sizeref=0.06,
-    det_vals=det_vals,
-    color_points=False,
-    points_use_subset=True,
-    colorscale=PF_SEQUENTIAL_COLORSCALE,
-)</code></pre>
+    viz.cones3d_two(
+        Pnp,
+        V1np,
+        V2np,
+        title="TS3: Pullback coframe",
+        max_cones=1200,
+        arrow_scale=0.3,
+        sizeref=0.06,
+        det_vals=det_vals,
+        color_points=False,
+        points_use_subset=True,
+        colorscale=PF_SEQUENTIAL_COLORSCALE,
+    )</code></pre>
             <figcaption>TS3 pullback coframe code</figcaption>
           </figure>
           <figure class="inspection-tile">
