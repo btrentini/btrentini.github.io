@@ -3,15 +3,14 @@
 
   const DATA = window.RESULT_DATA;
   const paneOrder = ["primary", "synthetic", "singlecell", "pdo", "jump", "others"];
-  const PRIMARY_PDO_RESULTS_TASKS = [
-    "PDO A cell type",
-    "PDO A no-caspase",
-    "PDO B culture",
-    "PDO C treatment",
-    "PDO F patient",
-    "PDO response CAF",
-    "PDO response EFP",
+  const PRIMARY_COMPETITIVE_MARGIN = 0.03;
+  const PRIMARY_COMPETITIVE_TASKS = [
+    "TS25 density",
+    "TS8 RNA velocity",
+    "TS4 single-cell",
     "PDO response tumor-selective",
+    "PDO response EFP",
+    "PDO response CAF",
   ];
   const state = {
     pane: "primary",
@@ -53,30 +52,6 @@
   };
 
   const thumbnailBase = "assets/task-thumbnails/";
-
-  function installPrimaryPdoResults() {
-    const primary = DATA.panes.primary;
-    const pdo = DATA.panes.pdo;
-    if (!primary?.rows || !pdo?.rows) return;
-
-    const keyFor = (row) => [row.task, row.group, row.family, row.method, row.metric].join("\u001f");
-    const existing = new Set(primary.rows.map(keyFor));
-    const additions = pdo.rows
-      .filter((row) => PRIMARY_PDO_RESULTS_TASKS.includes(row.task))
-      .filter((row) => !existing.has(keyFor(row)))
-      .map((row) => ({ ...row, sourcePane: "pdo", sourceRoot: "PDO_RESULTS" }));
-
-    if (!additions.length) return;
-    primary.rows = [...primary.rows, ...additions];
-    primary.sources = [...new Set([
-      ...(primary.sources || []),
-      ...(pdo.sources || []),
-      "PDO_RESULTS/pdo_core_20260429_091932",
-    ])];
-    primary.subtitle = "Main evidence path plus PDO_RESULTS benchmark block";
-  }
-
-  installPrimaryPdoResults();
 
   const els = {
     tabs: Array.from(document.querySelectorAll(".tab")),
@@ -171,10 +146,56 @@
     })[0] || null;
   }
 
+  function isPrimaryCompetitive(taskRows) {
+    const rows = taskRows.filter(isReportableRow);
+    const baseline = bestOf(rows.filter((row) => row.group === "baseline"));
+    const volrep = bestOf(rows.filter((row) => row.group === "volrep"));
+    if (!baseline || !volrep) return false;
+    const delta = Number(volrep.score || 0) - Number(baseline.score || 0);
+    const combinedCi = Math.sqrt((Number(volrep.ci || 0) ** 2) + (Number(baseline.ci || 0) ** 2));
+    return delta >= 0 || Math.abs(delta) <= Math.max(PRIMARY_COMPETITIVE_MARGIN, combinedCi);
+  }
+
+  function installPrimaryCompetitiveTasks() {
+    const primary = DATA.panes.primary;
+    if (!primary?.rows) return;
+
+    const sourcePanes = ["synthetic", "singlecell", "pdo"];
+    const keyFor = (row) => [row.task, row.group, row.family, row.method, row.metric].join("\u001f");
+    const nextRows = [];
+    const seen = new Set();
+
+    PRIMARY_COMPETITIVE_TASKS.forEach((task) => {
+      const taskRows = sourcePanes.flatMap((paneKey) => (
+        DATA.panes[paneKey]?.rows || []
+      ).filter((row) => row.task === task).map((row) => ({ ...row, sourcePane: row.sourcePane || paneKey })));
+
+      if (!isPrimaryCompetitive(taskRows)) return;
+
+      taskRows.forEach((row) => {
+        const key = keyFor(row);
+        if (seen.has(key)) return;
+        seen.add(key);
+        nextRows.push(row);
+      });
+    });
+
+    primary.rows = nextRows;
+    primary.sources = [
+      "synthetic_results_inspection_outputs/tables/synthetic_results_normalized.csv",
+      "partial_results_outputs/tables/selected_results_normalized.csv",
+      "PDO_RESULTS/pdo_core_20260429_091932",
+    ];
+    primary.subtitle = `VolRep-competitive tasks: win, CI-overlap, or within ${PRIMARY_COMPETITIVE_MARGIN.toFixed(2)} of the best baseline`;
+  }
+
+  installPrimaryCompetitiveTasks();
+
   function taskDescription(task, paneKey) {
     const descriptions = {
       primary: {
         "TS25 density": "Best synthetic evidence for the geometry story: bandwidth and density choices matter, and VolRep reaches clean wins.",
+        "TS8 RNA velocity": "RNA8 trajectory task: VolRep stays close to the strongest point baseline while testing directed manifold structure.",
         "TS4 single-cell": "Good warm-up biological manifold task: simple, real 10x single-cell structure where the method works cleanly.",
         "PDO response tumor-selective": "Strongest PDO headline in the current snapshot: VolRep is the winner so far.",
         "PDO response EFP": "Sober biology task: VolRep is basically tied with the best neural baseline, and the label is dataset-internal and biologically meaningful.",
@@ -415,6 +436,50 @@
       ["Rows", `${baselines} baseline, ${volreps} VolRep`],
       ["Folds/seeds", [folds, seeds].filter(Boolean).join(" / ") || "reported per row"],
     ];
+  }
+
+  function trainingAnnotation(row) {
+    const bits = [];
+    if (row.epochs) bits.push(`${row.epochs} epochs`);
+    if (row.hp && row.hp !== "-") bits.push(`HP ${row.hp}`);
+    if (row.folds || row.seeds) bits.push(`${row.folds || "?"} folds/${row.seeds || "?"} seeds`);
+    return bits.join("; ");
+  }
+
+  function modelAnnotation(row) {
+    const method = String(row.method || "");
+    const family = String(row.family || "");
+    const baseTrain = trainingAnnotation(row);
+    const train = baseTrain ? `${baseTrain}; ` : "";
+
+    if (row.group === "volrep" || family.toLowerCase().includes("volrep")) {
+      const k = method.match(/\bk(\d+)/i)?.[1] || "?";
+      const layout = method.match(/\b(diag|flat|pool|tri)\b/i)?.[1] || "readout";
+      const bandwidth = method.includes("bwvar") ? "variable bandwidth" : method.includes("bwfix") ? "fixed bandwidth" : "reported bandwidth";
+      const density = method.includes("densvar") ? "density-normalized" : method.includes("densfix") ? "fixed density" : "reported density";
+      const params = k === "1"
+        ? (layout === "pool" ? "approx 10k-21k params on PDO" : "approx 9k-20k params on PDO")
+        : k === "2"
+          ? "approx 10k-66k params on PDO"
+          : k === "3"
+            ? "approx 12k params on PDO response"
+            : "params vary with k and input dimension";
+      return `${params}; ${train}VolRep k=${k}, ${layout} Gram, ${bandwidth}, ${density}; lr usually 1e-3/3e-4 in sweeps`;
+    }
+
+    const notes = [
+      [/GraphTransformer/i, "approx 156k-173k params on PDO; graph transformer, mean pool; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/PointTransformer/i, "approx 2.15M-2.17M params on PDO; point transformer pyramid; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/PointNet\+\+|^Point$/i, "approx 1.47M-1.48M params on PDO; PointNet++ set encoder; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/GraphSAGE/i, "approx 36k-45k params on PDO; graph SAGE, mean pool; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/\bGCN\b/i, "approx 18k-23k params on PDO; GCN, mean pool; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/\bGIN\b/i, "approx 18k-23k params on PDO; GIN, mean pool; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/\bTDL\b/i, "approx 19k-24k params on PDO; TDL, mean pool; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/\bMLP\b/i, "approx 27k-31k params on PDO; point MLP, mean pool; lr 1e-3, wd 1e-4, dropout 0.3"],
+      [/Logistic regression|Random forest|SVM/i, "classical baseline; no deep trainable parameter count; scikit-learn style hyperparameters"],
+    ];
+    const matched = notes.find(([pattern]) => pattern.test(method));
+    return `${train}${matched ? matched[1] : "model size not reported in the local aggregate; see source run metadata"}`;
   }
 
   function pdoDiagnostic(task, taskRows) {
@@ -664,10 +729,10 @@
       ["volrep", "VolRep variants"],
     ].forEach(([group, label], idx) => {
       const block = sortRows(taskRows.filter((row) => row.group === group));
-      if (idx === 1) body.push(`<tr class="separator-row"><td colspan="8"></td></tr>`);
-      body.push(`<tr class="block-row"><td colspan="8">${esc(label)} sorted ascending; best at bottom</td></tr>`);
+      if (idx === 1) body.push(`<tr class="separator-row"><td colspan="9"></td></tr>`);
+      body.push(`<tr class="block-row"><td colspan="9">${esc(label)} sorted ascending; best at bottom</td></tr>`);
       if (!block.length) {
-        body.push(`<tr><td colspan="8" class="muted-cell">No ${esc(label.toLowerCase())} rows after filtering.</td></tr>`);
+        body.push(`<tr><td colspan="9" class="muted-cell">No ${esc(label.toLowerCase())} rows after filtering.</td></tr>`);
       }
       block.forEach((row, rowIndex) => {
         const bestClass = rowIndex === block.length - 1 ? " best-row" : "";
@@ -681,6 +746,7 @@
             <td class="metric-cell">${fmt(row.score)}</td>
             <td class="metric-cell">+/- ${fmt(row.ci)}</td>
             <td>${esc(row.folds || "")}/${esc(row.seeds || "")}</td>
+            <td><span class="model-note">${esc(modelAnnotation(row))}</span></td>
             <td>${row.flag ? `<span class="flag">${esc(row.flag)}</span>` : ""}</td>
           </tr>
         `);
@@ -698,6 +764,7 @@
             <th>Score</th>
             <th>CI95</th>
             <th>Folds/seeds</th>
+            <th>Model/hparams</th>
             <th>Flag</th>
           </tr>
         </thead>

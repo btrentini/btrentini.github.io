@@ -669,6 +669,14 @@ tbody tr:hover td {
   white-space: nowrap;
 }
 
+.model-note {
+  display: block;
+  max-width: 270px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.32;
+}
+
 .best-row td {
   background: rgba(0, 132, 110, 0.08);
 }
