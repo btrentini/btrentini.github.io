@@ -61,6 +61,7 @@
     textFilter: document.getElementById("text-filter"),
     chartEyebrow: document.getElementById("chart-eyebrow"),
     chartTitle: document.getElementById("chart-title"),
+    chartThumbnails: document.getElementById("chart-thumbnails"),
     chart: document.getElementById("chart"),
     tableTitle: document.getElementById("table-title"),
     sourceNote: document.getElementById("source-note"),
@@ -319,6 +320,36 @@
         <figcaption>${esc(sourceLabel)}</figcaption>
       </figure>
     `;
+  }
+
+  function renderChartThumbnail(task) {
+    const sourcePane = state.pane === "primary" || state.pane === "others" ? sourcePaneForTask(task) : state.pane;
+    const src = taskThumbnail(task);
+    const media = src
+      ? `<img src="${esc(src)}" alt="${esc(task)} dataset thumbnail" loading="lazy">`
+      : renderSampleSketch(task, sourcePane);
+    return `
+      <article class="chart-thumb">
+        <div class="chart-thumb-media">${media}</div>
+        <div class="chart-thumb-body">
+          <h3>${esc(task)}</h3>
+          <p>${esc(taskFitSubtitle(task))}</p>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderChartThumbnails(rows) {
+    const tasks = state.pane === "jump"
+      ? ["Prepared bundles", "Counts by modality", "Counts by plate type"]
+      : uniqueTasks(rows);
+    if (!tasks.length) {
+      els.chartThumbnails.classList.add("hidden");
+      els.chartThumbnails.innerHTML = "";
+      return;
+    }
+    els.chartThumbnails.classList.remove("hidden");
+    els.chartThumbnails.innerHTML = tasks.map(renderChartThumbnail).join("");
   }
 
   function sourcePaneForTask(task) {
@@ -865,6 +896,7 @@
     els.chartTitle.textContent = state.pane === "jump" ? "JUMP well profiles by modality" : "All baselines vs best VolRep";
     els.tableTitle.textContent = `${paneTitle[state.pane]} task tables`;
     els.sourceNote.textContent = (pane.sources || []).join(" | ");
+    renderChartThumbnails(rows);
     renderChart(rows);
     renderTable(rows);
     els.jumpEvidence.classList.toggle("hidden", state.pane !== "jump");
