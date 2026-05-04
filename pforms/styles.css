@@ -741,12 +741,24 @@ tbody tr:hover td {
   white-space: nowrap;
 }
 
+.model-name {
+  display: block;
+  color: var(--ink);
+  font-weight: 760;
+  line-height: 1.25;
+}
+
 .model-note {
   display: block;
-  max-width: 270px;
+  max-width: 340px;
+  margin-top: 3px;
   color: var(--muted);
   font-size: 11px;
   line-height: 1.32;
+}
+
+.chart-task-table .model-note {
+  max-width: 380px;
 }
 
 .best-row td {

@@ -522,6 +522,13 @@
     return `${train}${matched ? matched[1] : "model size not reported in the local aggregate; see source run metadata"}`;
   }
 
+  function renderModelCell(row) {
+    return `
+      <span class="model-name">${esc(row.method)}</span>
+      <span class="model-note">${esc(modelAnnotation(row))}</span>
+    `;
+  }
+
   function pdoDiagnostic(task, taskRows) {
     const paneIsPdo = state.pane === "pdo" || taskRows.some((row) => row.sourcePane === "pdo");
     if (!paneIsPdo) return null;
@@ -670,7 +677,7 @@
                 <tr>
                   <td>${esc(row.task)}</td>
                   <td><span class="tag ${tag}">${row.chartGroup === "volrep" ? "Best VolRep" : "Baseline"}</span></td>
-                  <td>${esc(row.method)}</td>
+                  <td>${renderModelCell(row)}</td>
                   <td class="metric-cell">${esc(chartMetricLabel(row))} ${fmt(row.score)}</td>
                   <td class="metric-cell">+/- ${fmt(row.ci)}</td>
                   <td>${esc(row.folds || "")}/${esc(row.seeds || "")}</td>
@@ -814,10 +821,10 @@
       ["volrep", "VolRep variants"],
     ].forEach(([group, label], idx) => {
       const block = sortRows(taskRows.filter((row) => row.group === group));
-      if (idx === 1) body.push(`<tr class="separator-row"><td colspan="9"></td></tr>`);
-      body.push(`<tr class="block-row"><td colspan="9">${esc(label)} sorted ascending; best at bottom</td></tr>`);
+      if (idx === 1) body.push(`<tr class="separator-row"><td colspan="8"></td></tr>`);
+      body.push(`<tr class="block-row"><td colspan="8">${esc(label)} sorted ascending; best at bottom</td></tr>`);
       if (!block.length) {
-        body.push(`<tr><td colspan="9" class="muted-cell">No ${esc(label.toLowerCase())} rows after filtering.</td></tr>`);
+        body.push(`<tr><td colspan="8" class="muted-cell">No ${esc(label.toLowerCase())} rows after filtering.</td></tr>`);
       }
       block.forEach((row, rowIndex) => {
         const bestClass = rowIndex === block.length - 1 ? " best-row" : "";
@@ -826,12 +833,11 @@
           <tr class="${bestClass}">
             <td><span class="tag ${tag}">${group === "volrep" ? "VolRep" : "Baseline"}</span></td>
             <td>${esc(row.family)}</td>
-            <td>${esc(row.method)}</td>
+            <td>${renderModelCell(row)}</td>
             <td>${esc(row.metric)}</td>
             <td class="metric-cell">${fmt(row.score)}</td>
             <td class="metric-cell">+/- ${fmt(row.ci)}</td>
             <td>${esc(row.folds || "")}/${esc(row.seeds || "")}</td>
-            <td><span class="model-note">${esc(modelAnnotation(row))}</span></td>
             <td>${row.flag ? `<span class="flag">${esc(row.flag)}</span>` : ""}</td>
           </tr>
         `);
@@ -849,7 +855,6 @@
             <th>Score</th>
             <th>CI95</th>
             <th>Folds/seeds</th>
-            <th>Model/hparams</th>
             <th>Flag</th>
           </tr>
         </thead>
