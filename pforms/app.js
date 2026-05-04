@@ -214,12 +214,14 @@
   }
 
   function renderTaskThumbnail(task, sourcePane, src) {
-    const sourceLabel = {
-      synthetic: "Generated synthetic sample",
-      singlecell: "10x PCA cache sample",
-      pdo: "PDO cloud cache sample",
-      jump: "JUMP prepared-data figure",
-    }[sourcePane] || "Task data figure";
+    const sourceLabel = task === "TS4 single-cell"
+      ? "4.1: Cell Manifold Structure (t-SNE style visualization; PCA projection)"
+      : ({
+        synthetic: "Generated synthetic sample",
+        singlecell: "10x PCA cache sample",
+        pdo: "PDO cloud cache sample",
+        jump: "JUMP prepared-data figure",
+      }[sourcePane] || "Task data figure");
     return `
       <figure class="sample-figure">
         <img src="${esc(src)}" alt="${esc(task)} data thumbnail" loading="lazy">
