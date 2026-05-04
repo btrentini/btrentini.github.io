@@ -638,6 +638,46 @@
     state.task = els.taskFilter.value;
   }
 
+  function chartMetricLabel(row) {
+    return row.metric === "AUROC" ? "AUC" : row.metric || "Score";
+  }
+
+  function renderChartAucTable(groups) {
+    const rows = groups.flatMap((item) => item.bars.map((row) => ({ ...row, task: item.task })));
+    if (!rows.length) return "";
+    return `
+      <div class="task-table chart-task-table" aria-label="Chart AUC table">
+        <table>
+          <thead>
+            <tr>
+              <th>Dataset</th>
+              <th>Block</th>
+              <th>Method</th>
+              <th>AUC / metric</th>
+              <th>CI95</th>
+              <th>Folds/seeds</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((row) => {
+              const tag = row.chartGroup === "volrep" ? "volrep" : "baseline";
+              return `
+                <tr>
+                  <td>${esc(row.task)}</td>
+                  <td><span class="tag ${tag}">${row.chartGroup === "volrep" ? "Best VolRep" : "Baseline"}</span></td>
+                  <td>${esc(row.method)}</td>
+                  <td class="metric-cell">${esc(chartMetricLabel(row))} ${fmt(row.score)}</td>
+                  <td class="metric-cell">+/- ${fmt(row.ci)}</td>
+                  <td>${esc(row.folds || "")}/${esc(row.seeds || "")}</td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }
+
   function renderChart(rows) {
     const tasks = uniqueTasks(rows);
     const groups = tasks.map((task) => {
@@ -715,6 +755,7 @@
         ${tickMarkup}
         ${rowsMarkup}
       </svg>
+      ${renderChartAucTable(groups)}
     `;
   }
 

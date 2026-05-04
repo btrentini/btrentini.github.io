@@ -560,6 +560,18 @@ main {
   min-width: 920px;
 }
 
+.chart-task-table {
+  width: 100%;
+  min-width: 920px;
+  max-height: 340px;
+  margin-top: 12px;
+  box-shadow: none;
+}
+
+.chart-task-table table {
+  min-width: 920px;
+}
+
 .axis-label,
 .chart-label,
 .chart-value {
