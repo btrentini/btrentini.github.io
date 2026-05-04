@@ -231,7 +231,7 @@ main {
 }
 
 .kforms-viz-grid {
-  grid-template-columns: minmax(0, 0.82fr) minmax(250px, 0.9fr) minmax(0, 1.12fr);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   min-height: 378px;
 }
 
