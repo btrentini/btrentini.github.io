@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-05-03T17:53:21",
+  "output": "results/website/PAPER_READY",
+  "edm_rows_run40": 240,
+  "alphaflow_rows_run41": 13780,
+  "run41_protein_evidence": {
+    "gifs": 18,
+    "html": 3,
+    "pdfs": 36,
+    "pngs": 36
+  },
+  "tables": [
+    "alphaflow_run41_metric_summary.csv",
+    "edm_run40_metric_summary.csv",
+    "run41_alphaflow_completion_audit.csv",
+    "source_policy.csv"
+  ],
+  "latex_tables": [
+    "README_tables.tex",
+    "table_alphaflow_run41_endpoint_scorecard.tex",
+    "table_alphaflow_run41_size_plddt.tex",
+    "table_edm_run40_ode_fid.tex",
+    "table_edm_run40_sde_fid.tex",
+    "table_source_policy.tex"
+  ]
+}

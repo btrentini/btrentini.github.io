@@ -1,0 +1,3 @@
+run41 AlphaFlow: protein motion pair diagnostic.
+This supporting plot checks whether saved-frame motion statistics move together and whether size groups explain the spread; it is not an endpoint quality claim by itself.
+The chart is generated from the scoped website data bundle: run40 is the EDM ground truth and run41 is the AlphaFlow ground truth.

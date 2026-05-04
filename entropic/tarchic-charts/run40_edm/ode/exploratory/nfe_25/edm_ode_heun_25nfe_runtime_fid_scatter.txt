@@ -1,0 +1,2 @@
+run40 EDM ode heun at 25 NFE: runtime versus FID by scheduler.
+Use this chart to distinguish a true quality gain from a runtime-only tradeoff within one sampler and one NFE setting.

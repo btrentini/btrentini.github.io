@@ -1,0 +1,2 @@
+run40 EDM: three-image qualitative grid for ODE Heun entropic-log1p at 25 NFE.
+This checks that the qualitative sample evidence is not a single-image view; it should be read alongside the FID and runtime regime charts from run40 only.

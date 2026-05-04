@@ -1,0 +1,2 @@
+run41 AlphaFlow CAMEO Short at 5 NFE: RMSD comparison across standard and cond-marg scheduler choices.
+This is the focused version of the dataset-size RMSD story: lower points identify where cond-marg entropic schedules are preferable, and the chart avoids averaging across NFE or protein-size regimes.

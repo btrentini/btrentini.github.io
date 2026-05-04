@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Entropic Time Scheduler Evidence</title>
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <aside class="side-nav">
+    <div class="brand">
+      <div class="brand-mark">E</div>
+      <div>
+        <h1>Entropic Scheduler</h1>
+        <p>EDM + AlphaFlow evidence</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#overall">Overall / Diagnostics</a>
+      <a href="#deltas">Deltas</a>
+      <a class="sub-link" href="#delta-win-map">Where Entropic Wins</a>
+      <a class="sub-link" href="#delta-visuals">Delta Visuals</a>
+      <a class="sub-link" href="#delta-pareto">Pareto Views</a>
+      <a href="#alphaflow">AlphaFlow</a>
+      <a class="sub-link" href="#alphaflow-tables">AlphaFlow - Tables</a>
+      <a class="sub-link" href="#alphaflow-charts">AlphaFlow - Figures</a>
+      <a class="sub-link" href="#protein-evidence">AlphaFlow - Animations</a>
+      <a href="#edm">EDM</a>
+      <a class="sub-link" href="#edm-tables">EDM - Tables</a>
+      <a class="sub-link" href="#edm-atlas">EDM - Figures</a>
+      <a class="sub-link" href="#edm-animations">EDM - Animations</a>
+    </nav>
+    <button id="downloadRawData" class="side-nav-action" type="button">Download raw data JSON</button>
+  </aside>
+
+  <main>
+    <div class="tab-rail" aria-label="Evidence sections">
+      <a href="#overall" class="tab-pill active">Overall / Diagnostics</a>
+      <a href="#deltas" class="tab-pill">Deltas</a>
+      <a href="#alphaflow" class="tab-pill">AlphaFlow</a>
+      <a href="#edm" class="tab-pill">EDM</a>
+    </div>
+
+    <section id="overall" class="domain-container overall-container">
+      <div class="container-title">
+        <p class="eyebrow">Overall / diagnostics</p>
+        <h2>Entropy-rate theory, allocation diagnostics, and strongest paper results</h2>
+        <p>Primary tables and diagnostic figures for EDM and AlphaFlow.</p>
+      </div>
+
+      <section id="overall-hero" class="panel opening-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Headlines</p>
+            <h2>Scheduler comparison at 5, 10, and 25 NFE</h2>
+          </div>
+          <p class="section-note">
+            Yellow marks the best mean per panel. Runtime is shown only in the timing audit.
+          </p>
+        </div>
+        <div id="theoryValidationStatement" class="theory-verdict"></div>
+        <p class="table-note">
+          EDM excludes historical cond-marg ablations from headline cells.
+        </p>
+        <div class="headline-table-grid">
+          <div>
+            <h3>EDM ODE headline table</h3>
+            <div id="overallEdmHeroStrong" class="table-wrap hero-table compact-hero-table"></div>
+          </div>
+          <div>
+            <h3>AlphaFlow ODE headline table</h3>
+            <div id="overallAlphaHeroStrong" class="table-wrap hero-table compact-hero-table"></div>
+          </div>
+          <div>
+            <h3>EDM SDE headline table</h3>
+            <div id="overallEdmSdeHeroStrong" class="table-wrap hero-table compact-hero-table"></div>
+          </div>
+          <div>
+            <h3>AlphaFlow SDE headline table</h3>
+            <div id="overallAlphaSdeHeroStrong" class="table-wrap hero-table compact-hero-table"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="scheduler-guide" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Schedulers</p>
+            <h2>Scheduler guide</h2>
+          </div>
+          <p class="section-note">
+            Short definitions for the variants used in the tables and figures.
+          </p>
+        </div>
+        <div id="schedulerGuide" class="scheduler-guide-grid"></div>
+      </section>
+
+      <section id="theory-diagnostics" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Theory diagnostics</p>
+            <h2>Entropy curves, scheduler allocation, and tarchic evidence</h2>
+          </div>
+          <p class="section-note">
+            Entropy curves, allocation plots, and tarchic PDFs.
+          </p>
+        </div>
+        <div id="theoryEvidenceCards" class="theory-card-grid"></div>
+        <div id="tarchicTheoryGallery" class="pdf-gallery"></div>
+        <div class="subsection">
+          <div class="section-head compact-head">
+            <div>
+              <h3>Complete tarchic chart atlas</h3>
+              <p class="table-note">Every PDF under /Users/trentini/Documents/code/neurips_final/tarchic-charts is indexed here.</p>
+            </div>
+            <div class="toolbar">
+              <label>Run <select id="tarchicAtlasRun"></select></label>
+              <label>Category <select id="tarchicAtlasCategory"></select></label>
+              <label>Search <input id="tarchicAtlasSearch" type="search" placeholder="FID, AlphaFlow, NFE, protein..." /></label>
+            </div>
+          </div>
+          <div id="tarchicAtlasStats" class="mini-card-row"></div>
+          <div id="tarchicAtlasGallery" class="link-card-grid diagnostic-links tarchic-atlas-grid"></div>
+        </div>
+      </section>
+
+      <section id="visual-evidence" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Promoted diagnostics</p>
+            <h2>Key figures and copied diagnostic grid</h2>
+          </div>
+          <div class="toolbar">
+            <label>Tag <select id="figureTag"></select></label>
+            <label>Search <input id="figureSearch" type="search" placeholder="EDM, AlphaFlow, metric..." /></label>
+          </div>
+        </div>
+        <div class="subsection no-top">
+          <h3>Key promoted visual evidence</h3>
+          <div id="keyEvidence" class="key-evidence-grid"></div>
+        </div>
+        <div class="subsection">
+          <h3>Full copied diagnostic figure grid</h3>
+          <div id="figureGallery" class="gallery"></div>
+        </div>
+      </section>
+
+      <section id="evidence-tables" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Evidence tables</p>
+            <h2>Leaderboard and paper-ready tables</h2>
+          </div>
+          <div class="toolbar">
+            <label>Domain <select id="evidenceDomain"></select></label>
+            <label>Search leaderboard <input id="leaderboardSearch" type="search" placeholder="winner, metric, context..." /></label>
+          </div>
+        </div>
+        <div id="evidenceCards" class="evidence-card-grid"></div>
+        <div id="evidenceLeaderboardStats" class="mini-card-row"></div>
+        <div id="evidenceLeaderboard" class="table-wrap evidence-table"></div>
+        <div class="subsection">
+          <div class="section-head compact-head">
+            <div><h3>Evidence table browser</h3></div>
+            <div class="toolbar">
+              <label>Group <select id="evidenceTableGroup"></select></label>
+              <label>Table <select id="evidenceTableSelect"></select></label>
+              <label>Search rows <input id="evidenceTableSearch" type="search" placeholder="scheduler, metric, dataset..." /></label>
+            </div>
+          </div>
+          <div id="evidenceTableSummary" class="mini-card-row"></div>
+          <div id="evidenceTable" class="table-wrap evidence-table"></div>
+        </div>
+        <div class="subsection">
+          <div class="section-head compact-head">
+            <div><h3>Rendered LaTeX table fragments</h3></div>
+            <div class="toolbar">
+              <label>Group <select id="paperTableGroup"></select></label>
+              <label>Search <input id="paperTableSearch" type="search" placeholder="caption, placement, metric..." /></label>
+            </div>
+          </div>
+          <div id="paperTableSummary" class="stat-grid"></div>
+          <div id="paperTables" class="paper-table-list"></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="deltas" class="domain-container deltas-container">
+      <div class="container-title">
+        <p class="eyebrow">Deltas tab</p>
+        <h2>Where entropic scheduling wins, ties, or reverses</h2>
+        <p>
+          This tab compares the best entropic variant against the best non-entropic comparator for each domain, sampler, dataset, protein size, NFE, and metric slice. Positive deltas mean the entropic side is better after applying the metric direction.
+        </p>
+      </div>
+
+      <section id="delta-claims" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Bounded claims</p>
+            <h2>Three claims, kept separate</h2>
+          </div>
+          <p class="section-note">
+            Entropic scheduling is not universally better. The strongest evidence is low-NFE EDM quality, low-budget AlphaFlow bridge allocation, and log-tempered AlphaFlow stabilization.
+          </p>
+        </div>
+        <div id="deltaClaimCards" class="delta-claim-grid"></div>
+      </section>
+
+      <section id="delta-win-map" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Win map</p>
+            <h2>Best entropic variant versus best non-entropic comparator</h2>
+          </div>
+          <div class="toolbar">
+            <label>Domain <select id="deltaDomain"></select></label>
+            <label>Sampler <select id="deltaSampler"></select></label>
+            <label>Dataset <select id="deltaDataset"></select></label>
+            <label>Protein size <select id="deltaSize"></select></label>
+            <label>Metric <select id="deltaMetric"></select></label>
+            <label>Status <select id="deltaStatus"></select></label>
+            <label>Search <input id="deltaSearch" type="search" placeholder="EDM, CAMEO, pLDDT..." /></label>
+          </div>
+        </div>
+        <div id="deltaSummaryCards" class="mini-card-row"></div>
+        <div id="deltaCriteria" class="delta-criteria"></div>
+        <div id="deltaWinMap" class="table-wrap delta-table"></div>
+      </section>
+
+      <section id="delta-visuals" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Delta visual</p>
+            <h2>Positive means entropic beats the best baseline</h2>
+          </div>
+          <p class="section-note">
+            The horizontal zero line makes effect direction explicit; the chart is sorted with CI-separated entropic wins first.
+          </p>
+        </div>
+        <div id="deltaLollipopPlot" class="plot delta-plot"></div>
+      </section>
+
+      <section id="delta-pareto" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Cost check</p>
+            <h2>Pareto views keep runtime visible without making it a headline metric</h2>
+          </div>
+          <p class="section-note">
+            Pareto-front points are labeled. EDM uses Inception FID versus seconds; AlphaFlow uses pLDDT versus seconds/output.
+          </p>
+        </div>
+        <div class="plot-grid">
+          <div id="deltaEdmParetoPlot" class="plot"></div>
+          <div id="deltaAlphaParetoPlot" class="plot"></div>
+        </div>
+      </section>
+    </section>
+
+    <section id="alphaflow" class="domain-container alphaflow-container">
+      <div class="container-title">
+        <p class="eyebrow">AlphaFlow tab</p>
+        <h2>Protein-flow evidence: metric tables, charts, and structure grids</h2>
+        <p>
+          AlphaFlow is the bridge-like stress test. The main view compares standard baselines, raw Entropic · cond-marg, and damped Entropic-log1p · cond-marg.
+        </p>
+      </div>
+
+      <section id="alphaflow-tables" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">AlphaFlow tables</p>
+            <h2>CAMEO and ATLAS across metrics, NFE, and protein size</h2>
+          </div>
+          <p class="section-note">
+            AlphaFlow endpoint rows are independent of EDM ODE/SDE sampler choice, so this tab presents them once with protein-size definitions and metric-first pivots.
+          </p>
+        </div>
+        <div class="protein-size-definition" aria-label="Protein size bin definitions and filters">
+          <h3>Protein size filter</h3>
+          <button type="button" class="size-def-chip all" data-protein-size-filter="__all__"><strong>Show all bins</strong></button>
+          <button type="button" class="size-def-chip" data-protein-size-filter="Short"><strong>Short / small</strong> &le;50 residues</button>
+          <button type="button" class="size-def-chip" data-protein-size-filter="Medium"><strong>Medium</strong> 51-400 residues</button>
+          <button type="button" class="size-def-chip" data-protein-size-filter="Large"><strong>Large</strong> &gt;400 residues</button>
+          <button type="button" class="size-def-chip" data-protein-size-filter="All"><strong>All proteins</strong> pooled across size bins</button>
+        </div>
+        <div id="odeQuickCards" class="mini-card-row hidden-render-anchor"></div>
+        <div class="subsection no-top">
+          <h3>AlphaFlow CAMEO: scheduler-first table</h3>
+          <div id="odeCameoHero" class="table-wrap hero-table alpha-hero-table"></div>
+          <div class="subtable-block">
+            <h4>AlphaFlow CAMEO metric-first pivot: metrics by NFE and scheduler</h4>
+            <p class="table-note">Rows are protein-size blocks and metric names; columns are grouped first by NFE and then by scheduler variant.</p>
+            <div id="odeCameoMetricHero" class="table-wrap hero-table alpha-hero-table alpha-metric-pivot-table"></div>
+          </div>
+        </div>
+        <div class="subsection">
+          <h3>AlphaFlow ATLAS: scheduler-first table</h3>
+          <div id="odeAtlasHero" class="table-wrap hero-table alpha-hero-table"></div>
+        </div>
+        <div class="subsection compact-duplicate">
+          <h3>SDE companion copies for cross-tab consistency</h3>
+          <div id="sdeQuickCards" class="mini-card-row hidden-render-anchor"></div>
+          <div id="sdeCameoHero" class="table-wrap hero-table alpha-hero-table hidden-render-anchor"></div>
+          <div id="sdeCameoMetricHero" class="table-wrap hero-table alpha-hero-table alpha-metric-pivot-table hidden-render-anchor"></div>
+          <div id="sdeAtlasHero" class="table-wrap hero-table alpha-hero-table hidden-render-anchor"></div>
+        </div>
+      </section>
+
+      <section id="alphaflow-charts" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">AlphaFlow charts</p>
+            <h2>Dynamic metric slices with scheduler selection</h2>
+          </div>
+          <div class="toolbar">
+            <label>Metric <select id="odeAlphaMetric"></select></label>
+            <label>Protein size <select id="odeAlphaSize"></select></label>
+          </div>
+        </div>
+        <div id="odeAlphaSchedulerFilters" class="scheduler-filter-panel"></div>
+        <div id="odeAlphaChartContext" class="chart-context"></div>
+        <div class="plot-grid">
+          <div id="odeCameoLinePlot" class="plot"></div>
+          <div id="odeAtlasLinePlot" class="plot"></div>
+        </div>
+      </section>
+
+      <section id="alphaflow-dynamic" class="panel">
+        <div class="section-head compact-head">
+          <div>
+            <p class="eyebrow">Run41 plots</p>
+            <h2>AlphaFlow dynamic plot controls</h2>
+          </div>
+          <div class="toolbar">
+            <label>Dataset <select id="run41AlphaDataset"></select></label>
+            <label>Family <select id="run41AlphaFamily"></select></label>
+            <label>Metric <select id="run41AlphaMetric"></select></label>
+            <label>NFE <select id="run41AlphaNfe"></select></label>
+          </div>
+        </div>
+        <p id="run41SourceNote" class="source-footnote"></p>
+        <div class="plot-grid run41-plot-grid">
+          <div id="run41AlphaLinePlot" class="plot"></div>
+          <div id="run41AlphaHeatmapPlot" class="plot"></div>
+        </div>
+        <div id="run41AlphaWinnerPlot" class="plot small-plot"></div>
+        <div id="run41PlotAnalysis" class="analysis-shell compact-analysis"></div>
+      </section>
+
+      <section id="protein-evidence" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Protein grids</p>
+            <h2>AlphaFlow protein-construction evidence</h2>
+          </div>
+          <p class="section-note">
+            Animated GIF cards show generated endpoint evolution; companion links open interactive HTML viewers and PDF/PNG storyboards.
+          </p>
+        </div>
+        <div id="run41ProteinEvidenceStats" class="mini-card-row"></div>
+        <div id="run41ProteinEvidenceGallery" class="gallery protein-gif-grid"></div>
+        <div id="run41ProteinEvidenceLinks" class="link-card-grid diagnostic-links"></div>
+      </section>
+    </section>
+
+    <section id="edm" class="domain-container edm-container">
+      <div class="container-title">
+        <p class="eyebrow">EDM tab</p>
+        <h2>Image-sampler evidence: ODE/SDE tables, charts, and figure atlas</h2>
+        <p>
+          EDM is the mismatch test. Main EDM evidence excludes conditional-minus-marginal ablation rows; historical cond-marg diagnostics are labeled supplemental if surfaced.
+        </p>
+      </div>
+
+      <section id="edm-tables" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">EDM tables</p>
+            <h2>EDM scheduler variants across metrics and NFE</h2>
+          </div>
+          <p class="section-note">
+            ODE and SDE Heun views are separated because the same time grid interacts differently with deterministic and stochastic integration.
+          </p>
+        </div>
+        <div class="subsection no-top">
+          <h3>ODE Heun</h3>
+          <div id="odeEdmHero" class="table-wrap hero-table"></div>
+        </div>
+        <div class="subsection">
+          <h3>SDE Heun</h3>
+          <div id="sdeEdmHero" class="table-wrap hero-table"></div>
+        </div>
+      </section>
+
+      <section id="edm-charts" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">EDM charts</p>
+            <h2>ODE and SDE scheduler comparison with selectable schedulers</h2>
+          </div>
+          <div class="toolbar">
+            <label>ODE metric <select id="odeEdmMetric"></select></label>
+            <label>SDE metric <select id="sdeEdmMetric"></select></label>
+          </div>
+        </div>
+        <div id="odeEdmSchedulerFilters" class="scheduler-filter-panel"></div>
+        <div id="sdeEdmSchedulerFilters" class="scheduler-filter-panel"></div>
+        <div id="sdeAlphaChartContext" class="chart-context hidden-render-anchor"></div>
+        <div class="plot-grid">
+          <div id="odeEdmLinePlot" class="plot"></div>
+          <div id="odeEdmHeatmap" class="plot"></div>
+        </div>
+        <div class="plot-grid">
+          <div id="sdeEdmLinePlot" class="plot"></div>
+          <div id="sdeEdmHeatmap" class="plot"></div>
+        </div>
+        <div class="hidden-render-anchor">
+          <label>Unused SDE AlphaFlow metric <select id="sdeAlphaMetric"></select></label>
+          <label>Unused SDE AlphaFlow size <select id="sdeAlphaSize"></select></label>
+          <div id="sdeCameoLinePlot" class="plot"></div>
+          <div id="sdeAtlasLinePlot" class="plot"></div>
+        </div>
+      </section>
+
+      <section id="edm-atlas" class="panel">
+        <div class="section-head compact-head">
+          <div>
+            <p class="eyebrow">EDM figure atlas</p>
+            <h2>Entropy curves, trajectories, and schedule diagnostics</h2>
+          </div>
+          <div class="toolbar">
+            <label>Figure type <select id="run40FigureKind"></select></label>
+            <label>Search <input id="run40FigureSearch" type="search" placeholder="trajectory, entropy, scheduler..." /></label>
+          </div>
+        </div>
+        <div id="run40FigureStats" class="mini-card-row"></div>
+        <div id="run40EdmGallery" class="gallery figure-atlas"></div>
+      </section>
+
+      <section id="edm-animations" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">EDM animations</p>
+            <h2>Trajectory-style EDM sample panels</h2>
+          </div>
+          <p class="section-note">
+            The copied EDM evidence currently contains static trajectory/sample panels rather than GIFs. They are separated here as the animation/motion audit layer.
+          </p>
+        </div>
+        <div id="edmAnimationStats" class="mini-card-row"></div>
+        <div id="edmAnimationGallery" class="gallery figure-atlas"></div>
+      </section>
+    </section>
+
+  </main>
+
+  <div id="imageLightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-label="Expanded image viewer" hidden>
+    <div class="image-lightbox-panel">
+      <button id="imageLightboxClose" class="image-lightbox-close" type="button" aria-label="Close expanded image">X</button>
+      <img id="imageLightboxImage" alt="" />
+      <iframe id="imageLightboxFrame" class="image-lightbox-frame" title="Expanded visual asset"></iframe>
+      <div class="image-lightbox-caption">
+        <strong id="imageLightboxTitle"></strong>
+        <span id="imageLightboxOrigin" class="origin-badge"></span>
+        <code id="imageLightboxPath"></code>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/plotly-2.27.0.min.js"></script>
+  <script src="data/tarchic_chart_manifest.js"></script>
+  <script src="data/site_data.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

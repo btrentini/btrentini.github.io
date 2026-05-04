@@ -1,0 +1,1 @@
+Timing audit. EDM excludes conditional-minus-marginal ablation rows; AlphaFlow excludes log1p supplemental variants. Boxes pool scheduler variants, seeds, datasets, and proteins within the displayed NFE/sampler/size stratum.

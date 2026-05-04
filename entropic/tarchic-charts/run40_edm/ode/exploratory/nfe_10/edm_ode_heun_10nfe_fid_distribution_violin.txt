@@ -1,0 +1,2 @@
+run40 EDM ode heun at 10 NFE: seed-level FID distribution by scheduler.
+This isolates the NFE regime so the entropic-log1p claim is not diluted by easier or harder NFE settings.

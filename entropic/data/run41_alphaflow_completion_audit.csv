@@ -1,0 +1,13 @@
+experiment,family,dataset,size,rank_csv_count,rank_rows,has_metrics_csv,metrics_csv_rows,expected_full_rows,status,source_run
+exp_05_alphaflow_atlas_test_large_condmarg,condmarg,ATLAS,Large,8,330,True,329,,complete,run41_rebuttal
+exp_05_alphaflow_atlas_test_large_std,standard,ATLAS,Large,8,822,False,0,990,partial_rank_csv_only,run41_rebuttal
+exp_05_alphaflow_atlas_test_medium_condmarg,condmarg,ATLAS,Medium,8,1080,True,1080,,complete,run41_rebuttal
+exp_05_alphaflow_atlas_test_medium_std,standard,ATLAS,Medium,8,3240,True,3240,,complete,run41_rebuttal
+exp_05_alphaflow_atlas_test_short_condmarg,condmarg,ATLAS,Short,8,30,True,30,,complete,run41_rebuttal
+exp_05_alphaflow_atlas_test_short_std,standard,ATLAS,Short,8,90,True,90,,complete,run41_rebuttal
+exp_05_alphaflow_cameo2022_large_condmarg,condmarg,CAMEO,Large,8,570,True,570,,complete,run41_rebuttal
+exp_05_alphaflow_cameo2022_large_std,standard,CAMEO,Large,8,1258,False,0,1710,partial_rank_csv_only,run41_rebuttal
+exp_05_alphaflow_cameo2022_medium_condmarg,condmarg,CAMEO,Medium,8,1290,True,1290,,complete,run41_rebuttal
+exp_05_alphaflow_cameo2022_medium_std,standard,CAMEO,Medium,8,3870,True,3870,,complete,run41_rebuttal
+exp_05_alphaflow_cameo2022_short_condmarg,condmarg,CAMEO,Short,8,300,True,300,,complete,run41_rebuttal
+exp_05_alphaflow_cameo2022_short_std,standard,CAMEO,Short,8,900,True,900,,complete,run41_rebuttal

@@ -1,0 +1,1 @@
+Split AlphaFlow conditional-minus-marginal theory panel generated with tarchic styling; the historical BCR callout is intentionally omitted.

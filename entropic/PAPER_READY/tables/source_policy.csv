@@ -1,0 +1,3 @@
+domain,ground_truth_run,allowed_source,main_filter
+EDM,run40_rebuttal,results/run40_rebuttal/summary/edm_all_metrics.csv,entropy_mode != conditional_minus_marginal
+AlphaFlow,run41_rebuttal,results/run41_rebuttal/exp_05_alphaflow_*/metrics.rank*.csv,all run41 AlphaFlow scheduler variants included
