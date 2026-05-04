@@ -3,6 +3,16 @@
 
   const DATA = window.RESULT_DATA;
   const paneOrder = ["primary", "synthetic", "singlecell", "pdo", "jump", "others"];
+  const PRIMARY_PDO_RESULTS_TASKS = [
+    "PDO A cell type",
+    "PDO A no-caspase",
+    "PDO B culture",
+    "PDO C treatment",
+    "PDO F patient",
+    "PDO response CAF",
+    "PDO response EFP",
+    "PDO response tumor-selective",
+  ];
   const state = {
     pane: "primary",
     task: "__all__",
@@ -43,6 +53,30 @@
   };
 
   const thumbnailBase = "assets/task-thumbnails/";
+
+  function installPrimaryPdoResults() {
+    const primary = DATA.panes.primary;
+    const pdo = DATA.panes.pdo;
+    if (!primary?.rows || !pdo?.rows) return;
+
+    const keyFor = (row) => [row.task, row.group, row.family, row.method, row.metric].join("\u001f");
+    const existing = new Set(primary.rows.map(keyFor));
+    const additions = pdo.rows
+      .filter((row) => PRIMARY_PDO_RESULTS_TASKS.includes(row.task))
+      .filter((row) => !existing.has(keyFor(row)))
+      .map((row) => ({ ...row, sourcePane: "pdo", sourceRoot: "PDO_RESULTS" }));
+
+    if (!additions.length) return;
+    primary.rows = [...primary.rows, ...additions];
+    primary.sources = [...new Set([
+      ...(primary.sources || []),
+      ...(pdo.sources || []),
+      "PDO_RESULTS/pdo_core_20260429_091932",
+    ])];
+    primary.subtitle = "Main evidence path plus PDO_RESULTS benchmark block";
+  }
+
+  installPrimaryPdoResults();
 
   const els = {
     tabs: Array.from(document.querySelectorAll(".tab")),

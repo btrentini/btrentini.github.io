@@ -227,20 +227,40 @@ main {
 }
 
 .kforms-viz-hero .inspection-heading {
-  min-height: 338px;
+  min-height: 378px;
 }
 
 .kforms-viz-grid {
-  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
-  min-height: 338px;
+  grid-template-columns: minmax(0, 0.82fr) minmax(250px, 0.9fr) minmax(0, 1.12fr);
+  min-height: 378px;
 }
 
 .kforms-viz-grid .inspection-tile {
-  min-height: 338px;
+  min-height: 378px;
 }
 
 .kforms-viz-grid .inspection-tile img {
-  height: 306px;
+  height: 346px;
+}
+
+.kforms-code-tile pre {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: 12px 14px;
+  overflow: auto;
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(0, 132, 110, 0.09), transparent 42%),
+    var(--panel-soft);
+  color: var(--ink);
+  font: 11px/1.45 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  white-space: pre;
+}
+
+.kforms-code-tile code {
+  display: block;
+  min-width: 560px;
 }
 
 .inspection-tile {
@@ -965,6 +985,10 @@ tbody tr:hover td {
 
   .kforms-viz-grid .inspection-tile img {
     height: 260px;
+  }
+
+  .kforms-code-tile pre {
+    max-height: 280px;
   }
 
   .metric-contract,

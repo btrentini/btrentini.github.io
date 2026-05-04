@@ -33,6 +33,33 @@
             <img src="assets/task-thumbnails/kforms_ts3_pullback_coframe.png" alt="TS3 learned pullback coframe with two learned form directions on a torus">
             <figcaption>TS3 learned pullback coframe</figcaption>
           </figure>
+          <figure class="inspection-tile kforms-code-tile">
+            <pre aria-label="TS3 learned pullback coframe source code"><code>model.eval()
+with torch.no_grad():
+    omega = model.forms(pc.points)[:, :2, :]
+    Vpull = torch.matmul(omega, G1)
+    Gp = pointwise_gram_learned(pc, omega)
+    det_vals = torch.linalg.det(Gp).clamp_min(0).cpu().numpy()
+
+print("omega shape:", tuple(omega.shape))
+print("Pointwise Gram shape:", tuple(Gp.shape))
+print("Determinant stats:", float(det_vals.min()), float(det_vals.mean()), float(det_vals.max()))
+
+viz.cones3d_two(
+    pc.points.cpu().numpy(),
+    Vpull[:, 0, :].cpu().numpy(),
+    Vpull[:, 1, :].cpu().numpy(),
+    title="TS3: learned pullback coframe",
+    max_cones=1200,
+    arrow_scale=0.3,
+    sizeref=0.06,
+    det_vals=det_vals,
+    color_points=False,
+    points_use_subset=True,
+    colorscale=PF_SEQUENTIAL_COLORSCALE,
+)</code></pre>
+            <figcaption>TS3 pullback coframe code</figcaption>
+          </figure>
           <figure class="inspection-tile">
             <img src="assets/task-thumbnails/kforms_levelset_shape_grid.png" alt="Six 3D sampled point clouds: cylinder, plane, quadratic leaf, sine leaf, sphere, and toroidal loop">
             <figcaption>Level sets, leaves, sphere, and toroidal loop</figcaption>
