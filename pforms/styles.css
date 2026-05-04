@@ -585,6 +585,15 @@ main {
   font-weight: 700;
 }
 
+.best-star {
+  fill: var(--amber);
+  font-size: 17px;
+  paint-order: stroke;
+  stroke: var(--panel);
+  stroke-linejoin: round;
+  stroke-width: 3px;
+}
+
 .grid-line {
   stroke: var(--grid);
   stroke-dasharray: 3 4;
@@ -751,6 +760,17 @@ tbody tr:hover td {
 
 .best-row td {
   background: rgba(0, 132, 110, 0.08);
+}
+
+.task-best-row td {
+  background: rgba(255, 176, 0, 0.12);
+}
+
+.best-marker {
+  display: inline-block;
+  margin-right: 4px;
+  color: var(--amber);
+  line-height: 1;
 }
 
 .tag {

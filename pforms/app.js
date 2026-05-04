@@ -156,6 +156,17 @@
     })[0] || null;
   }
 
+  function isSameResult(a, b) {
+    return Boolean(a && b)
+      && a.task === b.task
+      && a.group === b.group
+      && a.family === b.family
+      && a.method === b.method
+      && a.metric === b.metric
+      && Number(a.score) === Number(b.score)
+      && Number(a.ci) === Number(b.ci);
+  }
+
   function isPrimaryCompetitive(taskRows) {
     const rows = taskRows.filter(isReportableRow);
     const baseline = bestOf(rows.filter((row) => row.group === "baseline"));
@@ -666,12 +677,13 @@
           <tbody>
             ${rows.map((row) => {
               const tag = row.chartGroup === "volrep" ? "volrep" : "baseline";
+              const bestMarker = row.isTaskBest ? `<span class="best-marker" title="Best result for this task">⭐</span> ` : "";
               return `
-                <tr>
+                <tr class="${row.isTaskBest ? "task-best-row" : ""}">
                   <td>${esc(row.task)}</td>
                   <td><span class="tag ${tag}">${row.chartGroup === "volrep" ? "Best VolRep" : "Baseline"}</span></td>
                   <td>${esc(row.method)}</td>
-                  <td class="metric-cell">${esc(chartMetricLabel(row))} ${fmt(row.score)}</td>
+                  <td class="metric-cell">${bestMarker}${esc(chartMetricLabel(row))} ${fmt(row.score)}</td>
                   <td class="metric-cell">+/- ${fmt(row.ci)}</td>
                   <td>${esc(row.folds || "")}/${esc(row.seeds || "")}</td>
                 </tr>
@@ -689,12 +701,14 @@
       const taskRows = rows.filter((row) => row.task === task);
       const baselines = sortRows(taskRows.filter((row) => row.group === "baseline"));
       const bestVolrep = bestOf(taskRows.filter((row) => row.group === "volrep"));
+      const chartRows = [
+        ...baselines.map((row) => ({ ...row, chartGroup: "baseline" })),
+        ...(bestVolrep ? [{ ...bestVolrep, chartGroup: "volrep" }] : []),
+      ];
+      const taskBest = bestOf(chartRows);
       return {
         task,
-        bars: [
-          ...baselines.map((row) => ({ ...row, chartGroup: "baseline" })),
-          ...(bestVolrep ? [{ ...bestVolrep, chartGroup: "volrep" }] : []),
-        ],
+        bars: chartRows.map((row) => ({ ...row, isTaskBest: row === taskBest })),
       };
     }).filter((item) => item.bars.length);
 
@@ -743,6 +757,7 @@
         const label = row.chartGroup === "volrep" ? `Best VolRep: ${row.method}` : row.method;
         return `
           <text class="chart-label" x="14" y="${y + 4}">${esc(label)}</text>
+          ${row.isTaskBest ? `<text class="best-star" x="${Math.min(Math.max(x(row.score), left + 10), width - 118)}" y="${y - 11}" text-anchor="middle">⭐</text>` : ""}
           <rect class="${className}" x="${left}" y="${y - barH / 2}" width="${x(row.score) - left}" height="${barH}" rx="3"></rect>
           ${error(row, y)}
           <text class="chart-value" x="${Math.min(x(row.score) + 8, width - 104)}" y="${y + 4}">${esc(fmtMetric(row))}</text>
@@ -809,6 +824,7 @@
 
   function renderMetricTable(taskRows) {
     const body = [];
+    const taskBest = bestOf(taskRows);
     [
       ["baseline", "Baselines"],
       ["volrep", "VolRep variants"],
@@ -821,14 +837,16 @@
       }
       block.forEach((row, rowIndex) => {
         const bestClass = rowIndex === block.length - 1 ? " best-row" : "";
+        const taskBestClass = isSameResult(row, taskBest) ? " task-best-row" : "";
+        const bestMarker = taskBestClass ? `<span class="best-marker" title="Best result for this task">⭐</span> ` : "";
         const tag = group === "volrep" ? "volrep" : "baseline";
         body.push(`
-          <tr class="${bestClass}">
+          <tr class="${bestClass}${taskBestClass}">
             <td><span class="tag ${tag}">${group === "volrep" ? "VolRep" : "Baseline"}</span></td>
             <td>${esc(row.family)}</td>
             <td>${esc(row.method)}</td>
             <td>${esc(row.metric)}</td>
-            <td class="metric-cell">${fmt(row.score)}</td>
+            <td class="metric-cell">${bestMarker}${fmt(row.score)}</td>
             <td class="metric-cell">+/- ${fmt(row.ci)}</td>
             <td>${esc(row.folds || "")}/${esc(row.seeds || "")}</td>
             <td><span class="model-note">${esc(modelAnnotation(row))}</span></td>
