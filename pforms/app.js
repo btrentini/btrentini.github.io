@@ -97,13 +97,22 @@
     return family !== "hodge" && !method.includes("hodge");
   }
 
-  function paneRows(pane) {
-    return (pane.rows || []).filter(isReportableRow);
+  function primaryTaskNames() {
+    return new Set((DATA.panes.primary?.rows || []).filter(isReportableRow).map((row) => row.task));
+  }
+
+  function paneRows(pane, paneKey = state.pane) {
+    let rows = (pane.rows || []).filter(isReportableRow);
+    if (paneKey !== "primary") {
+      const primaryTasks = primaryTaskNames();
+      rows = rows.filter((row) => !primaryTasks.has(row.task));
+    }
+    return rows;
   }
 
   function rowsForPane() {
     const pane = DATA.panes[state.pane];
-    let rows = paneRows(pane);
+    let rows = paneRows(pane, state.pane);
     if (state.task !== "__all__") rows = rows.filter((row) => row.task === state.task);
     if (state.filter) {
       const q = state.filter.toLowerCase();
@@ -314,7 +323,7 @@
 
   function sourcePaneForTask(task) {
     const pane = DATA.panes[state.pane];
-    const row = paneRows(pane).find((item) => item.task === task);
+    const row = paneRows(pane, state.pane).find((item) => item.task === task);
     return row?.sourcePane || state.pane;
   }
 
@@ -558,7 +567,7 @@
 
   function renderSummary() {
     const pane = DATA.panes[state.pane];
-    const allRows = paneRows(pane);
+    const allRows = paneRows(pane, state.pane);
     const tasks = uniqueTasks(allRows);
     const baselines = allRows.filter((row) => row.group === "baseline").length;
     const volreps = allRows.filter((row) => row.group === "volrep").length;
@@ -589,7 +598,7 @@
 
   function renderTaskFilter() {
     const pane = DATA.panes[state.pane];
-    const tasks = uniqueTasks(paneRows(pane));
+    const tasks = uniqueTasks(paneRows(pane, state.pane));
     els.taskFilter.innerHTML = [
       `<option value="__all__">All datasets</option>`,
       ...tasks.map((task) => `<option value="${esc(task)}">${esc(task)}</option>`),
