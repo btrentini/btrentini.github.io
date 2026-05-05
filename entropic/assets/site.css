@@ -641,6 +641,25 @@ tbody tr:hover td.best {
 }
 .leaderboard-table table { min-width: 1180px; }
 .evidence-table table { min-width: 1040px; }
+.edm-audit-note {
+  margin: 10px 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.edm-variant-audit-table table { min-width: 1480px; }
+.edm-variant-audit-table td,
+.edm-variant-audit-table th {
+  vertical-align: top;
+}
+.edm-variant-audit-table .supplemental-row td {
+  background: #fffaf0;
+}
+.edm-variant-audit-table .supplemental-row:hover td {
+  background: #fff6df;
+}
+.edm-variant-audit-table .comparator-row td {
+  background: #f8fafc;
+}
 .matrix-table table { min-width: max(1280px, var(--table-fit-width)); }
 .alpha-unified-table table { min-width: max(1160px, var(--table-fit-width)); }
 .matrix-table th {

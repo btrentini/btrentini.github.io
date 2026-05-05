@@ -269,6 +269,8 @@ def normalize_edm_rows() -> list[dict]:
                 "sampling_seconds": number(row.get("sampling_seconds")),
                 "sigma_lt_1_count": number(row.get("sigma_lt_1_count")),
                 "sigma_lt_0p1_count": number(row.get("sigma_lt_0p1_count")),
+                "sigma_max_jump": number(row.get("sigma_max_jump")),
+                "sigma_last_jump": number(row.get("sigma_last_jump")),
                 "entropy_mode": row.get("entropy_mode", ""),
                 "entropy_variant": row.get("entropy_variant", ""),
                 "experiment_path": row.get("experiment_path", ""),

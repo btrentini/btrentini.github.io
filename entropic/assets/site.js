@@ -3604,6 +3604,316 @@ function renderEdmHeroTable(containerId, mode) {
   el.innerHTML = html;
 }
 
+function auditStatFromValues(values) {
+  const clean = values.map(Number).filter(Number.isFinite);
+  if (!clean.length) return null;
+  const n = clean.length;
+  const mean = clean.reduce((sum, value) => sum + value, 0) / n;
+  const variance = n > 1
+    ? clean.reduce((sum, value) => sum + Math.pow(value - mean, 2), 0) / (n - 1)
+    : 0;
+  const std = Math.sqrt(Math.max(0, variance));
+  return {
+    mean,
+    std,
+    ci: n > 1 ? 1.96 * std / Math.sqrt(n) : 0,
+    n
+  };
+}
+
+function rawEdmMetricStat(rows, metric) {
+  const stat = auditStatFromValues(rows.map(row => row?.[metric]));
+  return stat ? withEdmSupport(stat) : null;
+}
+
+function edmProfileLookup(row) {
+  if (!row) return {};
+  const key = [
+    row.mode || '',
+    row.scheduler || '',
+    Number(row.n_steps),
+    row.entropy_mode || '',
+    row.entropy_variant || ''
+  ].join('|');
+  return window.EDM_PROFILE_STATS?.[key] || {};
+}
+
+function rawEdmProfileStat(rows, key) {
+  return auditStatFromValues(rows.map(row => row?.[key] ?? edmProfileLookup(row)?.[key]));
+}
+
+function auditVariantKey(scheduler, entropyMode, entropyVariant) {
+  return `${scheduler || ''}__${entropyMode || ''}__${entropyVariant || ''}`;
+}
+
+function auditVariantStreamLabel(desc) {
+  if (desc.scheduler === 'linear') return 'linear comparator';
+  if (desc.entropyMode === 'conditional_minus_marginal') {
+    return desc.entropyVariant === 'log1p'
+      ? 'supplemental cond-marg + log1p'
+      : 'supplemental cond-marg';
+  }
+  if (desc.entropyMode === 'empirical_hutchinson') {
+    return desc.entropyVariant === 'log1p'
+      ? 'empirical Hutchinson + log1p'
+      : 'empirical Hutchinson';
+  }
+  return desc.entropyMode || 'standard';
+}
+
+function auditVariantRank(desc) {
+  if (desc.scheduler === 'linear') return 0;
+  const schedulerRanks = {
+    entropic: 10,
+    entropic_log1p: 20
+  };
+  const streamRanks = {
+    empirical_hutchinson: 0,
+    conditional_minus_marginal: 1
+  };
+  return (schedulerRanks[desc.scheduler] ?? 100 + schedulerRank(desc.scheduler))
+    + (streamRanks[desc.entropyMode] ?? 5);
+}
+
+function edmAuditVariantDescriptors() {
+  const descriptors = new Map();
+  descriptors.set(auditVariantKey('linear', '', ''), {
+    scheduler: 'linear',
+    entropyMode: '',
+    entropyVariant: '',
+    label: 'Linear comparator',
+    streamLabel: 'linear comparator',
+    supplemental: false
+  });
+  (D.raw?.edm || [])
+    .filter(row => isEntropicScheduler(row.scheduler))
+    .forEach(row => {
+      const key = auditVariantKey(row.scheduler, row.entropy_mode, row.entropy_variant);
+      if (descriptors.has(key)) return;
+      descriptors.set(key, {
+        scheduler: row.scheduler,
+        entropyMode: row.entropy_mode || '',
+        entropyVariant: row.entropy_variant || '',
+        label: schedulerLabel(row.scheduler),
+        streamLabel: auditVariantStreamLabel({
+          scheduler: row.scheduler,
+          entropyMode: row.entropy_mode || '',
+          entropyVariant: row.entropy_variant || ''
+        }),
+        supplemental: row.entropy_mode === 'conditional_minus_marginal'
+      });
+    });
+  return Array.from(descriptors.values()).sort((a, b) => auditVariantRank(a) - auditVariantRank(b));
+}
+
+function rawEdmRowsForAuditVariant(mode, step, variant) {
+  return (D.raw?.edm || []).filter(row => {
+    const sameSlice = row.mode === mode && Number(row.n_steps) === Number(step);
+    if (!sameSlice || row.scheduler !== variant.scheduler) return false;
+    if (variant.scheduler === 'linear') return !row.entropy_mode && !row.entropy_variant;
+    return (row.entropy_mode || '') === variant.entropyMode && (row.entropy_variant || '') === variant.entropyVariant;
+  });
+}
+
+function pairedDeltaStat(rows, baselineRows, metric) {
+  const baselineBySeed = new Map(baselineRows.map(row => [String(row.seed), row]));
+  const deltas = rows
+    .map(row => {
+      const baseline = baselineBySeed.get(String(row.seed));
+      const value = Number(row?.[metric]);
+      const baseValue = Number(baseline?.[metric]);
+      return Number.isFinite(value) && Number.isFinite(baseValue) ? value - baseValue : null;
+    })
+    .filter(value => value !== null);
+  return auditStatFromValues(deltas);
+}
+
+function auditProfileStats(rows) {
+  return {
+    sigma_lt_1_count: rawEdmProfileStat(rows, 'sigma_lt_1_count'),
+    sigma_lt_0p1_count: rawEdmProfileStat(rows, 'sigma_lt_0p1_count'),
+    sigma_max_jump: rawEdmProfileStat(rows, 'sigma_max_jump'),
+    sigma_last_jump: rawEdmProfileStat(rows, 'sigma_last_jump')
+  };
+}
+
+function edmVariantAuditRows() {
+  const variants = edmAuditVariantDescriptors();
+  const modes = unique((D.raw?.edm || []).map(row => row.mode));
+  const steps = unique((D.raw?.edm || []).map(row => Number(row.n_steps))).map(Number).sort((a, b) => a - b);
+  const linearVariant = variants.find(variant => variant.scheduler === 'linear');
+  const rows = [];
+  modes.forEach(mode => {
+    steps.forEach(step => {
+      const linearRows = rawEdmRowsForAuditVariant(mode, step, linearVariant);
+      const linearProfiles = auditProfileStats(linearRows);
+      variants.forEach(variant => {
+        const rawRows = rawEdmRowsForAuditVariant(mode, step, variant);
+        if (!rawRows.length) return;
+        rows.push({
+          mode,
+          step,
+          variant,
+          rawRows,
+          stats: {
+            fid_inception: rawEdmMetricStat(rawRows, 'fid_inception'),
+            fid_pixel: rawEdmMetricStat(rawRows, 'fid_pixel'),
+            infer_seconds: rawEdmMetricStat(rawRows, 'infer_seconds')
+          },
+          deltaStats: variant.scheduler === 'linear' ? {} : {
+            fid_inception: pairedDeltaStat(rawRows, linearRows, 'fid_inception'),
+            fid_pixel: pairedDeltaStat(rawRows, linearRows, 'fid_pixel')
+          },
+          profileStats: auditProfileStats(rawRows),
+          linearProfiles
+        });
+      });
+    });
+  });
+  return rows;
+}
+
+function sameAuditProfileValue(a, b, tolerance = 1e-9) {
+  const av = Number(a?.mean);
+  const bv = Number(b?.mean);
+  return Number.isFinite(av) && Number.isFinite(bv) && Math.abs(av - bv) <= tolerance;
+}
+
+function auditSameCoarseCounts(row) {
+  return sameAuditProfileValue(row.profileStats.sigma_lt_1_count, row.linearProfiles.sigma_lt_1_count)
+    && sameAuditProfileValue(row.profileStats.sigma_lt_0p1_count, row.linearProfiles.sigma_lt_0p1_count);
+}
+
+function auditDifferentJumpStats(row) {
+  const keys = ['sigma_max_jump', 'sigma_last_jump'];
+  return keys.some(key => {
+    const av = Number(row.profileStats[key]?.mean);
+    const bv = Number(row.linearProfiles[key]?.mean);
+    return Number.isFinite(av) && Number.isFinite(bv) && Math.abs(av - bv) > 1e-9;
+  });
+}
+
+function auditProfileComparison(row) {
+  if (row.variant.scheduler === 'linear') return 'linear reference';
+  const countText = auditSameCoarseCounts(row) ? 'coarse sigma counts match' : 'coarse sigma counts differ';
+  const hasJumpData = ['sigma_max_jump', 'sigma_last_jump'].some(key => row.profileStats[key] && row.linearProfiles[key]);
+  if (!hasJumpData) return countText;
+  return `${countText}; sigma jumps ${auditDifferentJumpStats(row) ? 'differ' : 'match'}`;
+}
+
+function formatSignedValue(value, fmt) {
+  const x = Number(value);
+  if (!Number.isFinite(x)) return 'n/a';
+  const sign = x > 0 ? '+' : '';
+  return `${sign}${formatValue(x, fmt)}`;
+}
+
+function formatSignedCell(stat, cfg) {
+  if (!stat || stat.mean === null || stat.mean === undefined) return '<span class="weak">n/a</span>';
+  const ci = stat.ci === null || stat.ci === undefined ? 'n/a' : formatValue(stat.ci, cfg.fmt);
+  return `${formatSignedValue(stat.mean, cfg.fmt)}<span class="ci">± ${ci}</span>`;
+}
+
+function formatAuditProfileCell(stat, fmt = '.3f') {
+  if (!stat || stat.mean === null || stat.mean === undefined) return '<span class="weak">n/a</span>';
+  const value = Number(stat.mean);
+  if (!Number.isFinite(value)) return '<span class="weak">n/a</span>';
+  if (Math.abs(value - Math.round(value)) < 1e-9) return formatInt(Math.round(value));
+  return formatValue(value, fmt);
+}
+
+function renderEdmVariantAudit() {
+  const cardEl = $('edmVariantAuditCards');
+  const noteEl = $('edmLog1pLinearConcern');
+  const tableEl = $('edmVariantAuditTable');
+  if (!cardEl || !noteEl || !tableEl) return;
+  const rows = edmVariantAuditRows();
+  const entropicRows = rows.filter(row => row.variant.scheduler !== 'linear');
+  const variants = edmAuditVariantDescriptors().filter(variant => variant.scheduler !== 'linear');
+  const empiricalLog1pRows = rows.filter(row => row.variant.scheduler === EDM_SPOTLIGHT_SCHEDULER && row.variant.entropyMode === 'empirical_hutchinson');
+  const condmargLog1pRows = rows.filter(row => row.variant.scheduler === EDM_SPOTLIGHT_SCHEDULER && row.variant.entropyMode === 'conditional_minus_marginal');
+  const empiricalSameCounts = empiricalLog1pRows.filter(auditSameCoarseCounts).length;
+  const condmargSameCounts = condmargLog1pRows.filter(auditSameCoarseCounts).length;
+  const empiricalJumpDiffs = empiricalLog1pRows.filter(auditDifferentJumpStats).length;
+  const nearLinearFid = empiricalLog1pRows.filter(row => Math.abs(Number(row.deltaStats.fid_inception?.mean)) <= 1).length;
+  cardEl.innerHTML = [
+    ['Entropic streams', variants.length, 'entropic and entropic-log1p, each split by evidence stream'],
+    ['Reported entropic rows', entropicRows.length, '2 samplers x 3 NFE x all entropic streams'],
+    ['Empirical log1p sigma counts', `${empiricalSameCounts}/${empiricalLog1pRows.length}`, 'same coarse counts as linear; jump stats still checked'],
+    ['Empirical log1p near-linear FID', `${nearLinearFid}/${empiricalLog1pRows.length}`, 'within 1 Inception-FID point of linear']
+  ].map(([label, value, detail]) => `<div class="mini-card"><div class="label">${htmlEscape(label)}</div><div class="value">${htmlEscape(value)}</div><div class="detail">${htmlEscape(detail)}</div></div>`).join('');
+  noteEl.innerHTML = `Empirical entropic-log1p is close to linear at higher NFE, but the available profile proxies do not make it identical: ${empiricalSameCounts}/${empiricalLog1pRows.length} sampler/NFE slices share the coarse sigma-counts with linear, and ${empiricalJumpDiffs}/${empiricalLog1pRows.length} have different max/last sigma-jump values. The supplemental cond-marg log1p stream is more linear-like by coarse counts (${condmargSameCounts}/${condmargLog1pRows.length}), so it is labeled supplemental rather than headline evidence.`;
+  if (!rows.length) {
+    tableEl.innerHTML = '<p class="notice">No raw EDM rows are available for the entropic variant audit.</p>';
+    return;
+  }
+  const fidCfg = metricConfig('edm', 'fid_inception');
+  const pixelCfg = metricConfig('edm', 'fid_pixel');
+  const secondsCfg = metricConfig('edm', 'infer_seconds');
+  const colGroup = tableColGroup([
+    'audit-mode-col',
+    'audit-nfe-col',
+    'audit-variant-col',
+    'audit-stream-col',
+    'audit-metric-col',
+    'audit-metric-col',
+    'audit-metric-col',
+    'audit-metric-col',
+    'audit-metric-col',
+    'audit-profile-col',
+    'audit-profile-col',
+    'audit-profile-col',
+    'audit-profile-col',
+    'audit-profile-check-col'
+  ]);
+  let html = `<table>${colGroup}<thead><tr>
+    <th class="sticky-table-head">Sampler</th>
+    <th>NFE</th>
+    <th>Variant</th>
+    <th>Evidence stream</th>
+    <th title="${htmlEscape(fidCfg.label)}; lower is better">FID-I</th>
+    <th title="Variant minus linear; negative is better">Delta FID-I</th>
+    <th title="${htmlEscape(pixelCfg.label)}; lower is better">FID-Px</th>
+    <th title="Variant minus linear; negative is better">Delta FID-Px</th>
+    <th title="${htmlEscape(secondsCfg.label)}; lower is better">Seconds</th>
+    <th title="Number of schedule nodes with sigma below 1">sigma&lt;1</th>
+    <th title="Number of schedule nodes with sigma below 0.1">sigma&lt;0.1</th>
+    <th title="Maximum adjacent sigma jump from the source CSV">Max sigma jump</th>
+    <th title="Last adjacent sigma jump from the source CSV">Last sigma jump</th>
+    <th>Profile vs linear</th>
+  </tr></thead><tbody>`;
+  rows.forEach(row => {
+    const rowClasses = [
+      row.variant.supplemental ? 'supplemental-row' : '',
+      row.variant.scheduler === EDM_SPOTLIGHT_SCHEDULER ? 'spotlight-row-edm' : '',
+      row.variant.scheduler === 'linear' ? 'comparator-row' : ''
+    ].filter(Boolean).join(' ');
+    const deltaClass = stat => {
+      const value = Number(stat?.mean);
+      if (!Number.isFinite(value) || Math.abs(value) <= 1e-9) return 'delta-neutral';
+      return value < 0 ? 'delta-positive' : 'delta-negative';
+    };
+    html += `<tr class="${rowClasses}">
+      <td title="${htmlEscape(solverLabel(row.mode))}">${htmlEscape(solverLabel(row.mode))}</td>
+      <td>${formatInt(row.step)}</td>
+      <td><span class="scheduler-name"><span class="swatch" style="background:${schedulerColor(row.variant.scheduler)}"></span>${htmlEscape(row.variant.label)}</span>${schedulerBadges(row.variant.scheduler, { domain: 'edm' })}</td>
+      <td>${htmlEscape(row.variant.streamLabel)}</td>
+      <td>${formatCell(row.stats.fid_inception, fidCfg)}${formatSupport(row.stats.fid_inception, 'edm')}</td>
+      <td class="${deltaClass(row.deltaStats.fid_inception)}">${row.variant.scheduler === 'linear' ? '<span class="weak">reference</span>' : formatSignedCell(row.deltaStats.fid_inception, fidCfg)}</td>
+      <td>${formatCell(row.stats.fid_pixel, pixelCfg)}${formatSupport(row.stats.fid_pixel, 'edm')}</td>
+      <td class="${deltaClass(row.deltaStats.fid_pixel)}">${row.variant.scheduler === 'linear' ? '<span class="weak">reference</span>' : formatSignedCell(row.deltaStats.fid_pixel, pixelCfg)}</td>
+      <td>${formatCell(row.stats.infer_seconds, secondsCfg)}${formatSupport(row.stats.infer_seconds, 'edm')}</td>
+      <td>${formatAuditProfileCell(row.profileStats.sigma_lt_1_count)}</td>
+      <td>${formatAuditProfileCell(row.profileStats.sigma_lt_0p1_count)}</td>
+      <td>${formatAuditProfileCell(row.profileStats.sigma_max_jump)}</td>
+      <td>${formatAuditProfileCell(row.profileStats.sigma_last_jump, '.4f')}</td>
+      <td class="${auditSameCoarseCounts(row) && row.variant.scheduler !== 'linear' ? 'delta-neutral' : ''}">${htmlEscape(auditProfileComparison(row))}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  tableEl.innerHTML = html;
+}
+
 function alphaHeroRowId(row) {
   return `${row.size_group}__${alphaVariantKey(row)}`;
 }
@@ -4770,6 +5080,7 @@ function main() {
   syncProteinSizeFilterControls();
   renderHeroWorkflow();
   renderOverallStrongTables();
+  renderEdmVariantAudit();
   renderDeltas();
   renderTheoryValidationStatement();
   renderTheoryEvidenceCards();

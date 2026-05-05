@@ -27,6 +27,7 @@
       <a class="sub-link" href="#protein-evidence">AlphaFlow - Animations</a>
       <a href="#edm">EDM</a>
       <a class="sub-link" href="#edm-tables">EDM - Tables</a>
+      <a class="sub-link" href="#edm-entropic-variants">EDM - Entropic variants</a>
       <a class="sub-link" href="#edm-atlas">EDM - Figures</a>
       <a class="sub-link" href="#edm-animations">EDM - Animations</a>
     </nav>
@@ -394,6 +395,21 @@
         </div>
       </section>
 
+      <section id="edm-entropic-variants" class="panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">EDM entropic audit</p>
+            <h2>All EDM entropic variants, with log1p versus linear checks</h2>
+          </div>
+          <p class="section-note">
+            The audit table reports empirical-Hutchinson and supplemental conditional-minus-marginal rows separately, then compares each row against the matching linear sampler.
+          </p>
+        </div>
+        <div id="edmVariantAuditCards" class="mini-card-row"></div>
+        <div id="edmLog1pLinearConcern" class="notice edm-audit-note"></div>
+        <div id="edmVariantAuditTable" class="table-wrap evidence-table edm-variant-audit-table"></div>
+      </section>
+
       <section id="edm-charts" class="panel">
         <div class="section-head">
           <div>
@@ -472,6 +488,7 @@
   <script src="assets/plotly-2.27.0.min.js"></script>
   <script src="data/tarchic_chart_manifest.js"></script>
   <script src="data/site_data.js"></script>
+  <script src="data/edm_profile_stats.js"></script>
   <script src="assets/site.js"></script>
 </body>
 </html>
