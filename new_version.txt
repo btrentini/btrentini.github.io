@@ -1,0 +1,20 @@
+[ok] 1) Remove /entropic
+[ok] 2) Remove /pforms
+[ok] 3) Update profile pic in the main page to /Users/trentini/Documents/code/btrentini.github.io/static/images/website_1.png
+[ok] 4) Move applicatons (ancelotti and Camaleone ) to just before publications and after keynotes
+[ok] 5) Under publications, add https://arxiv.org/abs/2605.15524
+[ok] 6) Under publicatios, add https://arxiv.org/abs/2605.16126
+[ok] 7) Under blogs, tag linkedin, add: https://www.linkedin.com/posts/btrentini_i-used-bayesian-statistics-to-predict-carlo-activity-7462499301638750208-9xpU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs
+[ok] 8) Under blogs, tag linkedin, add: https://www.linkedin.com/posts/btrentini_machinelearning-share-7460710488792928257-VVk0/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs
+[ok] 9) Under blogs, tag Theology, add: https://navigators.co.uk/blog/2026/02/19/ai-as-a-pseudo-alongsider/
+[ok] 10) Convert /Users/trentini/Documents/code/btrentini.github.io/posts/content/casts_in_ai.pdf to .md file using the same tempalte as  /Users/trentini/Documents/code/btrentini.github.io/posts/content/monty-hall.md
+[ok] 11) Under blogs, tag Society, add: the converted file in 10)
+[ok] 12) Under blog, tag Community, add: https://ai4na-workshop.github.io/
+[ok] 13) Under blog, tag Community, add  https://ml4lms.bio/
+[ok] 14) Under blogs, tag Theology, add https://navigators.co.uk/blog/2025/06/19/the-night-i-almost-missed-everything/
+[ok] 15) Under talks & Keynotes, add talk about AI for Science & Protein Design and  at the London South Bank University and link here: https://www.linkedin.com/posts/zaidsuhail_ai-digitalbiology-proteindesign-ugcPost-7445502241744273408-TEH-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs
+[ok] 16) Under talks & keyunotes, add the panel at Thinking About Thinking panel about Post-raise and link this https://www.linkedin.com/posts/thinking-about-thinking-inc_thinkingaboutthinking-ugcPost-7452657644655476736-vQDj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs and also this one https://www.linkedin.com/posts/btrentini_looking-forward-to-speaking-at-the-ai-for-activity-7442565029406765056-lNKs?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs
+[ok] 17) Under blogs, community tag, there's already a post about Simbiochem. Please add this as additional detail: https://www.linkedin.com/posts/tejs-vegge-b1aa291_simbiochem-ai-teamcapex-ugcPost-7403176652412760066-SIcB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs
+[ok] 18) Get rid of the tag blogs under Blog. Move that single post to "Machine Learning" tag
+[ok] 19) Under blogs, the tag tutorial should be renamed to Tutorials and it should be the second after "all posts"
+[ok] 20) Section blog should come before publications

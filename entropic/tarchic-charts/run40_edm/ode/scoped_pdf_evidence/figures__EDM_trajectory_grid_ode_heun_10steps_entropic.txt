@@ -1,3 +1,0 @@
-run40 EDM: visual sample grid.
-Use this as qualitative evidence alongside the metric charts; it checks whether the same scheduler conclusion is visible across distinct examples rather than a single cherry-picked image.
-The chart is generated from the scoped website data bundle: run40 is the EDM ground truth and run41 is the AlphaFlow ground truth.

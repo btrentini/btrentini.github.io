@@ -1,3 +1,0 @@
-All website figures obey the scoped source policy: run40 for EDM, run41 for AlphaFlow.
-AlphaFlow figures are regenerated from run41 rank CSV metrics.
-Run41 protein-construction GIFs/HTML/PDFs are newly rendered from run41 cond-marg saved PDB frames.

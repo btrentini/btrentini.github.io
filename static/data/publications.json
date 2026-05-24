@@ -1,5 +1,27 @@
 [
     {
+        "title": "Neural Point-Forms",
+        "authors": ["Bruno Trentini","Jacob Hume","Vincenzo Antonio Isoldi","Philipp Misof","Ekaterina S. Ivshina","Kelly Maggs"],
+        "venue": "arXiv",
+        "year": 2026,
+        "links": {
+          "paper": "https://arxiv.org/abs/2605.15524",
+          "code": null,
+          "blog": null
+        }
+      },
+      {
+        "title": "Entropy Across the Bridge: Conditional-Marginal Discretization for Flow and Schrödinger Samplers",
+        "authors": ["Bruno Trentini","Dejan Stancevic","Michael M. Bronstein","Alexander Tong","Luca Ambrogioni"],
+        "venue": "arXiv",
+        "year": 2026,
+        "links": {
+          "paper": "https://arxiv.org/abs/2605.16126",
+          "code": null,
+          "blog": null
+        }
+      },
+    {
         "title": "Improving Inverse Folding for Peptide Design with Diversity-Regularized Direct Preference Optimization",
         "authors": ["Ryan Park","Darren J Hsu","C Brian Roland","Maria Korshunova","Chen Tessler","Shie Mannor","Olivia Viessmann","Bruno Trentini"],
         "venue": " (Spotlight) ICML 2025 — 2nd Workshop on Generative AI and Biology ",

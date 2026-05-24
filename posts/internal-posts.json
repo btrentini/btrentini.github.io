@@ -25,5 +25,14 @@
     "author": "Bruno Trentini",
     "hero": "/posts/images/ssh/ssh.jpg",
     "tags": ["tutorial"]
+  },
+  {
+    "slug": "casts_in_ai",
+    "title": "Castes in the Age of AI",
+    "description": "The Mastery of Technique and the New Public Square",
+    "date": "2026-05-24",
+    "author": "Bruno Trentini",
+    "hero": "/posts/images/casts_in_ai/thumbnail.png",
+    "tags": ["society"]
   }
 ]

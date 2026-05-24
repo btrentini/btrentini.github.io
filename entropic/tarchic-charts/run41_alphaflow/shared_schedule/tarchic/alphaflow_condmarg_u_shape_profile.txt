@@ -1,2 +1,0 @@
-run41 AlphaFlow: conditional-minus-marginal U-shape profile for ATLAS and CAMEO.
-This is the theory-facing chart: the boundary-heavy profile is the expected bridge diagnostic, and endpoint metrics should be interpreted separately from this allocation evidence.

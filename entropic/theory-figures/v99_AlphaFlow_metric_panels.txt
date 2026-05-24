@@ -1,1 +1,0 @@
-v99 tarchic scatter regeneration from local website CSVs: rmsd_mean vs plddt_mean.

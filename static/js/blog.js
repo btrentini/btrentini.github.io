@@ -276,8 +276,14 @@ class BlogManager {
       }
     });
 
-    // Create filter buttons
-    const filterButtons = ['all', ...Array.from(topics).sort()];
+    // Create filter buttons — keep 'all' first, then 'tutorial' (displayed as 'Tutorials'), then the rest alphabetically
+    const sortedTopics = Array.from(topics).sort();
+    const tutorialIndex = sortedTopics.indexOf('tutorial');
+    if (tutorialIndex !== -1) {
+      sortedTopics.splice(tutorialIndex, 1);
+      sortedTopics.unshift('tutorial');
+    }
+    const filterButtons = ['all', ...sortedTopics];
 
     this.filterContainer.innerHTML = `
       <div class="filter-buttons">
@@ -303,12 +309,16 @@ class BlogManager {
     // Special formatting for specific topics
     const specialCases = {
       'machine learning': 'Machine Learning',
-      'tutorial': 'Tutorial',
+      'tutorial': 'Tutorials',
       'presentation': 'Presentations',
       'presentations': 'Presentations',
       'linkedin': 'LinkedIn',
       'youtube': 'YouTube',
-      'random': 'Random'
+      'random': 'Random',
+      'theology': 'Theology',
+      'society': 'Society',
+      'community': 'Community',
+      'data science': 'Data Science'
     };
 
     if (specialCases[topic]) {
@@ -462,7 +472,7 @@ class BlogManager {
       <div class="blog-post-content">
         ${thumbnail}
         <div class="blog-post-text">
-          <h3 class="blog-title"><a href="${post.url}" target="_blank" rel="noopener noreferrer">${title}</a></h3>
+          <h3 class="blog-title">${title}</h3>
           <p class="blog-description">${truncatedDescription}</p>
           <div class="blog-meta">
             <span class="blog-date">${date}</span>
@@ -472,6 +482,14 @@ class BlogManager {
         </div>
       </div>
     `;
+
+    article.addEventListener('click', () => {
+      if (post.isInternal) {
+        window.location.href = post.url;
+      } else {
+        window.open(post.url, '_blank', 'noopener,noreferrer');
+      }
+    });
 
     return article;
   }

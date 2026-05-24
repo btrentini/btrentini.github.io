@@ -1,1 +1,0 @@
-v99 tarchic scatter regeneration from local website CSVs: infer_seconds_per_output vs plddt_mean.

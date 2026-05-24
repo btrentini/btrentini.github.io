@@ -1,2 +1,0 @@
-run41 AlphaFlow CAMEO: dataset-scoped conditional-minus-marginal U-shape profile.
-Each target curve is normalized before aggregation, so the chart shows timing shape rather than protein-length amplitude; endpoint quality metrics are interpreted separately.

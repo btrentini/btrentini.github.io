@@ -1,2 +1,0 @@
-run40 EDM sde heun at 5 NFE: FID advantage of entropic-log1p against linear and the best non-entropic scheduler.
-Positive bars are the regimes where the log-tempered entropic schedule is better; negative bars identify where it should not be claimed as the best choice.

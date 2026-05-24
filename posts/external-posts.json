@@ -18,7 +18,7 @@
     "url": "https://developer.nvidia.com/blog/author/brunod/",
     "description": "Collection of technical articles and research publications on NVIDIA Developer Blog.",
     "date": "2024-01-01",
-    "topic": "blog"
+    "topic": "machine learning"
   },
   {
     "title": "Mesh-AI: Successful Startups & Data Contracts",
@@ -125,5 +125,56 @@
     "description": "We’re often interested in understanding how machine learning models make predictions, but this is not always easy with complex models. The goal of SHAP (SHapley Additive exPlanations) is to explain the prediction of an instance x by computing the contribution of each feature to the prediction. In this talk, we will discuss the topic of transparency in Machine Learning through the lenses of SHAP, the benefits and limitations of this method and practical applications in a business context.",
     "date": "2024-11-10",
     "topic": "tutorial"
+  },
+  {
+    "title": "I used Bayesian Statistics to predict Carlo Ancelotti's Brazil squad",
+    "url": "https://www.linkedin.com/posts/btrentini_i-used-bayesian-statistics-to-predict-carlo-activity-7462499301638750208-9xpU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "Applying Bayesian statistics to forecast Carlo Ancelotti's Brazil 2026 squad selection.",
+    "date": "2026-01-29",
+    "topic": "linkedin"
+  },
+  {
+    "title": "Machine Learning Insights & Share",
+    "url": "https://www.linkedin.com/posts/btrentini_machinelearning-share-7460710488792928257-VVk0/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "A LinkedIn share on machine learning topics and reflections.",
+    "date": "2026-01-24",
+    "topic": "linkedin"
+  },
+  {
+    "title": "AI as a Pseudo-Alongsider",
+    "url": "https://navigators.co.uk/blog/2026/02/19/ai-as-a-pseudo-alongsider/",
+    "description": "Reflections on how AI risks being treated as a pseudo-Paraclete or alongsider in matters of conscience, faith and discipleship.",
+    "date": "2026-02-19",
+    "topic": "theology",
+    "thumbnail": "/posts/content/uk_navs.jpeg"
+  },
+  {
+    "title": "The Night I Almost Missed Everything",
+    "url": "https://navigators.co.uk/blog/2025/06/19/the-night-i-almost-missed-everything/",
+    "description": "A personal reflection on faith, vocation, and the moments when the most important things almost go unnoticed.",
+    "date": "2025-06-19",
+    "topic": "theology",
+    "thumbnail": "/posts/content/uk_navs.jpeg"
+  },
+  {
+    "title": "AI for Nucleic Acids Workshop",
+    "url": "https://ai4na-workshop.github.io/",
+    "description": "Workshop bringing together researchers working at the intersection of AI and nucleic acid science.",
+    "date": "2025-03-01",
+    "topic": "community"
+  },
+  {
+    "title": "ML for Life and Material Sciences Workshop",
+    "url": "https://ml4lms.bio/",
+    "description": "Workshop on machine learning for life and material sciences, from theory to industry applications.",
+    "date": "2024-07-28",
+    "topic": "community"
+  },
+  {
+    "title": "SIMBIOCHEM — Tejs Vegge announcement",
+    "url": "https://www.linkedin.com/posts/tejs-vegge-b1aa291_simbiochem-ai-teamcapex-ugcPost-7403176652412760066-SIcB?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAcpYjABO76ql2tEiZ0DKFdrlrtryee5gSs",
+    "description": "Additional context on the SIMBIOCHEM workshop at the intersection of ML and simulation for biology and chemistry.",
+    "date": "2025-11-01",
+    "topic": "community"
   }
 ]

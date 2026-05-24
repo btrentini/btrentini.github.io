@@ -1,2 +1,0 @@
-run40 EDM: model-scoped U-shape profile comparing the bridge-theory allocation shape with the measured EDM entropy-rate proxy.
-The point is not to claim EDM is a bridge model; it is a stress test showing why log-tempered entropic allocation can still emphasize difficult boundary regimes.

@@ -1,1 +1,0 @@
-v99 tarchic website metric figure regenerated from run41 AlphaFlow CSVs: standard/plddt_mean.
