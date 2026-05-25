@@ -1414,6 +1414,7 @@ section h2 {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 16px;
   padding: 20px;
+  cursor: pointer;
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
