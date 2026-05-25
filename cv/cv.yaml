@@ -22,14 +22,15 @@ education:
       - "Dissertation Supervisor: Prof. Simon Julier"
 
   - institution: "University College London"
-    degree: "M.Sc. in Robotics & Computation"
+    degree: "Graduate Coursework in Robotics & Computation"
     start_date: "2018-09"
-    end_date: "2018-11"
+    end_date: "2018-12"
     current: false
     logo: "/cv/images/ucl.png"
-    summary: "Incomplete. Transferred to Data Science & Machine Learning program"
+    summary: "Graduate coursework in robotics, image processing and computation"
     details:
-      - "Transitioned to MSc Data Science & Machine Learning after initial enrollment"
+      - "Coursework: Image processing, robotics control systems and theory, robotic sensing and manipulation"
+      - "Transitioned to MSc Data Science & Machine Learning the following year"
 
   - institution: "Univ. Tecnologica Federal do Parana"
     degree: "Pg.Dip. in Telematics & Computer Networks"
@@ -56,35 +57,37 @@ experience:
   - company: "NVIDIA"
     logo: "/cv/images/nvidia.png"
     roles:
-      - role: "Applied Research Scientist"
+      - role: "Applied ML Research Scientist (IC5)"
         start_date: "2024-09"
         end_date: null
         current: true
-        summary: "Leading ML research in life sciences and developer relations"
+        summary: "Applied research on generative models, geometric deep learning, and biomolecular AI"
         achievements:
-          - "Led team of 8 ML scientists and engineers, achieving 20% improvement in diversity scores for protein inverse folding by implementing DPO fine-tuning of ProteinMPNN"
-          - "Optimized inference of generative models, reducing wall-clock time by 21% through entropy-based schedulers in flow-based models"
-          - "Implemented core features in BioNeMo open-source PyTorch framework; co-authored technical documentation, demos, and research reports"
-          - "Organized scientific workshops and symposia at ICML, ICLR, and NeurIPS, securing 40,000+ EUR in sponsorship"
-          - "Oversaw startup projects on Cambridge-1 supercomputer (team of 30+ researchers), coordinating technical engagement and model optimization"
-      
-      - role: "Global Life Sciences Research Alliances Lead"
+          - "Designed novel architectures and samplers for efficient generative modelling: conditional–marginal entropy-rate scheduling for low-step bridge/flow samplers, with an 18.1% MMD improvement over linear scheduling and a paired 22.7% SDE-Heun gain across AlphaFlow/CAMEO22, ATLAS and EDM/CIFAR-10"
+          - "First-author Neural Point Forms work — a learnable k-form point-cloud architecture using diffusion geometry and discrete exterior calculus to compare high-dimensional geometry, demonstrated on biological point clouds (PDO response data, RNA velocity fields)"
+          - "Partnered with product and engineering teams on BioNeMo Framework and BioNeMo NIMs: contributed documentation, tutorials, examples, evaluation material and multi-node workflow evidence, helping users move from model access to reproducible GPU workflows"
+          - "Continued to lead scientific workshops and symposia at ICML, ICLR, NeurIPS, and EurIPS"
+
+      - role: "Global Life Sciences Research Alliances Lead (IC5)"
         start_date: "2023-01"
         end_date: "2024-08"
         current: false
-        summary: "Strategic research partnerships and technical evangelism for life sciences AI"
+        summary: "Global research alliances, Cambridge-1 readiness, AI-for-science programs"
         achievements:
-          - "Coordinated cross-functional teams of 20+ engineers and scientists on collaborative research projects"
-          - "Established research partnerships with 5+ leading research institutions and pharmaceutical companies across EMEA"
+          - "Led an 8-person science and engineering effort on protein inverse folding for peptide design, aligning ProteinMPNN fine-tuning, Direct Preference Optimization, entropy regularization, and sequence/structure evaluation — improving sequence diversity by 20% while maintaining structural similarity (Spotlight at ICML 2025 GenBio Workshop)"
+          - "Coordinated applied AI programs with life-sciences partners across biomolecular models, GPU/HPC workflows, and multi-node training; supported drug-discovery examples reporting up to 11.3x task speedup and 49% cost reduction"
+          - "Built AI-for-science workshop and community programs across ICML, ICLR, NeurIPS, EurIPS and NVIDIA events, creating high-signal forums for senior researchers, founders, and applied ML teams"
+          - "Oversaw startup and academic projects on Cambridge-1 readiness, coordinating technical engagement and model optimization with partner teams"
 
-      - role: "Developer Relations Manager - Healthcare & Life Sciences Startups Lead EMEA"
+      - role: "Developer Relations Manager – Healthcare & Life Sciences Startups Lead EMEA (IC4)"
         start_date: "2022-05"
         end_date: "2022-12"
         current: false
-        summary: "Technical evangelism and ecosystem development for AI startups"
+        summary: "Healthcare/life-sciences startups; developer enablement and platform adoption"
         achievements:
-          - "Built technical content library with 10+ tutorials and demos, generating 50,000+ views"
-          - "Managed developer community of 2,000+ members across healthcare and life sciences sectors"
+          - "Led regional healthcare and life-sciences developer engagement, helping technical teams scope GPU-accelerated ML workflows, demos, tutorials, and partner examples across protein models, tabular ADMET-style data, graph reasoning, and scientific APIs"
+          - "Helped run NVIDIA healthcare developer summit programming reaching 2,000+ developers; authored and co-authored technical content that converted scientific AI capabilities into usable workflows for external practitioners"
+          - "Worked with founders, technical leaders, and product stakeholders on applied AI adoption, partnership design, and technical roadmap decisions"
 
   - company: "NVIDIA"
     logo: "/cv/images/nvidia.png"
@@ -93,11 +96,11 @@ experience:
         start_date: "2018-12"
         end_date: "2019-12"
         current: false
-        summary: "Technical evangelism and startup ecosystem development in EMEA"
+        summary: "Startup advisory, GPU adoption, and ecosystem development"
         achievements:
-          - "Advised 100+ AI startups on scaling ML workflows with NVIDIA GPUs and SDKs, achieving average 4x speedup in training pipelines"
-          - "Organized events with Venture Capital firms and startups in EMEA, facilitating funding rounds totaling $50M+"
-          - "Built partnerships with 10+ accelerators and incubators across Europe"
+          - "Advised 100+ AI startups on GPU-accelerated ML workflow design using NVIDIA GPUs, RAPIDS, and SDKs via 1:1 technical sessions, workshops, local meetups, and VC/startup ecosystem programs"
+          - "Built partnerships with startup programs and accelerators across Europe; ran VC and founder events covering applied AI, HPC, and developer enablement"
+          - "Delivered technical talks on deep learning, GPUs, HPC, and applied AI for founders, technical leaders, investors, and developers"
 
   - company: "GSK"
     logo: "/cv/images/gsk.png"
@@ -106,25 +109,23 @@ experience:
         start_date: "2021-02"
         end_date: "2022-05"
         current: false
-        summary: "Developed reinforcement learning systems for marketing optimization"
+        summary: "Production ML, Bayesian/RL systems, experimentation, mentoring"
         achievements:
-          - "Developed multi-objective reinforcement learning system, reducing ad spend by 55% versus baseline models while maintaining conversion rates"
-          - "Project shortlisted (top 3) for DataIQ industry awards among 200+ submissions"
-          - "Led full-stack implementation: Apache Spark (ETL processing 10M+ records/day), PyTorch (MLP models), Django APIs), Azure (cloud hosting)"
-          - "Built interactive front-end dashboard in HTML/JavaScript (Node.js), adopted by 5+ marketing teams globally"
-          - "Mentored cohort of 5 apprentices as lead; 2 directly managed, 1 received global award for business impact"
-      
-      - role: "Product Manager - AI & Analytics"
+          - "Built and deployed a reinforcement-learning / Bayesian statistics system for multi-objective campaign allocation; reduced cPCV by 55% in A/B-tested use against two major industry platform providers"
+          - "Shortlisted Top 3 at the DataIQ industry awards for this project"
+          - "Led full-stack implementation: Spark/Databricks ETL, PyTorch models, production APIs, Azure cloud hosting; built an interactive HTML/JS dashboard for marketing teams"
+          - "Cohort lead for that year's apprentice intake — mentored five apprentices, directly managed two; one received a global impact award"
+          - "Educated 100+ colleagues across organizations through Bayesian statistics, Thompson sampling, and explainable-ML seminars"
+
+      - role: "Product Manager – AI & Analytics"
         start_date: "2020-10"
         end_date: "2021-02"
         current: false
-        summary: "Product strategy and roadmap for AI/ML and Data Analytics platforms"
+        summary: "Short PM assignment before moving into the data science org"
         achievements:
-          - "Defined product roadmap for AI/ML analytics platform serving 200+ analysts across 10 markets"
-          - "Led 5 roll-oputs, increasing platform adoption by 40% in 6 months in 5 markets"
-          - "Coordinated cross-functional team of 12 engineers, designers, and analysts"
-          - "Established OKRs and success metrics, improving delivery velocity by 30%"
-          - "Improved Data Science practices, implementing new features and enhanced methodologies"
+          - "Led three data engineers on EMEA ETL, analysis tooling, and Power BI forecasting dashboards for regional leaders"
+          - "Established OKRs and success metrics for the analytics workstream and supported rollout to regional markets"
+          - "Improved data science practices through documentation, methodology updates, and stakeholder alignment"
 
   - company: "KIT-AR, UCL"
     logo: "/cv/images/kitar.jpeg"
@@ -139,20 +140,18 @@ experience:
           - "Developed end-to-end ML pipeline: DBSCAN clustering, Dynamic Time Warping, Symbolic Aggregate Approximation, Deep Learning (CNN+LSTM)"
           - "Proposed novel system for Human Activity Recognition, achieving 92% accuracy on custom dataset with samples collected with Microsoft HoloLens"
 
-  - company: "HotelBeds"
+  - company: "Hotelbeds"
     logo: "/cv/images/hotelbeds.jpeg"
     roles:
       - role: "Commercial Analytics Manager"
         start_date: "2017-10"
         end_date: "2018-10"
         current: false
-        summary: "Built predictive analytics and deep learning systems for travel industry"
+        summary: "Commercial analytics, forecasting, dashboards, and ML prototypes"
         achievements:
-          - "Implemented anomaly and churn detection models using TensorFlow, achieving 75% accuracy and preventing $2M+ in revenue loss"
-          - "Built globally adopted predictive analytics and forecasting tools, generating 1,000+ views yearly across 50+ countries"
-          - "Contributed to 2% YoY revenue uplift ($5M+) through data-driven pricing optimization"
-          - "Led development of company's first Deep Learning application with team of 6 data scientists and engineers"
-          - "Established MLOps practices, reducing model deployment time from weeks to days"
+          - "Built tools used 1,000+ times by global commercial teams and led the company's first ML-powered churn-detection capability, moving account teams from reactive reporting to proactive retention and risk insights"
+          - "Delivered forecasting, dashboards, and churn/anomaly analysis for CSO and regional teams over large commercial datasets"
+          - "Supported commercial teams during Hotelbeds' post-acquisition scale-up, when the group doubled sales scale through Tourico/GTA integration"
 
   - company: "Alliants"
     logo: "/cv/images/alliants.jpeg"
@@ -161,52 +160,52 @@ experience:
         start_date: "2014-10"
         end_date: "2017-10"
         current: false
-        summary: "Built predictive analytics pipelines and led technical strategy for hospitality clients"
+        summary: "Data science and product-management work for travel-industry customers"
         achievements:
-          - "Built and deployed predictive analytics & forecasting data pipelines for 10+ client deployments"
-          - "Drove cross-project technical strategy for team of 5 engineers, influencing architecture decisions and roadmaps"
-          - "QA lead for Four Seasons Mobile App global launch (20+ countries), achieving zero production bugs in the first version"
-          - "Implemented A/B testing framework, enabling data-driven product decisions for 5+ client projects"
+          - "Built and deployed predictive analytics and forecasting data pipelines across multiple hospitality client engagements"
+          - "Provided launch support for the first Four Seasons Hotels & Resorts mobile app, including testing coordination across a global rollout"
+          - "Contributed to cross-project technical decisions and helped shape architecture and delivery roadmaps for client projects"
+          - "Introduced A/B testing patterns enabling data-driven product decisions for client engagements"
 
   - company: "GVT (acquired by Telefónica)"
     logo: "/cv/images/gvt.jpeg"
     roles:
-      - role: "Product Manager II"
+      - role: "Innovation & Product, Innovation Lab"
         start_date: "2012-06"
         end_date: "2014-09"
         current: false
-        summary: "Led innovation projects and digital business development"
+        summary: "Innovation Lab projects, operations optimization, and computer-vision prototyping"
         achievements:
-          - "Led innovation lab projects on gesture-recognition for set-top boxes, developing prototypes using Microsoft Kinect SDK in C#"
-          - "Created new digital business unit: secured $2M budget, managed cross-functional team of 30 across engineering, design, and marketing"
-          - "Coordinated with executive leadership on strategic initiatives and quarterly business reviews"
+          - "Led Innovation Lab projects on gesture-recognition for set-top boxes, building computer-vision prototypes with the Microsoft Kinect SDK in C#"
+          - "Worked on operations-optimization initiatives and helped shape new digital business proposals, coordinating with engineering, design, and marketing stakeholders"
+          - "Engaged with executive leadership on strategic initiatives and quarterly reviews"
 
   - company: "Ernst & Young"
     logo: "/cv/images/ey.jpeg"
     roles:
-      - role: "IT Consultant - Trainee (full-time)"
+      - role: "IT Consultant – Trainee (Full-time)"
         start_date: "2011-06"
         end_date: "2012-06"
         current: false
-        summary: "IT auditing and risk detection automation for financial services"
+        summary: "Forensic and financial-services audit and risk analytics"
         achievements:
-          - "Conducted IT general controls and finance auditing for 15+ clients across banking and insurance sectors"
-          - "Automated risk detection using ACL, Shell, and SQL scripting, reducing manual review time by 60%"
-          - "Identified and documented 100+ control deficiencies, preventing potential financial misstatements"
+          - "Conducted IT general controls and finance auditing across multiple banking and insurance clients"
+          - "Automated risk detection using ACL, Shell, and SQL scripting, reducing manual review time on recurring controls"
+          - "Documented control findings supporting audit deliverables and management remediation discussions"
 
   - company: "HSBC"
     logo: "/cv/images/hsbc.png"
     roles:
-      - role: "Software Analyst -- Trainee (Full-time)"
+      - role: "Software Analyst – Trainee (Full-time)"
         start_date: "2008-06"
         end_date: "2010-12"
         current: false
-        summary: "Mainframe development and customer data infrastructure"
+        summary: "Customer Data Management in HSBC global banking projects"
         achievements:
-          - "Developed and maintained COBOL, DB2, and REXX applications on IBM z/OS mainframe systems, processing millions of transactions daily"
-          - "Maintained global customer data infrastructure serving 100M+ customers across 60+ countries"
-          - "Implemented automated batch processing jobs, reducing manual intervention by 70%"
-          - "Collaborated with teams across 5 time zones on critical system upgrades"
+          - "Developed and maintained COBOL, DB2, and REXX applications on IBM z/OS mainframe systems supporting HSBC's global Customer Data Management"
+          - "Contributed to customer-data infrastructure work serving HSBC's international retail and commercial banking footprint"
+          - "Implemented and maintained automated batch processing jobs as part of recurring operational workstreams"
+          - "Collaborated across multiple international teams on system upgrades and data-quality initiatives"
 
   - company: "Biosystems Importadora"
     logo: "/cv/images/biosystems.png"
