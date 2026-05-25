@@ -349,7 +349,7 @@ header {
 
 /* Sections */
 section {
-  padding: 56px 0;
+  padding: clamp(12px, 2vw, 24px) 0;
 }
 
 section .head {
@@ -376,8 +376,8 @@ section h2 {
 
 /* Applications */
 .applications-section {
-  padding-top: 50px;
-  padding-bottom: 60px;
+  padding-top: clamp(12px, 2vw, 24px);
+  padding-bottom: clamp(12px, 2vw, 24px);
 }
 
 .applications-head {
@@ -525,11 +525,6 @@ section h2 {
 }
 
 @media (max-width: 680px) {
-  .applications-section {
-    padding-top: 34px;
-    padding-bottom: 46px;
-  }
-
   .app-grid {
     grid-template-columns: 1fr;
   }
@@ -1621,7 +1616,7 @@ footer {
 .divider {
   height: 1px;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
-  margin: 28px 0;
+  margin: 0;
 }
 
 .sr-only {
