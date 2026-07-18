@@ -444,6 +444,9 @@ class BlogManager {
     article.className = 'blog-post';
 
     const title = post.title || 'Untitled Post';
+    article.tabIndex = 0;
+    article.setAttribute('role', 'link');
+    article.setAttribute('aria-label', `${title}${post.isInternal ? '' : ' (opens in a new tab)'}`);
     const thumbnail = post.thumbnail ? `<img src="${post.thumbnail}" alt="${title}" class="blog-thumbnail">` : '';
 
     const truncatedDescription = (post.description && post.description.length > 150)
@@ -483,11 +486,19 @@ class BlogManager {
       </div>
     `;
 
-    article.addEventListener('click', () => {
+    const openPost = () => {
       if (post.isInternal) {
         window.location.href = post.url;
       } else {
         window.open(post.url, '_blank', 'noopener,noreferrer');
+      }
+    };
+
+    article.addEventListener('click', openPost);
+    article.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openPost();
       }
     });
 

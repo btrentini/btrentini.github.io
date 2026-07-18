@@ -6,7 +6,7 @@
     opacity: 0.70,
     lineWidth: 0.14,
     color: '255,255,255',
-    points: 250,
+    points: 150,
     speed: 0.12,
     step: 0.09,
     fieldScale: 0.16,
@@ -29,7 +29,8 @@
 
   /* Mobile/perf guards */
   const isCoarse = matchMedia('(pointer: coarse)').matches;
-  const DPR_CAP  = isCoarse ? 2 : 3;                // lower cap on mobile
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const DPR_CAP  = isCoarse ? 1.5 : 2;              // lower cap on mobile
 
   /* State */
   const STRIDE = 3;                                 // [x,y,z] per agent
@@ -229,7 +230,7 @@
     rafId = requestAnimationFrame(frame);
   }
 
-  function start(){ if (running) return; running = true; rafId = requestAnimationFrame(frame); }
+  function start(){ if (running || reduceMotion.matches || !ctx) return; running = true; rafId = requestAnimationFrame(frame); }
   function stop(){ if (!running) return; running = false; if (rafId) cancelAnimationFrame(rafId); rafId = 0; }
 
   const scheduleResize = (() => {
@@ -244,6 +245,7 @@
   function init(){
     canvas = document.getElementById('waveMeshCanvas');
     if (!canvas){ console.warn('WaveMesh: #waveMeshCanvas not found'); return; }
+    if (reduceMotion.matches){ canvas.hidden = true; return; }
     ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
 
     initWorld();
@@ -256,6 +258,11 @@
   window.visualViewport?.addEventListener('resize', scheduleResize, { passive: true });
   window.addEventListener('orientationchange', () => { initWorld(); scheduleResize(); }, { passive: true });
   document.addEventListener('visibilitychange', () => { document.hidden ? stop() : start(); });
+  reduceMotion.addEventListener?.('change', (event) => {
+    if (!canvas) return;
+    canvas.hidden = event.matches;
+    if (event.matches) stop();
+  });
 
   /* Public API */
   window.WaveMesh = {

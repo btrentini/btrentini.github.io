@@ -180,7 +180,7 @@ header {
   justify-content: center !important;
   /* center icon + text */
   gap: 18px !important;
-  padding: 10px 10 px 16px 20px !important;
+  padding: 10px 16px 16px 20px !important;
   /* larger, consistent */
   border-radius: 10px !important;
   /* align with card edges */

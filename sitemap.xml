@@ -2,27 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://trentini.fyi/</loc>
-    <lastmod>2026-01-09</lastmod>
+    <lastmod>2026-07-18</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://trentini.fyi/posts/layout.html?post=aliens</loc>
-    <lastmod>2021-01-05</lastmod>
-    <priority>0.8</priority>
+    <loc>https://trentini.fyi/leadership.html</loc>
+    <lastmod>2026-07-18</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://trentini.fyi/posts/layout.html?post=monty-hall</loc>
-    <lastmod>2021-03-05</lastmod>
-    <priority>0.8</priority>
+    <loc>https://trentini.fyi/projects.html</loc>
+    <lastmod>2026-07-18</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://trentini.fyi/posts/layout.html?post=casts_in_ai</loc>
+    <lastmod>2026-05-24</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://trentini.fyi/posts/layout.html?post=ssh-add</loc>
     <lastmod>2023-06-07</lastmod>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.trentini.fyi/pforms/</loc>
+    <loc>https://trentini.fyi/posts/layout.html?post=monty-hall</loc>
+    <lastmod>2021-03-05</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://trentini.fyi/posts/layout.html?post=aliens</loc>
+    <lastmod>2021-01-05</lastmod>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://trentini.fyi/pforms/</loc>
     <lastmod>2026-05-04</lastmod>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
 </urlset>
