@@ -1,6 +1,6 @@
 ---
-title: Adding SSH Keys to GitLab (Corporate) and Github (Personal)
-description: "Host key verification failed, Permission Denied, Bad Permissions, Error in libcrypto and other annoying issues you can prevent by organizing your ssh keys"
+title: Adding SSH Keys to GitLab (Corporate) and GitHub (Personal)
+description: "A practical SSH configuration for keeping corporate GitLab and personal GitHub keys separate."
 date: "2023-06-07"
 author: "Bruno Trentini"
 hero: "/posts/images/ssh/ssh.jpg"

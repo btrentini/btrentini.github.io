@@ -1,6 +1,6 @@
 ---
 title: Why should I always switch doors in the Monty Hall problem?
-description: "Sometimes you just need a push to get started. Here's what worked for me."
+description: "A simulation and conditional-probability explanation of why switching doors wins two-thirds of Monty Hall games."
 date: "2021-03-05"
 author: "Bruno Trentini"
 hero: "/posts/images/montyhall/mh-1.webp"

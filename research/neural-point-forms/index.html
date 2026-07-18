@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Neural Point-Forms | Bruno Trentini</title>
+  <meta name="description" content="Neural Point-Forms: learnable geometric features for point clouds using diffusion geometry and differential forms." />
+  <meta name="author" content="Bruno Trentini" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://trentini.fyi/research/neural-point-forms/" />
+  <link rel="icon" href="/static/images/trentinipine.png" type="image/png" />
+  <link rel="preload" href="/static/fonts/plex-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Bruno Trentini" />
+  <meta property="og:title" content="Neural Point-Forms" />
+  <meta property="og:description" content="Learnable geometric features for point clouds using diffusion geometry and differential forms." />
+  <meta property="og:url" content="https://trentini.fyi/research/neural-point-forms/" />
+  <meta property="og:image" content="https://trentini.fyi/static/images/bruno-trentini-social-card.png" />
+  <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bruno Trentini — applied machine learning research and technical leadership" />
+  <meta property="article:published_time" content="2026-05-15" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://trentini.fyi/static/images/bruno-trentini-social-card.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Neural Point-Forms",
+    "datePublished": "2026-05-15",
+    "url": "https://trentini.fyi/research/neural-point-forms/",
+    "sameAs": "https://doi.org/10.48550/arXiv.2605.15524",
+    "identifier": "arXiv:2605.15524",
+    "author": [
+      {"@type":"Person","name":"Bruno Trentini","url":"https://trentini.fyi/"},
+      {"@type":"Person","name":"Jacob Hume"}, {"@type":"Person","name":"Vincenzo Antonio Isoldi"},
+      {"@type":"Person","name":"Philipp Misof"}, {"@type":"Person","name":"Ekaterina S. Ivshina"},
+      {"@type":"Person","name":"Kelly Maggs"}
+    ],
+    "about": ["Point cloud learning", "Diffusion geometry", "Differential forms", "Geometric deep learning"],
+    "inLanguage": "en"
+  }
+  </script>
+  <link rel="stylesheet" href="/static/css/ai-lead.css" />
+</head>
+<body>
+  <a class="skip-link" href="#case-content">Skip to paper details</a>
+  <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Bruno Trentini, home"><span class="brand-mark" aria-hidden="true"></span><span>Bruno Trentini</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation"><a href="/#work">Work</a><a href="/research/" aria-current="page">Research</a><a href="/leadership.html">Profile</a><a href="/projects.html">Projects</a><a class="nav-contact" href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></nav></div></header>
+
+  <main id="case-content">
+    <section class="case-hero"><div class="container"><p class="case-meta">Research paper · arXiv:2605.15524 · 2026</p><h1>Neural Point-Forms</h1><p class="case-summary">A family of learnable geometric features that compares differential-form structure on point clouds without assuming a given tangent space.</p><p class="paper-authors">Bruno Trentini, Jacob Hume, Vincenzo Antonio Isoldi, Philipp Misof, Ekaterina S. Ivshina and Kelly Maggs.</p><div class="case-links"><a class="button" href="https://arxiv.org/abs/2605.15524" rel="noopener">Read on arXiv</a><a class="button secondary" href="https://arxiv.org/html/2605.15524" rel="noopener">HTML paper</a></div></div></section>
+
+    <div class="container case-layout">
+      <article class="case-content">
+        <section><h2>Problem</h2><p>Point-cloud learning often assumes that samples lie near an underlying manifold. Coordinates, pairwise distances and learned graph neighbourhoods capture part of this structure, but not the higher-order tangency information represented by differential forms in the smooth setting.</p></section>
+        <section><h2>Method</h2><p>Neural Point-Forms use Laplacian methods from diffusion geometry to construct a discrete comparison of differential forms. A point cloud is represented through learned form-comparison matrices that encode how feature forms interact with extrinsic tangency information.</p><p>The resulting layer is compact, permutation invariant and designed to work without a supplied tangent bundle. The paper also proves long-run consistency of the comparison matrices under standard assumptions on sampling, bandwidth, density and the manifold hypothesis.</p>
+          <figure class="case-figure"><svg viewBox="0 0 720 360" role="img" aria-label="Point samples, local form directions and comparison matrix"><g fill="none" stroke="currentColor" stroke-width="1.7" opacity=".55"><path d="M40 244C152 66 298 94 390 169s191 74 284-91"/><path d="M36 282c122-105 251-124 365-53s181 63 281-21" opacity=".45"/><path d="M112 82l93 107 122-98 107 116 142-105" opacity=".32"/></g><g fill="currentColor"><circle cx="40" cy="244" r="7"/><circle cx="112" cy="82" r="6"/><circle cx="205" cy="189" r="8"/><circle cx="327" cy="91" r="7"/><circle cx="401" cy="229" r="6"/><circle cx="434" cy="207" r="8"/><circle cx="576" cy="102" r="7"/><circle cx="674" cy="78" r="6"/></g><g stroke="#9a4f2e" stroke-width="3"><path d="M205 189l32-38"/><path d="M327 91l39 27"/><path d="M434 207l32-40"/></g><g transform="translate(535 220)" fill="none" stroke="currentColor" opacity=".72"><rect width="114" height="86"/><path d="M38 0v86M76 0v86M0 29h114M0 58h114"/><circle cx="19" cy="14" r="6" fill="#9a4f2e" stroke="none"/><circle cx="57" cy="43" r="6" fill="#9a4f2e" stroke="none"/><circle cx="95" cy="72" r="6" fill="#9a4f2e" stroke="none"/></g></svg><figcaption>Conceptual view: sampled geometry, learned form directions and a form-comparison matrix.</figcaption></figure>
+        </section>
+        <section><h2>Role and collaboration</h2><p>I am the first author. The work was developed with Jacob Hume, Vincenzo Antonio Isoldi, Philipp Misof, Ekaterina S. Ivshina and Kelly Maggs.</p></section>
+        <section><h2>Evaluation</h2><p>The method is evaluated on synthetic data and biologically relevant point clouds. The paper reports its strongest benefits where labels depend on sampling density, manifold-like structure or response-relevant population geometry.</p><div class="result-strip"><div><strong>Invariant</strong><span>to point permutation</span></div><div><strong>Consistent</strong><span>under stated asymptotic assumptions</span></div><div><strong>Interpretable</strong><span>form-comparison representation</span></div></div></section>
+      </article>
+      <aside class="case-sidebar" aria-label="Paper facts"><dl><div><dt>ROLE</dt><dd>First author</dd></div><div><dt>FIELD</dt><dd>Geometric deep learning</dd></div><div><dt>METHODS</dt><dd>Diffusion geometry; differential forms; point-cloud learning</dd></div><div><dt>SUBMITTED</dt><dd>15 May 2026</dd></div><div><dt>IDENTIFIER</dt><dd>arXiv:2605.15524</dd></div><div><dt>SOURCE</dt><dd><a href="https://doi.org/10.48550/arXiv.2605.15524" rel="noopener">doi.org/10.48550/arXiv.2605.15524</a></dd></div></dl></aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container footer-row"><span>© <span id="year">2026</span> Bruno Trentini</span><div class="footer-links"><a href="/research/">All publications</a><a href="/research/entropy-across-the-bridge/">Next paper</a></div></div></footer>
+  <script src="/static/js/site.js" defer></script>
+</body>
+</html>

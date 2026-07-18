@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Production Reinforcement Learning System | Bruno Trentini</title>
+  <meta name="description" content="A production reinforcement-learning and Bayesian campaign-allocation system that reduced cost per completed view by 55% in an A/B test." />
+  <meta name="author" content="Bruno Trentini" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://trentini.fyi/work/production-reinforcement-learning/" />
+  <link rel="icon" href="/static/images/trentinipine.png" type="image/png" />
+  <link rel="preload" href="/static/fonts/plex-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="article" /><meta property="og:site_name" content="Bruno Trentini" />
+  <meta property="og:title" content="Production Reinforcement Learning System | Bruno Trentini" />
+  <meta property="og:description" content="Modelling, data pipelines, APIs, cloud deployment and controlled evaluation." />
+  <meta property="og:url" content="https://trentini.fyi/work/production-reinforcement-learning/" />
+  <meta property="og:image" content="https://trentini.fyi/static/images/bruno-trentini-social-card.png" />
+  <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bruno Trentini — applied machine learning research and technical leadership" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:image" content="https://trentini.fyi/static/images/bruno-trentini-social-card.png" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org", "@type":"Article",
+    "headline":"Production reinforcement learning for campaign allocation", "author":{"@id":"https://trentini.fyi/#person"},
+    "url":"https://trentini.fyi/work/production-reinforcement-learning/",
+    "about":["Reinforcement learning", "Bayesian statistics", "Production machine learning", "A/B testing"], "inLanguage":"en-GB"
+  }
+  </script>
+  <link rel="stylesheet" href="/static/css/ai-lead.css" />
+</head>
+<body>
+  <a class="skip-link" href="#case-content">Skip to case details</a>
+  <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Bruno Trentini, home"><span class="brand-mark" aria-hidden="true"></span><span>Bruno Trentini</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation"><a href="/#work" aria-current="page">Work</a><a href="/research/">Research</a><a href="/leadership.html">Profile</a><a href="/projects.html">Projects</a><a class="nav-contact" href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></nav></div></header>
+
+  <main id="case-content">
+    <section class="case-hero"><div class="container"><p class="case-meta">Production ML · GSK · 2021–2022</p><h1>Reinforcement learning for campaign allocation</h1><p class="case-summary">A reinforcement-learning and Bayesian system for multi-objective allocation, implemented from data pipeline to production interface and evaluated in a live A/B test.</p></div></section>
+    <div class="container case-layout">
+      <article class="case-content">
+        <section><h2>Problem</h2><p>Campaign allocation involves sequential decisions under uncertain response. A static allocation can waste budget when channel performance changes, but an adaptive system must also expose its recommendations clearly enough for operational use.</p></section>
+        <section><h2>Method and system</h2><p>I developed a reinforcement-learning and Bayesian approach to multi-objective allocation. The production implementation covered Spark and Databricks data pipelines, PyTorch models, service APIs, Azure hosting and an interactive web interface for the operating team.</p>
+          <figure class="case-figure"><svg viewBox="0 0 720 360" role="img" aria-label="Sequential decision system with posterior updates and allocation outcomes"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="46" y="139" width="126" height="82"/><rect x="297" y="139" width="126" height="82"/><rect x="548" y="139" width="126" height="82"/><path d="M172 180h125M423 180h125"/><path d="m282 171 15 9-15 9m251-18 15 9-15 9"/></g><g fill="currentColor" font-family="IBM Plex Mono,monospace" font-size="14" text-anchor="middle"><text x="109" y="174">observations</text><text x="109" y="194">Spark / DBX</text><text x="360" y="174">policy +</text><text x="360" y="194">posterior</text><text x="611" y="174">allocation</text><text x="611" y="194">API / UI</text></g><g fill="none" stroke="#9a4f2e" stroke-width="3"><path d="M611 222c0 72-502 72-502 0"/><path d="m119 280-10 14-10-14"/></g><g transform="translate(260 54)" fill="none" stroke="#9a4f2e" stroke-width="2"><path d="M0 52c28-45 51-45 79 0s54 44 82 0 53-43 81 0"/><circle cx="0" cy="52" r="4" fill="#9a4f2e"/><circle cx="79" cy="52" r="4" fill="#9a4f2e"/><circle cx="161" cy="52" r="4" fill="#9a4f2e"/><circle cx="242" cy="52" r="4" fill="#9a4f2e"/></g></svg><figcaption>System loop: observations update the model; the service returns allocations; outcomes feed the next decision.</figcaption></figure>
+        </section>
+        <section><h2>My role</h2><p>I built and deployed the system as Senior Data Scientist, owning the modelling and the implementation path from data preparation to the user interface. I also presented the statistical methods internally and supported adoption by the operating teams.</p></section>
+        <section><h2>Evaluation</h2><p>The system was tested against two major industry platform providers. In the A/B test it reduced cost per completed view by 55%. The project was shortlisted in the top three at the DataIQ industry awards.</p><div class="result-strip"><div><strong>55%</strong><span>lower cost per completed view</span></div><div><strong>A/B</strong><span>live controlled evaluation</span></div><div><strong>Top 3</strong><span>DataIQ industry award shortlist</span></div></div></section>
+        <section><h2>Technical scope</h2><ul><li>Reinforcement learning and Bayesian statistics for sequential allocation.</li><li>Spark/Databricks ETL and PyTorch modelling.</li><li>Production APIs and Azure deployment.</li><li>Interactive HTML and JavaScript interface for operational users.</li></ul></section>
+      </article>
+      <aside class="case-sidebar" aria-label="Project facts"><dl><div><dt>ROLE</dt><dd>Senior Data Scientist; end-to-end technical owner</dd></div><div><dt>STACK</dt><dd>Spark, Databricks, PyTorch, APIs, Azure, HTML and JavaScript</dd></div><div><dt>METHODS</dt><dd>Reinforcement learning; Bayesian statistics; controlled experiments</dd></div><div><dt>MEASURE</dt><dd>Cost per completed view</dd></div><div><dt>RESULT</dt><dd>55% reduction in A/B-tested use</dd></div></dl></aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container footer-row"><span>© <span id="year">2026</span> Bruno Trentini</span><div class="footer-links"><a href="/work/protein-inverse-folding/">Previous case</a><a href="/#work">Selected work</a></div></div></footer>
+  <script src="/static/js/site.js" defer></script>
+</body>
+</html>

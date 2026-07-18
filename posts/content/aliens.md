@@ -1,6 +1,6 @@
 ---
 title: Statistical Errors (With Aliens)
-description: "Sometimes you just need a push to get started. Here's what worked for me."
+description: "A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example."
 date: "2021-01-05"
 author: "Bruno Trentini"
 hero: "/posts/images/aliens/ufo-alien.jpg"

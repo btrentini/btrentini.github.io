@@ -6,6 +6,18 @@
   <title id="page-title">Blog — Bruno Trentini</title>
   <meta name="description" id="page-description" content="Bruno Trentini's blog posts on AI, machine learning, and scientific computing." />
   <meta name="author" content="Bruno Trentini" />
+  <script>
+    (() => {
+      const legacyRoutes = {
+        casts_in_ai: '/posts/castes-in-the-age-of-ai/',
+        'ssh-add': '/posts/ssh-keys-gitlab-github/',
+        'monty-hall': '/posts/monty-hall-problem/',
+        aliens: '/posts/statistical-errors-with-aliens/'
+      };
+      const slug = new URLSearchParams(window.location.search).get('post');
+      if (slug && legacyRoutes[slug]) window.location.replace(legacyRoutes[slug]);
+    })();
+  </script>
 
   <!-- Open Graph meta tags -->
   <meta property="og:type" content="article">

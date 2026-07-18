@@ -2,7 +2,7 @@ const POSTS_DATA = {
   "aliens": {
     "frontmatter": {
       "title": "Statistical Errors (With Aliens)",
-      "description": "Sometimes you just need a push to get started. Here's what worked for me.",
+      "description": "A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example.",
       "date": "2021-01-05",
       "author": "Bruno Trentini",
       "hero": "/posts/images/aliens/ufo-alien.jpg",
@@ -13,7 +13,7 @@ const POSTS_DATA = {
   "monty-hall": {
     "frontmatter": {
       "title": "Why should I always switch doors in the Monty Hall problem?",
-      "description": "Sometimes you just need a push to get started. Here's what worked for me.",
+      "description": "A simulation and conditional-probability explanation of why switching doors wins two-thirds of Monty Hall games.",
       "date": "2021-03-05",
       "author": "Bruno Trentini",
       "hero": "/posts/images/montyhall/mh-1.webp",
@@ -23,8 +23,8 @@ const POSTS_DATA = {
   },
   "ssh-add": {
     "frontmatter": {
-      "title": "Adding SSH Keys to GitLab (Corporate) and Github (Personal)",
-      "description": "Host key verification failed, Permission Denied, Bad Permissions, Error in libcrypto and other annoying issues you can prevent by organizing your ssh keys",
+      "title": "Adding SSH Keys to GitLab (Corporate) and GitHub (Personal)",
+      "description": "A practical SSH configuration for keeping corporate GitLab and personal GitHub keys separate.",
       "date": "2023-06-07",
       "author": "Bruno Trentini",
       "hero": "/posts/images/ssh/ssh.jpg",

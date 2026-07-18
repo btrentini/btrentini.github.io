@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Protein Inverse Folding Programme | Bruno Trentini</title>
+  <meta name="description" content="An eight-person research and engineering programme on diversity-regularised preference optimisation for peptide inverse folding." />
+  <meta name="author" content="Bruno Trentini" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://trentini.fyi/work/protein-inverse-folding/" />
+  <link rel="icon" href="/static/images/trentinipine.png" type="image/png" />
+  <link rel="preload" href="/static/fonts/plex-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="article" /><meta property="og:site_name" content="Bruno Trentini" />
+  <meta property="og:title" content="Protein Inverse Folding Programme | Bruno Trentini" />
+  <meta property="og:description" content="Research management, preference optimisation and sequence–structure evaluation for peptide design." />
+  <meta property="og:url" content="https://trentini.fyi/work/protein-inverse-folding/" />
+  <meta property="og:image" content="https://trentini.fyi/static/images/bruno-trentini-social-card.png" />
+  <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bruno Trentini — applied machine learning research and technical leadership" />
+  <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:image" content="https://trentini.fyi/static/images/bruno-trentini-social-card.png" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org", "@type":"ScholarlyArticle",
+    "headline":"Improving Inverse Folding for Peptide Design with Diversity-Regularized Direct Preference Optimization",
+    "datePublished":"2025", "url":"https://trentini.fyi/work/protein-inverse-folding/",
+    "sameAs":"https://openreview.net/forum?id=Gh6Zoi3F",
+    "author":[
+      {"@type":"Person","name":"Ryan Park"}, {"@type":"Person","name":"Darren J. Hsu"}, {"@type":"Person","name":"C. Brian Roland"},
+      {"@type":"Person","name":"Maria Korshunova"}, {"@type":"Person","name":"Chen Tessler"}, {"@type":"Person","name":"Shie Mannor"},
+      {"@type":"Person","name":"Olivia Viessmann"}, {"@type":"Person","name":"Bruno Trentini","url":"https://trentini.fyi/"}
+    ],
+    "about":["Protein inverse folding", "Peptide design", "Direct preference optimisation", "ProteinMPNN"], "inLanguage":"en"
+  }
+  </script>
+  <link rel="stylesheet" href="/static/css/ai-lead.css" />
+</head>
+<body>
+  <a class="skip-link" href="#case-content">Skip to case details</a>
+  <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Bruno Trentini, home"><span class="brand-mark" aria-hidden="true"></span><span>Bruno Trentini</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation"><a href="/#work" aria-current="page">Work</a><a href="/research/">Research</a><a href="/leadership.html">Profile</a><a href="/projects.html">Projects</a><a class="nav-contact" href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></nav></div></header>
+
+  <main id="case-content">
+    <section class="case-hero"><div class="container"><p class="case-meta">Research and engineering programme · NVIDIA · 2023–2024</p><h1>Protein inverse folding for peptide design</h1><p class="case-summary">An eight-person programme combining ProteinMPNN fine-tuning, diversity-regularised direct preference optimisation and sequence–structure evaluation.</p><div class="case-links"><a class="button" href="https://openreview.net/forum?id=Gh6Zoi3F" rel="noopener">Read the paper</a><a class="button secondary" href="/static/images/invfold-poster.jpg">View poster</a></div></div></section>
+    <div class="container case-layout">
+      <article class="case-content">
+        <section><h2>Problem</h2><p>Inverse-folding systems can generate sequences compatible with a target backbone while concentrating on a narrow part of sequence space. For peptide design, increasing diversity is useful only if the generated sequences retain the required structural similarity.</p></section>
+        <section><h2>Method</h2><p>The team fine-tuned ProteinMPNN and applied direct preference optimisation with an explicit diversity regulariser. Evaluation paired sequence-diversity measures with structure-based checks so that improvement in one objective was not reported without the other.</p>
+          <figure class="case-figure"><svg viewBox="0 0 720 360" role="img" aria-label="Protein backbone, candidate sequences and diversity-selection diagram"><g transform="translate(55 60)" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" opacity=".8"><path d="M10 160c38-94 84-97 122-13s89 75 130-15 90-83 132 0 87 88 128 3"/><path d="M12 160c47 30 72 7 105-29m54 23c38 35 68 25 104-11m52 0c34 30 69 28 104-3" stroke-width="2" opacity=".55"/></g><g transform="translate(520 65)" font-family="IBM Plex Mono,monospace" font-size="16" fill="currentColor"><text y="20">APQLVRYM</text><text y="55">GPKLIRFM</text><text y="90">SPMLVKYT</text><text y="125">APRLVEFM</text><text y="160">TPKLVRYI</text></g><g fill="#9a4f2e"><circle cx="546" cy="240" r="6"/><circle cx="588" cy="283" r="6"/><circle cx="636" cy="245" r="6"/><circle cx="670" cy="301" r="6"/></g><g fill="none" stroke="#9a4f2e" stroke-width="2"><path d="M546 240l42 43 48-38 34 56"/></g></svg><figcaption>Conceptual pipeline: target backbone, candidate sequences and diversity-aware selection with structural checks.</figcaption></figure>
+        </section>
+        <section><h2>My role</h2><p>As Global Life Sciences Research Alliances Lead, I managed the eight-person science and engineering effort. My role was to align the technical work across model fine-tuning, preference optimisation and evaluation, and to coordinate the research programme through publication.</p></section>
+        <section><h2>Collaborators</h2><p>The paper was authored by Ryan Park, Darren J. Hsu, C. Brian Roland, Maria Korshunova, Chen Tessler, Shie Mannor, Olivia Viessmann and Bruno Trentini.</p></section>
+        <section><h2>Result</h2><p>The reported method improved sequence diversity by 20% while maintaining structural similarity. The work was selected as a spotlight at the ICML 2025 2nd Workshop on Generative AI and Biology.</p><div class="result-strip"><div><strong>8</strong><span>researchers and engineers</span></div><div><strong>20%</strong><span>higher sequence diversity</span></div><div><strong>Spotlight</strong><span>ICML 2025 GenBio workshop</span></div></div></section>
+      </article>
+      <aside class="case-sidebar" aria-label="Programme facts"><dl><div><dt>ROLE</dt><dd>Research and engineering manager</dd></div><div><dt>TEAM</dt><dd>Eight researchers and engineers</dd></div><div><dt>METHODS</dt><dd>ProteinMPNN; direct preference optimisation; diversity regularisation</dd></div><div><dt>EVALUATION</dt><dd>Sequence diversity and structural similarity</dd></div><div><dt>OUTPUT</dt><dd>ICML workshop spotlight paper</dd></div><div><dt>SOURCE</dt><dd><a href="https://openreview.net/forum?id=Gh6Zoi3F" rel="noopener">OpenReview</a></dd></div></dl></aside>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="container footer-row"><span>© <span id="year">2026</span> Bruno Trentini</span><div class="footer-links"><a href="/#work">Selected work</a><a href="/work/production-reinforcement-learning/">Next case</a></div></div></footer>
+  <script src="/static/js/site.js" defer></script>
+</body>
+</html>

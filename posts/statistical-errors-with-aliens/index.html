@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Statistical Errors (With Aliens) | Bruno Trentini</title>
+  <meta name="description" content="A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example." />
+  <meta name="author" content="Bruno Trentini" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://trentini.fyi/posts/statistical-errors-with-aliens/" />
+  <link rel="icon" href="/static/images/trentinipine.png" type="image/png" />
+  <link rel="preload" href="/static/fonts/plex-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Bruno Trentini" />
+  <meta property="og:title" content="Statistical Errors (With Aliens)" />
+  <meta property="og:description" content="A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example." />
+  <meta property="og:url" content="https://trentini.fyi/posts/statistical-errors-with-aliens/" />
+  <meta property="og:image" content="https://trentini.fyi/posts/images/aliens/ufo-alien.jpg" />
+  <meta property="og:image:alt" content="Statistical Errors (With Aliens)" />
+  <meta property="article:published_time" content="2021-01-05" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Statistical Errors (With Aliens)" />
+  <meta name="twitter:description" content="A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example." />
+  <meta name="twitter:image" content="https://trentini.fyi/posts/images/aliens/ufo-alien.jpg" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"Statistical Errors (With Aliens)","description":"A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example.","datePublished":"2021-01-05","author":{"@id":"https://trentini.fyi/#person"},"url":"https://trentini.fyi/posts/statistical-errors-with-aliens/","image":"https://trentini.fyi/posts/images/aliens/ufo-alien.jpg","inLanguage":"en-GB"}
+  </script>
+  <script>
+    window.MathJax = {tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <link rel="stylesheet" href="/static/css/ai-lead.css" />
+</head>
+<body>
+  <a class="skip-link" href="#article-content">Skip to article</a>
+  <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Bruno Trentini, home"><span class="brand-mark" aria-hidden="true"></span><span>Bruno Trentini</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation"><a href="/#work">Work</a><a href="/research/">Research</a><a href="/leadership.html">Profile</a><a href="/projects.html">Projects</a><a class="nav-contact" href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></nav></div></header>
+  <main id="article-content">
+    <header class="post-header narrow"><p class="case-meta">Essay · 2021-01-05</p><h1>Statistical Errors (With Aliens)</h1><p class="page-deck">A concise introduction to null hypotheses and Type I and Type II errors using a deliberately simple alien example.</p></header>
+    <figure class="post-cover container"><img src="/posts/images/aliens/ufo-alien.jpg" alt="Statistical Errors (With Aliens)" /></figure>
+    <article class="post-article narrow">
+<p>This post is for the ones who are curious about data science but fairly new to stats and hypothesis testing. It is inspired by an answer I gave during an interview question last year.</p>
+<p>Hey, by the way, this is a simplified post. I hope you will be able to grasp concepts like the Null Hypothesis, Type I and Type II errors in less than 5 minutes to prevent the aliens from fooling you in the future! Stay tuned for more content covering basic and advanced technical topics.</p>
+<p>Let’s go:</p>
+<h2 id="the-alien-expedition">The Alien Expedition</h2>
+<p>Imagine that two aliens, Blorb and Zurp, are visiting Earth during an expedition to study our galaxy cluster. They arrive at the peak of the 2020 pandemic having no idea how humans look like. They first arrived in the US and ended up landing at an NBA match where no fans were allowed. They looked at the 10 players in the court and measured their average height: <strong>200cm</strong>.</p>
+<p>Blorb states: “Wow, Zurp. Humans are really tall. Their average height is 200cm just like in all other planets in this cluster of galaxies!”. Blorb rushed to publish the findings in the “Journal of Interplanetary Nature” but, despite all the media coverage in their planet, Zurp was a bit uncomfortable assuming all humans are that tall and decided to test an alternative to Blorb’s assertion.</p>
+<h2 id="hypothesis-testing-setup">Hypothesis Testing Setup</h2>
+<p>Zurp organised the test like this:</p>
+<div class="hypothesis">
+<p><strong>H₀, the null hypothesis:</strong> Humans’ average height is 200cm<br />
+<strong>H₁, alternative hypothesis:</strong> Humans’ average height is not 200cm</p>
+<p>Where “null hypothesis”, in simple terms, can be interpreted as “the default state” or whatever is assumed to be true unless proven otherwise with robust statistical evidence.</p>
+</div>
+<h2 id="type-ii-error">Type II Error</h2>
+<p>The interplanetary alliance awaits for the results while Blorb and Zurp collect more data by visiting all NBA matches occurring in that week to take further measurements (they were not interested in basketball anyway) but in the end the average didn’t vary significantly from 200cm.</p>
+<p>Zurp concludes: “Indeed, we cannot falsify your claim, Blorb”. The findings are published in the “Periodic of Interplanetary Knowledge”.</p>
+<p><strong>Oh my… they just made a Type II error</strong> because they failed to reject a false null hypothesis.</p>
+<p>Clearly, asserting humans’ average height based solely on NBA players is not a good approach but Zurp and Blorb are not very smart.</p>
+<h2 id="alternative-scenario---type-i-error">Alternative Scenario - Type I Error</h2>
+<p>Forget about this experiment now. Let’s travel back to an alternative past and see Blorb and Zurp in a different scenario.</p>
+<p>Blorb and Zurp look at the 10 NBA players. They observe players are 200cm tall on average. However, Blorb now states: “Zurp, these humans are too tall. This may not be a common thing here on Earth. I believe humans’ average height is the same as the one for all planets in the universe: 170cm”.</p>
+<p>Blorb published that in the not-reputable “Planetary Curiosities Magazine” but Zurp decided to investigate further with the following hypothesis:</p>
+<div class="hypothesis">
+<p><strong>H₀, the null hypothesis:</strong> Humans’ average height is 170cm<br />
+<strong>H₁, alternative hypothesis:</strong> Humans’ average height is not 170cm</p>
+</div>
+<p>Once again they visit all NBA matches occurring on that week to collect more data and, again, 200cm is the average they found.</p>
+<p><strong>And yet another error: now they fell into Type I error</strong> because they rejected a true null hypothesis.</p>
+<p>They should’ve spent more time thinking about their test overall. Leave a comment below with your idea on what they could’ve done differently.</p>
+<h2 id="type-iii-and-iv-errors">Type III and IV Errors</h2>
+<p>There’s also a 3rd type of error called <strong>Type III</strong> (who’d tell.…). It happens when you correctly reject a null hypothesis but you do so based on the wrong evidences and reasons. This may be the case when a hypothesis is ill-defined or completely wrong!</p>
+<p>Next is the <strong>Type IV error</strong>, which can be seen as a “specialisation” of Type III and happens when you correctly reject a null hypothesis but you don’t quite understand the results and make bad interpretations based on the data (for example, assuming that something that is true for humans overall must also be true for Nederlanders).</p>
+<h2 id="summary">Summary</h2>
+<p>Type III and IV do not get much attention in introductory courses so, in a nutshell, we should remember the basics:</p>
+<ul>
+<li><strong>Type I Error:</strong> rejects a true null hypothesis (<strong>false positive</strong>)</li>
+<li><strong>Type II Error:</strong> fails to reject a false null hypothesis (<strong>false negative</strong>)</li>
+</ul>
+<p>Out of curiosity, here’s a pretty cool <a href="https://www.kaggle.com/justinas/nba-height-and-weight-analysis">Kaggle Kernel</a> (notebook) about NBA heights if you’re into Python and data visualisations.</p>
+<p>That’s all, Juvenal.</p>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="container footer-row"><span>© <span id="year">2026</span> Bruno Trentini</span><div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></div></div></footer>
+  <script src="/static/js/site.js" defer></script>
+</body>
+</html>
