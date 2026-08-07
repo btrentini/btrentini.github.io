@@ -8,7 +8,7 @@
   <meta name="author" content="Bruno Trentini" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://trentini.fyi/posts/monty-hall-problem/" />
-  <link rel="icon" href="/static/images/trentinipine.png" type="image/png" />
+  <link rel="icon" href="/static/images/brand/favicon.svg" type="image/svg+xml" />
   <link rel="preload" href="/static/fonts/plex-sans-regular.woff2" as="font" type="font/woff2" crossorigin />
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Bruno Trentini" />
@@ -29,14 +29,18 @@
     window.MathJax = {tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']]},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']}};
   </script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <link rel="stylesheet" href="/static/css/ai-lead.css" />
+  <link rel="preload" href="/posts/images/montyhall/mh-1.webp" as="image" type="image/webp" />
+  <link rel="stylesheet" href="/static/css/ai-lead.css?v=20260807-1" />
 </head>
 <body>
   <a class="skip-link" href="#article-content">Skip to article</a>
-  <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Bruno Trentini, home"><span class="brand-mark" aria-hidden="true"></span><span>Bruno Trentini</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation"><a href="/#work">Work</a><a href="/research/">Research</a><a href="/leadership.html">Profile</a><a href="/projects.html">Projects</a><a class="nav-contact" href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></nav></div></header>
+  <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Bruno Trentini, home"><img class="brand-symbol" src="/static/images/brand/pinheiro-parana.svg" alt="" width="28" height="28" /><span>Bruno Trentini</span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation"><span class="sr-only">Toggle navigation</span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button><nav id="primary-navigation" class="primary-navigation" aria-label="Primary navigation"><a href="/#work">Work</a><a href="/research/">Research</a><a href="/leadership.html">Profile</a><a href="/speaking.html">Speaking</a><a href="/projects.html">Projects</a><a href="/blog.html" aria-current="page">Blog</a><a class="nav-contact" href="/#contact">Contact</a></nav></div></header>
   <main id="article-content">
-    <header class="post-header narrow"><p class="case-meta">Essay · 2021-03-05</p><h1>Why should I always switch doors in the Monty Hall problem?</h1><p class="page-deck">A simulation and conditional-probability explanation of why switching doors wins two-thirds of Monty Hall games.</p></header>
-    <figure class="post-cover container"><img src="/posts/images/montyhall/mh-1.webp" alt="Why should I always switch doors in the Monty Hall problem?" /></figure>
+    <header class="post-hero post-hero-monty" data-parallax-hero>
+      <div class="post-hero-media" aria-hidden="true"><img src="/posts/images/montyhall/mh-1.webp" alt="" width="592" height="481" fetchpriority="high" /></div>
+      <div class="post-hero-overlay" aria-hidden="true"></div>
+      <div class="container post-hero-content"><p class="case-meta">Essay · 5 March 2021</p><h1>Why should I always switch doors in the Monty Hall problem?</h1><p class="page-deck">A simulation and conditional-probability explanation of why switching doors wins two-thirds of Monty Hall games.</p></div>
+    </header>
     <article class="post-article narrow">
 <p><em>Note: This was originally written when bitcoin was worth ~ $65,000</em></p>
 <p>You’re facing three closed doors. Behind one of them a prize you cherish – a seed phrase for one bitcoin – and behind the other two, broken bricks. Monty Hall tells you to choose any door. Regardless of your choice, Mr. Hall will open one of the doors containing broken bricks and will give you the option to switch doors, if you wish. Should you? <em>The answer is yes</em>.</p>
@@ -44,7 +48,7 @@
 <p>Wrong. By switching doors, your chances of picking the bitcoin actually increase to <span class="math inline">\(2/3\)</span>, or approximately <span class="math inline">\(66\%\)</span>. Many statisticians encounter this problem in introductory courses on conditional probability but a lot of people never heard of it and find it a curious and tricky challenge. Most people I know get it wrong and struggle to understand why.</p>
 <h3 id="visualising-it">Visualising it</h3>
 <p>Ok. You may not be convinced. It’s fine. Totally fine. Maybe you won’t even bother seeing the theoretical aspects and proof based on the Bayes’ rule later on this post and will close the tab right after this section. Also fine. Through the code snipped below, 10,000 games were simulated using Python (link to the <a href="https://colab.research.google.com/drive/1N4dxWQpedZ2p2zGxO7Ql1_gsZzgRwJ0O">Colab Notebook</a>).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python language-python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MontyHall:</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, change<span class="op">=</span><span class="va">False</span>):</span>
@@ -139,7 +143,7 @@ The host will not open door 3 if the prize is behind door 3, and will definitely
 <p>Some people mistakenly assume that some sort of new game begins once Monty Hall reveals one of the doors. It gives the impression of a “fresh start” with only 2 doors. This complete disregards “prior knowledge”. It’s tricky because we are not used to think about sample spaces and conditional probabilities in our daily lives but when we consider carrying over the prior knowledge we see a beneficial path in many situations involving chance. This seems to be true for life in general.</p>
     </article>
   </main>
-  <footer class="site-footer"><div class="container footer-row"><span>© <span id="year">2026</span> Bruno Trentini</span><div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="mailto:bruno.trentini@cs.ox.ac.uk">Contact</a></div></div></footer>
+  <footer class="site-footer"><div class="container footer-row"><span>© <span id="year">2026</span> Bruno Trentini</span><div class="footer-links"><a href="/">Home</a><a href="/research/">Research</a><a href="/#contact">Contact</a></div></div></footer>
   <script src="/static/js/site.js" defer></script>
 </body>
 </html>

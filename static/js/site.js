@@ -26,13 +26,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 820) closeNavigation();
+      if (window.innerWidth > 900) closeNavigation();
     }, { passive: true });
   }
 
   document.querySelectorAll('[data-print-page]').forEach((button) => {
     button.addEventListener('click', () => window.print());
   });
+
+  const parallaxHeroes = Array.from(document.querySelectorAll('[data-parallax-hero]'));
+
+  if (parallaxHeroes.length) {
+    const parallaxMotion = window.matchMedia('(prefers-reduced-motion: no-preference)');
+    let parallaxFrame = null;
+
+    const renderParallax = () => {
+      parallaxFrame = null;
+
+      if (!parallaxMotion.matches) {
+        parallaxHeroes.forEach((hero) => hero.style.removeProperty('--hero-parallax-y'));
+        return;
+      }
+
+      parallaxHeroes.forEach((hero) => {
+        const bounds = hero.getBoundingClientRect();
+        const distance = Math.min(Math.max(-bounds.top, 0), bounds.height);
+        const progress = bounds.height ? distance / bounds.height : 0;
+        const travel = window.innerWidth <= 720
+          ? Math.min(48, bounds.height * 0.075)
+          : Math.min(120, bounds.height * 0.15);
+        hero.style.setProperty('--hero-parallax-y', `${(progress * travel).toFixed(2)}px`);
+      });
+    };
+
+    const queueParallax = () => {
+      if (parallaxFrame === null) parallaxFrame = window.requestAnimationFrame(renderParallax);
+    };
+
+    window.addEventListener('scroll', queueParallax, { passive: true });
+    window.addEventListener('resize', queueParallax, { passive: true });
+    parallaxMotion.addEventListener?.('change', queueParallax);
+    renderParallax();
+  }
 
   document.querySelectorAll('[data-carousel]').forEach((carousel) => {
     const slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
@@ -125,4 +160,57 @@ document.addEventListener('DOMContentLoaded', () => {
     render(index);
     start();
   });
+
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+
+  if (contactForm && formStatus) {
+    const query = new URLSearchParams(window.location.search);
+    const enquiry = contactForm.querySelector('[name="enquiry"]');
+
+    if (query.get('message') === 'sent') {
+      formStatus.textContent = 'Message sent. Thank you — I will reply by email.';
+      formStatus.classList.add('is-success');
+    }
+
+    const requestedEnquiry = query.get('enquiry');
+    if (requestedEnquiry && enquiry) {
+      const matchingOption = Array.from(enquiry.options).find((option) => option.value === requestedEnquiry);
+      if (matchingOption) enquiry.value = requestedEnquiry;
+    }
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(contactForm);
+      if (formData.get('botcheck')) return;
+
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      formStatus.textContent = 'Sending…';
+      formStatus.classList.remove('is-success', 'is-error');
+      if (submitButton) submitButton.disabled = true;
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || result.success === false) {
+          throw new Error(result.message || 'The message could not be sent.');
+        }
+
+        contactForm.reset();
+        formStatus.textContent = 'Message sent. Thank you — I will reply by email.';
+        formStatus.classList.add('is-success');
+      } catch (error) {
+        formStatus.textContent = 'The form could not send your message. Please use the email link beside it.';
+        formStatus.classList.add('is-error');
+      } finally {
+        if (submitButton) submitButton.disabled = false;
+      }
+    });
+  }
 });

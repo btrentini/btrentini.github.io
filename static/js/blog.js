@@ -128,7 +128,7 @@ class BlogManager {
     }
 
     // Final fallback
-    return '/static/images/trentinipine.png';
+    return '/static/images/brand/pinheiro-parana.svg';
   }
 
   extractYouTubeVideoId(url) {

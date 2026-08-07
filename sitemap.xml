@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://trentini.fyi/</loc><lastmod>2026-07-18</lastmod></url>
-  <url><loc>https://trentini.fyi/leadership.html</loc><lastmod>2026-07-18</lastmod></url>
-  <url><loc>https://trentini.fyi/projects.html</loc><lastmod>2026-07-18</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://trentini.fyi/</loc><lastmod>2026-07-19</lastmod>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-ai-technical-talk-audience.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-speaking-at-technical-conference.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-nvidia-technical-presentation.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-applied-ml-researcher.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/research/inverse-folding-diversity.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/research/peptron-ensemble.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://trentini.fyi/leadership.html</loc><lastmod>2026-07-19</lastmod><image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-applied-ml-researcher.webp</image:loc></image:image></url>
+  <url>
+    <loc>https://trentini.fyi/speaking.html</loc><lastmod>2026-07-19</lastmod>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-speaking-at-technical-conference.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-ai-technical-talk-audience.webp</image:loc></image:image>
+    <image:image><image:loc>https://trentini.fyi/static/images/profile/bruno-trentini-nvidia-technical-presentation.webp</image:loc></image:image>
+  </url>
+  <url><loc>https://trentini.fyi/projects.html</loc><lastmod>2026-07-23</lastmod></url>
+  <url><loc>https://trentini.fyi/blog.html</loc><lastmod>2026-07-23</lastmod></url>
   <url><loc>https://trentini.fyi/research/</loc><lastmod>2026-07-18</lastmod></url>
   <url><loc>https://trentini.fyi/research/neural-point-forms/</loc><lastmod>2026-07-18</lastmod></url>
   <url><loc>https://trentini.fyi/research/entropy-across-the-bridge/</loc><lastmod>2026-07-18</lastmod></url>
   <url><loc>https://trentini.fyi/work/protein-inverse-folding/</loc><lastmod>2026-07-18</lastmod></url>
   <url><loc>https://trentini.fyi/work/production-reinforcement-learning/</loc><lastmod>2026-07-18</lastmod></url>
   <url><loc>https://trentini.fyi/posts/castes-in-the-age-of-ai/</loc><lastmod>2026-05-24</lastmod></url>
-  <url><loc>https://trentini.fyi/posts/ssh-keys-gitlab-github/</loc><lastmod>2023-06-07</lastmod></url>
   <url><loc>https://trentini.fyi/posts/monty-hall-problem/</loc><lastmod>2021-03-05</lastmod></url>
-  <url><loc>https://trentini.fyi/posts/statistical-errors-with-aliens/</loc><lastmod>2021-01-05</lastmod></url>
   <url><loc>https://trentini.fyi/pforms/</loc><lastmod>2026-05-04</lastmod></url>
 </urlset>

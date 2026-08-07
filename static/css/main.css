@@ -83,37 +83,11 @@ header {
   letter-spacing: 0.2px;
 }
 
-/* Header brand icon colored by theme palette */
-/* Brand icon with robust CSS mask + gradient fill */
-.brand-icon {
-  width: 22px;
-  height: 22px;
-  display: inline-block;
-
-  /* Gradient fill (Orange → Brown) */
-  background: linear-gradient(135deg, var(--orange), var(--brown));
-
-  /* Use relative URL from static/css/main.css → static/images/ */
-  -webkit-mask-image: url("/static/images/trentinipine.png");
-  mask-image: url("/static/images/trentinipine.png");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-
-  /* Subtle outline for contrast */
-  filter: drop-shadow(0 0 0.5px rgba(11, 31, 59, 0.8));
+.brand-symbol {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
 }
-
-/* Fallback: show the PNG directly if CSS masks are unsupported */
-@supports not ((-webkit-mask-image: url("")) or (mask-image: url(""))) {
-  .brand-icon {
-    background: url("../images/trentinipine.png") center / contain no-repeat;
-  }
-}
-
 
 .brand-badge {
   width: 12px;
